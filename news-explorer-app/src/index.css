@@ -8,15 +8,15 @@ body {
 @font-face {
   font-family: "Roboto";
   src: local("Roboto"),
-    url(../vendor/fonts/roboto-400-regular.woff) format("woff");
+    url(./vendor/fonts/roboto-400-regular.woff) format("woff");
 }
 
 @font-face {
   font-family: "Roboto700";
-  src: local("Roboto700"), url(../vendor/fonts/roboto-700.woff) format("woff");
+  src: local("Roboto700"), url(./vendor/fonts/roboto-700.woff) format("woff");
 }
 
 @font-face {
   font-family: "Roboto500";
-  src: local("Roboto500"), url(../vendor/fonts/roboto-500.woff) format("woff");
+  src: local("Roboto500"), url(./vendor/fonts/roboto-500.woff) format("woff");
 }
