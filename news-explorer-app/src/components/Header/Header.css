@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  border-bottom: 1px solid #d1d2d6;
+}
+
+.header__logo-link {
+  text-decoration: none;
+  font-family: Roboto700;
+  color: #000;
+  font-size: 20px;
+}
+.header__button-container {
+  display: flex;
+  gap: 30px;
+}
+
+.header__button {
+  border: none;
+  background-color: #fff;
+  font-family: Roboto500;
+  cursor: url(../../images/pointer.png), auto;
+}
+
+.header__button:hover {
+  border-bottom: 3px solid #1a1b22;
+}
+
+.header__logout-btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #1a1b22;
+  border-radius: 20px;
+  background-color: #fff;
+  cursor: url(../../images/pointer.png), auto;
+}
+
+.header__logout-button {
+  width: 24px;
+  height: 24px;
+}
