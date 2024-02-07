@@ -1,3 +1,4 @@
+import "./SavedNews.css";
 const SavedNews = () => {
   return <></>;
 };

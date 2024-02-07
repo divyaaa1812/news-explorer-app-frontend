@@ -1,0 +1,68 @@
+.card__item {
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.card__category-container {
+  max-width: 87px;
+  width: 100%;
+  background-color: #ffffff;
+  position: absolute;
+  border-radius: 10px;
+  top: 22px;
+  left: 22px;
+}
+
+.card__category-text {
+  margin: 0;
+  padding: 10px 20px 10px 20px;
+}
+
+.card__trash-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  background-color: #ffffff;
+}
+.card__trash-icon {
+  padding: 6px 6px 6px 6px;
+}
+
+.card__description {
+}
+
+.card__image {
+  padding-bottom: 10px;
+}
+
+.card__date {
+  color: #b6bcbf;
+  margin: 0px;
+  padding-bottom: 10px;
+}
+
+.card__title {
+  margin: 0px;
+  font-size: 26px;
+  font-family: "Robotoslab";
+  padding-bottom: 10px;
+}
+
+.card__subtitle {
+  margin: 0;
+  font-size: 16px;
+  font-family: Roboto, serif;
+  padding-bottom: 10px;
+}
+
+.card__footer {
+  font-family: Robotoslab700, serif;
+  font-size: 16px;
+  margin: 0px;
+  color: #b6bcbf;
+  padding-bottom: 10px;
+}
