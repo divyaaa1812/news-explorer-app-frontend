@@ -1,0 +1,31 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__copyright {
+  color: #b6bcbf;
+  font-size: 16px;
+}
+
+.footer__nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  color: #1a1b22;
+}
+
+.footer__nav-link {
+  margin: 0;
+}
+
+.footer__github-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.footer__facebook-icon {
+  width: 24px;
+  height: 24px;
+}

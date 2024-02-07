@@ -5,6 +5,7 @@ import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <SavedNews />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }
