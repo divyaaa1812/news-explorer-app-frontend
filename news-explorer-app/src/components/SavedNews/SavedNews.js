@@ -1,6 +1,12 @@
 import "./SavedNews.css";
+import NewsCard from "../NewsCard/NewsCard";
+
 const SavedNews = () => {
-  return <></>;
+  return (
+    <>
+      <NewsCard />
+    </>
+  );
 };
 
 export default SavedNews;
