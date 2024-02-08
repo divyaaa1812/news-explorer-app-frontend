@@ -1,7 +1,7 @@
 import "./Navigation.css";
 import logout from "../../images/logout.png";
 
-const Navigation = ({ loggedIn }) => {
+const Navigation = ({ loggedIn, onOpenModal }) => {
   return (
     <>
       {loggedIn ? (
@@ -35,6 +35,7 @@ const Navigation = ({ loggedIn }) => {
           </button>
           <button
             type="button"
+            onClick={() => onOpenModal("SigninModal")}
             className="header__logout-nav-btn header__signin-btn"
           >
             SignIn

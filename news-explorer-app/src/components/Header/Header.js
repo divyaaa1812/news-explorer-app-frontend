@@ -4,7 +4,7 @@ import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 
-const Header = ({ loggedIn }) => {
+const Header = ({ loggedIn, onOpenModal }) => {
   const headerLogoClassName = `header__logo-link ${
     loggedIn ? `header__logo-link` : `header__logo-notloggedin`
   }`;
@@ -14,7 +14,7 @@ const Header = ({ loggedIn }) => {
         <Link to="/" className={headerLogoClassName}>
           <p>NewsExplorer</p>
         </Link>
-        <Navigation loggedIn={loggedIn} />
+        <Navigation loggedIn={loggedIn} onOpenModal={onOpenModal} />
       </div>
       <div className="header__searchform">
         {loggedIn ? <SavedNewsHeader /> : <SearchForm />}
