@@ -1,8 +1,11 @@
 import "./SignupModal.css";
+import React, { useState } from "react";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const SignupModal = () => {
+const SignupModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailChange = (e) => {
@@ -17,12 +20,20 @@ const SignupModal = () => {
     setUsername(e.target.value);
   };
 
-  const handleAltClick = (e) => {
-    onOpenModal("SignupModal");
+  const handleAltButtonClick = (e) => {
+    onOpenModal("SigninModal");
   };
 
+  const enabled =
+    email.length > 0 && password.length > 0 && username.length > 0;
+
   return (
-    <ModalWithForm name="signup" title={"Sign up"} isOpen={onOpenModal}>
+    <ModalWithForm
+      name="signup"
+      title={"Sign up"}
+      isOpen={onOpenModal}
+      onClose={onCloseModal}
+    >
       <div className="form__field">
         <label>
           Email
@@ -76,7 +87,7 @@ const SignupModal = () => {
       </button>
       <button
         className="modal__alt-button"
-        onClick={handleAltClick}
+        onClick={handleAltButtonClick}
         type="button"
       >
         {isLoading ? "Submtting..." : "or Sign in"}

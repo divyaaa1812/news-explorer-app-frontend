@@ -2,7 +2,7 @@ import "./SigninModal.css";
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const SigninModal = ({ onOpenModal, onSubmit }) => {
+const SigninModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -15,14 +15,19 @@ const SigninModal = ({ onOpenModal, onSubmit }) => {
     setPassword(e.target.value);
   };
 
-  const handleAltClick = (e) => {
+  const handleAltButtonClick = () => {
     onOpenModal("SignupModal");
   };
 
   const enabled = email.length > 0 && password.length > 0;
 
   return (
-    <ModalWithForm name="signin" title={"Sign in"} isOpen={onOpenModal}>
+    <ModalWithForm
+      name="signin"
+      title={"Sign in"}
+      isOpen={onOpenModal}
+      onClose={onCloseModal}
+    >
       <div className="form__field">
         <label>
           Email
@@ -60,7 +65,7 @@ const SigninModal = ({ onOpenModal, onSubmit }) => {
       </button>
       <button
         className="modal__alt-button"
-        onClick={handleAltClick}
+        onClick={handleAltButtonClick}
         type="button"
       >
         {isLoading ? "Submtting..." : "or Sign up"}

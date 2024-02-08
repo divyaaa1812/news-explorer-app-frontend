@@ -7,6 +7,7 @@ import { Switch, Route } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import SigninModal from "../SigninModal/SigninModal";
+import SignupModal from "../SignupModal/SignupModal";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -36,7 +37,16 @@ function App() {
       </Switch>
       <Footer />
       {openModal === "SigninModal" && (
-        <SigninModal onOpenModal={handleOpenModal} />
+        <SigninModal
+          onOpenModal={handleOpenModal}
+          onCloseModal={handleCloseModal}
+        />
+      )}
+      {openModal === "SignupModal" && (
+        <SignupModal
+          onOpenModal={handleOpenModal}
+          onCloseModal={handleCloseModal}
+        />
       )}
     </div>
   );
