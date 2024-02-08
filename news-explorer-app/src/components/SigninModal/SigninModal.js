@@ -30,7 +30,7 @@ const SigninModal = ({ onOpenModal, onSubmit }) => {
             <input
               type="email"
               name="email"
-              placeholder="Enter Email"
+              placeholder="Enter email"
               className="input-field"
               value={email}
               onChange={handleEmailChange}
@@ -46,7 +46,7 @@ const SigninModal = ({ onOpenModal, onSubmit }) => {
             <input
               type="password"
               name="password"
-              placeholder="Enter Password"
+              placeholder="Enter password"
               className="input-field"
               value={password}
               onChange={handlePasswordChange}
