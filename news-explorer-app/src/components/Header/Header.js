@@ -5,18 +5,15 @@ import SearchForm from "../SearchForm/SearchForm";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 
 const Header = ({ loggedIn }) => {
+  const headerLogoClassName = `header__logo-link ${
+    loggedIn ? `header__logo-link` : `header__logo-notloggedin`
+  }`;
   return (
     <header className="header">
       <div className="header__logo">
-        {loggedIn ? (
-          <Link to="/" className="header__logo-link">
-            <p>NewsExplorer</p>
-          </Link>
-        ) : (
-          <Link to="/" className="header__logo-notloggedin">
-            <p>NewsExplorer</p>
-          </Link>
-        )}
+        <Link to="/" className={headerLogoClassName}>
+          <p>NewsExplorer</p>
+        </Link>
         <Navigation loggedIn={loggedIn} />
       </div>
       <div className="header__searchform">

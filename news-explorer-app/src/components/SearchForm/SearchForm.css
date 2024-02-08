@@ -56,6 +56,9 @@
   border: none;
   position: absolute;
 }
+.searchbox__input-field:focus {
+  outline: none;
+}
 
 .header__searchbtn {
   padding-top: 60px;
