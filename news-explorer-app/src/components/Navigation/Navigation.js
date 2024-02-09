@@ -1,9 +1,13 @@
 import "./Navigation.css";
-import logout from "../../images/logout.png";
+import { Link } from "react-router-dom";
+import logoutwt from "../../images/logoutwt.png";
 
 const Navigation = ({ loggedIn, onOpenModal }) => {
   return (
-    <>
+    <div className="header__logo">
+      <Link to="/" className="header__logo-text">
+        <p>NewsExplorer</p>
+      </Link>
       {loggedIn ? (
         <div className="header__nav">
           <div className="header__button-container">
@@ -17,7 +21,7 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
               Elise
               <span>
                 <img
-                  src={logout}
+                  src={logoutwt}
                   alt="click to logout"
                   className="header__logout-button"
                 />
@@ -42,7 +46,7 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
           </button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

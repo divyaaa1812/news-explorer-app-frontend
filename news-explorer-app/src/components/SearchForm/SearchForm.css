@@ -1,17 +1,17 @@
 .header__searchformtitle {
-  margin: 0;
+  margin: 0 auto;
   color: #fff;
-  text-align: center;
   font-family: Robotoslab;
   font-size: 60px;
   padding-top: 60px;
   padding-bottom: 20px;
+  max-width: 608px;
+  width: 100%;
 }
 
 .header__searchformsubtitle {
-  margin: 0;
+  margin: 0 auto;
   color: #fff;
-  text-align: center;
   font-family: Roboto, serif;
   padding-top: 20px;
   padding-bottom: 30px;
@@ -62,4 +62,7 @@
 
 .header__searchbtn {
   padding-top: 60px;
+  max-width: 608px;
+  width: 100%;
+  margin: 0 auto;
 }

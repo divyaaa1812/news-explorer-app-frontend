@@ -1,5 +1,5 @@
 // App.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import "./App.css";
@@ -10,7 +10,7 @@ import SigninModal from "../SigninModal/SigninModal";
 import SignupModal from "../SignupModal/SignupModal";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [openModal, setOpenModal] = useState("");
 
   const handleOpenModal = (modalName) => {
@@ -20,6 +20,26 @@ function App() {
   const handleCloseModal = () => {
     setOpenModal("");
   };
+
+  useEffect(() => {
+    if (!openModal) return;
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+    const handleClickOutside = (e) => {
+      if (e.target === e.currentTarget) {
+        handleCloseModal();
+      }
+    };
+    document.addEventListener("keydown", handleEscClose);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openModal]);
 
   return (
     <div className="App">

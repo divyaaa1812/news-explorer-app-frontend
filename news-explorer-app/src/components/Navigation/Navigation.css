@@ -3,6 +3,13 @@
   justify-content: space-between;
   align-items: center;
 }
+.header__logo-text {
+  color: #fff;
+  text-decoration: none;
+  cursor: url(../../images/pointer.png), auto;
+  font-family: Roboto700;
+  font-size: 20px;
+}
 
 .header__button-container {
   display: flex;
@@ -11,28 +18,31 @@
 
 .header__button {
   border: none;
-  background-color: #fff;
+  color: #fff;
+  background: transparent;
   font-family: Roboto500;
   cursor: url(../../images/pointer.png), auto;
   padding: 0;
 }
 
 .header__button:hover {
-  border-bottom: 3px solid #1a1b22;
+  border-bottom: 3px solid #fff;
 }
 
 .header__logout-btn {
   display: flex;
+  color: #fff;
   align-items: center;
-  border: 1px solid #1a1b22;
+  border: 1px solid #fff;
   border-radius: 20px;
-  background-color: #fff;
+  background: transparent;
   cursor: url(../../images/pointer.png), auto;
 }
 
 .header__logout-button {
   width: 24px;
   height: 24px;
+  color: #fff;
 }
 
 .header__logout-nav {
@@ -58,4 +68,30 @@
 .header__signin-btn {
   border: 1px solid #fff;
   border-radius: 10px;
+}
+
+.header__logo-link {
+  text-decoration: none;
+  font-family: Roboto700;
+  color: #000;
+  font-size: 20px;
+}
+
+.header__logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d1d2d6;
+  padding-left: 20px;
+}
+
+.header {
+  background-image: url("../../images/headerbg.png");
+  height: 576px;
+}
+
+.header__searchform {
+  max-width: 608px;
+  width: 100%;
+  margin: 0 auto;
 }
