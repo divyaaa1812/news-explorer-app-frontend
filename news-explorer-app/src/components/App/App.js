@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import SigninModal from "../SigninModal/SigninModal";
 import SignupModal from "../SignupModal/SignupModal";
+import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -43,12 +44,13 @@ function App() {
 
   return (
     <div className="App">
-      <Header loggedIn={loggedIn} onOpenModal={handleOpenModal} />
       <Switch>
         <Route exact path="/">
+          <Header loggedIn={loggedIn} onOpenModal={handleOpenModal} />
           <Main loggedIn={loggedIn} />
         </Route>
         <Route exact path="/saved-news">
+          <SavedNewsHeader />
           <SavedNews />
         </Route>
         <Route exact path="/signin">

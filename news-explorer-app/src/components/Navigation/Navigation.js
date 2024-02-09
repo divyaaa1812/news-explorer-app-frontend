@@ -6,7 +6,7 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
   return (
     <div className="header__logo">
       <Link to="/" className="header__logo-text">
-        <p>NewsExplorer</p>
+        NewsExplorer
       </Link>
       {loggedIn ? (
         <div className="header__nav">

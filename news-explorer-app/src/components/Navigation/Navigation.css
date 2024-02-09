@@ -10,6 +10,8 @@
   align-items: center;
   border-bottom: 1px solid #d1d2d6;
   padding-left: 20px;
+  max-height: 80px;
+  height: 100%;
 }
 
 .header__logo-text {
@@ -18,6 +20,7 @@
   cursor: url(../../images/pointer.png), auto;
   font-family: Robotoslab700;
   font-size: 20px;
+  margin: 0;
 }
 
 .header__button-container {
