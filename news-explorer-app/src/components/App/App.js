@@ -9,6 +9,7 @@ import Header from "../Header/Header";
 import SigninModal from "../SigninModal/SigninModal";
 import SignupModal from "../SignupModal/SignupModal";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
+import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,17 +30,10 @@ function App() {
         handleCloseModal();
       }
     };
-    const handleClickOutside = (e) => {
-      const modal = document.querySelector(".modal");
-      if (modal && !modal.contains(e.currentTarget)) {
-        handleCloseModal();
-      }
-    };
     document.addEventListener("keydown", handleEscClose);
-    document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("keydown", handleEscClose);
-      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [openModal]);
 
@@ -67,6 +61,12 @@ function App() {
       )}
       {openModal === "SignupModal" && (
         <SignupModal
+          onOpenModal={handleOpenModal}
+          onCloseModal={handleCloseModal}
+        />
+      )}
+      {openModal === "SignupSuccessModal" && (
+        <SignupSuccessModal
           onOpenModal={handleOpenModal}
           onCloseModal={handleCloseModal}
         />

@@ -1,9 +1,23 @@
 import "./ModalWithForm.css";
+import React, { useEffect, useRef } from "react";
 
 const ModalWithForm = ({ name, children, title, onClose, onSubmit }) => {
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
   return (
     <div className={`modal modal_${name}`}>
-      <div className="modal__content">
+      <div ref={modalRef} className="modal__content">
         <button
           className="modal__close-button"
           type="button"

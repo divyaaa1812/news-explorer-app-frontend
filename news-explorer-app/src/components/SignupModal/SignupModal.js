@@ -1,6 +1,7 @@
 import "./SignupModal.css";
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
 
 const SignupModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
   const [email, setEmail] = useState("");
@@ -27,12 +28,17 @@ const SignupModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
   const enabled =
     email.length > 0 && password.length > 0 && username.length > 0;
 
+  const handleSubmit = () => {
+    onOpenModal("SignupSuccessModal");
+  };
+
   return (
     <ModalWithForm
       name="signup"
       title={"Sign up"}
       isOpen={onOpenModal}
       onClose={onCloseModal}
+      onSubmit={() => handleSubmit}
     >
       <div className="form__field">
         <label>
@@ -71,7 +77,7 @@ const SignupModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
           Username
           <div>
             <input
-              type="password"
+              type="text"
               name="password"
               placeholder="Enter your username"
               className="input-field"
