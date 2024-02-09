@@ -1,7 +1,7 @@
-import "./NewsCard.css";
+import "./NewsCardList.css";
 
-const NewsCard = () => {
+const NewsCardList = () => {
   return <></>;
 };
 
-export default NewsCard;
+export default NewsCardList;

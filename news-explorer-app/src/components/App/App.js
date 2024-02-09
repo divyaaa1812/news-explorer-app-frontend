@@ -11,7 +11,7 @@ import SignupModal from "../SignupModal/SignupModal";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [openModal, setOpenModal] = useState("");
 
   const handleOpenModal = (modalName) => {
@@ -30,7 +30,8 @@ function App() {
       }
     };
     const handleClickOutside = (e) => {
-      if (e.target === e.currentTarget) {
+      const modal = document.querySelector(".modal");
+      if (modal && !modal.contains(e.currentTarget)) {
         handleCloseModal();
       }
     };
