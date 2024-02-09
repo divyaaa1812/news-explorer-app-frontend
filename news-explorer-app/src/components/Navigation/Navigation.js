@@ -23,7 +23,7 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
                 <img
                   src={logoutwt}
                   alt="click to logout"
-                  className="header__logout-button"
+                  className="header__logout-icon"
                 />
               </span>
             </button>
@@ -31,18 +31,15 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
         </div>
       ) : (
         <div className="header__logout-nav">
-          <button
-            type="button"
-            className="header__logout-nav-btn header__home-btn"
-          >
+          <button type="button" className="header__button header__home-btn">
             Home
           </button>
           <button
             type="button"
             onClick={() => onOpenModal("SigninModal")}
-            className="header__logout-nav-btn header__signin-btn"
+            className="header__signin-btn"
           >
-            SignIn
+            Sign in
           </button>
         </div>
       )}

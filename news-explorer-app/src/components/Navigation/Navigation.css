@@ -3,26 +3,37 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.header__logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d1d2d6;
+  padding-left: 20px;
+}
+
 .header__logo-text {
   color: #fff;
   text-decoration: none;
   cursor: url(../../images/pointer.png), auto;
-  font-family: Roboto700;
+  font-family: Robotoslab700;
   font-size: 20px;
 }
 
 .header__button-container {
   display: flex;
   gap: 30px;
+  padding-right: 20px;
 }
 
 .header__button {
   border: none;
   color: #fff;
   background: transparent;
-  font-family: Roboto500;
   cursor: url(../../images/pointer.png), auto;
   padding: 0;
+  font-family: Roboto500, serif;
+  font-size: 18px;
 }
 
 .header__button:hover {
@@ -37,9 +48,13 @@
   border-radius: 20px;
   background: transparent;
   cursor: url(../../images/pointer.png), auto;
+  font-family: Roboto500, serif;
+  font-size: 18px;
+  gap: 10px;
+  padding: 0px 10px 0px 10px;
 }
 
-.header__logout-button {
+.header__logout-icon {
   width: 24px;
   height: 24px;
   color: #fff;
@@ -52,46 +67,19 @@
   padding-right: 20px;
 }
 
-.header__logout-nav-btn {
-  border: none;
-  color: #fff;
-  font-family: Roboto500;
-  cursor: url(../../images/pointer.png), auto;
-  background-color: Transparent;
-  font-size: 18px;
-}
-
 .header__home-btn:hover {
   border-bottom: 3px solid #fff;
+  cursor: url(../../images/pointer.png), auto;
 }
 
 .header__signin-btn {
   border: 1px solid #fff;
-  border-radius: 10px;
+  border-radius: 20px;
+  padding: 10px 20px 10px 20px;
+  color: #fff;
+  background: transparent;
 }
 
-.header__logo-link {
-  text-decoration: none;
-  font-family: Roboto700;
-  color: #000;
-  font-size: 20px;
-}
-
-.header__logo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #d1d2d6;
-  padding-left: 20px;
-}
-
-.header {
-  background-image: url("../../images/headerbg.png");
-  height: 576px;
-}
-
-.header__searchform {
-  max-width: 608px;
-  width: 100%;
-  margin: 0 auto;
+.header__signin-btn:hover {
+  cursor: url(../../images/pointer.png), auto;
 }
