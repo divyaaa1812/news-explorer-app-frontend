@@ -1,5 +1,5 @@
 import "./Navigation.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logoutwt from "../../images/logoutwt.png";
 
 const Navigation = ({ loggedIn, onOpenModal }) => {
@@ -9,14 +9,23 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
         NewsExplorer
       </Link>
       {loggedIn ? (
-        <div className="header__nav">
+        <nav className="header__nav">
+          <NavLink
+            exact
+            to="/"
+            activeClassName="menu__link_active"
+            className="menu__link"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/saved-news"
+            activeClassName="menu__link_active"
+            className="menu__link"
+          >
+            Saved articles
+          </NavLink>
           <div className="header__button-container">
-            <button type="button" className="header__button">
-              Home
-            </button>
-            <button type="button" className="header__button">
-              Saved articles
-            </button>
             <button type="button" className="header__logout-btn">
               Elise
               <span>
@@ -28,7 +37,7 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
               </span>
             </button>
           </div>
-        </div>
+        </nav>
       ) : (
         <div className="header__logout-nav">
           <button type="button" className="header__button header__home-btn">

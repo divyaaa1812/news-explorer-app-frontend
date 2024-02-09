@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 const ModalWithForm = ({ name, children, title, onClose, onSubmit }) => {
   const modalRef = useRef(null);
 
+  //To close modal when click outside modal window
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {

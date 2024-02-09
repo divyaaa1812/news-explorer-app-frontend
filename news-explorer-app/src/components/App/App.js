@@ -1,9 +1,9 @@
 // App.js
 import React, { useState, useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import SigninModal from "../SigninModal/SigninModal";
@@ -44,12 +44,21 @@ function App() {
           <Header loggedIn={loggedIn} onOpenModal={handleOpenModal} />
           <Main loggedIn={loggedIn} />
         </Route>
-        <Route exact path="/saved-news">
+        <Route path="/saved-news">
           <SavedNewsHeader />
           <SavedNews />
         </Route>
-        <Route exact path="/signin">
-          <SigninModal onOpenModal={handleOpenModal} />
+        <Route path="/signin">
+          <SigninModal
+            onOpenModal={handleOpenModal}
+            onCloseModal={handleCloseModal}
+          />
+        </Route>
+        <Route path="/signup">
+          <SignupModal
+            onOpenModal={handleOpenModal}
+            onCloseModal={handleCloseModal}
+          />
         </Route>
       </Switch>
       <Footer />
