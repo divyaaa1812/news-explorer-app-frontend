@@ -10,10 +10,18 @@ import SigninModal from "../SigninModal/SigninModal";
 import SignupModal from "../SignupModal/SignupModal";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
+import SearchResults from "../SearchResults/SearchResults";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [openModal, setOpenModal] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
+  const pageSize = 1000;
 
   const handleOpenModal = (modalName) => {
     setOpenModal(modalName);
@@ -21,6 +29,22 @@ function App() {
 
   const handleCloseModal = () => {
     setOpenModal("");
+  };
+
+  const handleSearchClick = (value) => {
+    try {
+      fetch(
+        `https://newsapi.org/v2/everything?q=${value}&from=${
+          currentDate - 7
+        }&to=${currentDate}&apiKey=6cb3462c2b104837b32eef6da1aa7b60`
+      )
+        .then((res) => res.json())
+        .then((searchData) => {
+          setSearchResults(searchData);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -41,8 +65,12 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <Header loggedIn={loggedIn} onOpenModal={handleOpenModal} />
-          <Main loggedIn={loggedIn} />
+          <Header
+            loggedIn={loggedIn}
+            onOpenModal={handleOpenModal}
+            onSearchClick={handleSearchClick}
+          />
+          <Main loggedIn={loggedIn} searchResults={searchResults} />
         </Route>
         <Route path="/saved-news">
           <SavedNewsHeader />

@@ -1,12 +1,12 @@
 import { request, baseUrl } from "./Api";
 
-export const registerUser = ({ name, avatar, email, password }) => {
+export const registerUser = ({ email, password, username }) => {
   return request(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, avatar, email, password }),
+    body: JSON.stringify({ email, password, username }),
   });
 };
 

@@ -1,6 +1,8 @@
 import "./SearchForm.css";
+import { useState } from "react";
 
-const SearchForm = () => {
+const SearchForm = ({ onSearchClick }) => {
+  const [value, setValue] = useState("");
   return (
     <>
       <h1 className="header__searchformtitle">What's going on in the world?</h1>
@@ -14,10 +16,21 @@ const SearchForm = () => {
           name="searchbox"
           placeholder="Enter topic"
           className="searchbox__input-field"
+          value={value}
+          onChange={(ev) => {
+            setValue(ev.target.value);
+          }}
           required
         ></input>
         <span>
-          <button className="search-btn">Search</button>
+          <button
+            className="search-btn"
+            onClick={() => {
+              onSearchClick(value);
+            }}
+          >
+            Search
+          </button>
         </span>
       </div>
     </>
