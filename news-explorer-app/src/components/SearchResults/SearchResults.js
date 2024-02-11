@@ -1,11 +1,11 @@
-import NewsCardList from "../NewsCardList/NewsCardList";
+import NewsCard from "../NewsCard/NewsCard";
 import "./SearchResults.css";
 
-const SearchResults = ({ searchResults }) => {
+const SearchResults = ({ loggedIn, searchResults }) => {
   return (
     <div className="searchresult__container">
       <h3 className="searchresults__title"> Search results</h3>
-      <NewsCardList searchResults={searchResults} />
+      <NewsCard loggedIn={loggedIn} searchResults={searchResults} />
     </div>
   );
 };

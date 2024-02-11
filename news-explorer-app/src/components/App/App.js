@@ -55,7 +55,6 @@ function App() {
       }
     };
     document.addEventListener("keydown", handleEscClose);
-
     return () => {
       document.removeEventListener("keydown", handleEscClose);
     };

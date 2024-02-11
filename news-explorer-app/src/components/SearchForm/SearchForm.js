@@ -1,8 +1,17 @@
 import "./SearchForm.css";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const SearchForm = ({ onSearchClick }) => {
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter") {
+        onSearchClick();
+      }
+    };
+  });
+
   return (
     <>
       <h1 className="header__searchformtitle">What's going on in the world?</h1>

@@ -6,7 +6,11 @@ import SearchResults from "../SearchResults/SearchResults";
 const Main = ({ loggedIn, searchResults }) => {
   return (
     <main className="main">
-      <SearchResults searchResults={searchResults} />
+      {(searchResults && searchResults?.totalResults) > 0 ? (
+        <SearchResults loggedIn={loggedIn} searchResults={searchResults} />
+      ) : (
+        <></>
+      )}
       <About />
     </main>
   );

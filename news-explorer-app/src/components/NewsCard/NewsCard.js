@@ -1,28 +1,69 @@
 import "./NewsCard.css";
-import pic from "../../images/image_06.png";
 import trash from "../../images/trash.png";
+import bookmark from "../../images/bookmark.png";
+import { useState } from "react";
+const NewsCard = ({ loggedIn, searchResults }) => {
+  const [showMore, setShowMore] = useState(false);
+  const cards = showMore
+    ? searchResults?.articles
+    : searchResults?.articles?.slice(0, 3);
 
-const NewsCard = () => {
   return (
-    <div className="card__item">
-      <div className="card__category-container">
-        <p className="card__category-text">{}</p>
+    <div className="cards__container">
+      <div className="card__items">
+        {cards?.map((item) => {
+          const publishedAt = new Date(item.publishedAt).toLocaleString(
+            "default",
+            {
+              month: "long",
+              day: "numeric",
+            }
+          );
+          return (
+            <div className="card__item" key={item.id}>
+              <div>
+                <img
+                  src={item.urlToImage}
+                  alt="click to preview image"
+                  className="card__image"
+                />
+              </div>
+              {loggedIn ? (
+                <div className="card__category-container">
+                  <p className="card__category-text">Nature</p>
+                  <div className="card__trash-container">
+                    <img
+                      src={trash}
+                      alt="click to delete"
+                      className="card__trash-icon"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={bookmark}
+                  alt="click to save news"
+                  className="card__bookmark-icon"
+                />
+              )}
+              <div className="card__description">
+                <p className="card__date">{publishedAt}</p>
+                <p className="card__title">{item.title}</p>
+                <p className="card__subtitle">{item.description}</p>
+                <p className="card__footer">{item.source.name.toUpperCase()}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div className="card__trash-container">
-        <img src={trash} alt="click to delete" className="card__trash-icon" />
-      </div>
-      <img src={pic} alt="click to preview image" className="card__image" />
-      <div className="card__description">
-        <p className="card__date">November 4, 2020</p>
-        <p className="card__title">Title</p>
-        <p className="card__subtitle">
-          Ever since I read Richard Louv's influential book, "Last Child in the
-          Woods," the idea of having a special "sit spot" has stuck with me.
-          This advice, which Louv attributes to nature educator Jon Young, is
-          for both adults and children to find...
-        </p>
-        <p className="card__footer">treehugger</p>
-      </div>
+      <button
+        className="cards__showmore-btn"
+        onClick={() => {
+          setShowMore(!showMore);
+        }}
+      >
+        {showMore ? "Show less" : "Show more"}
+      </button>
     </div>
   );
 };
