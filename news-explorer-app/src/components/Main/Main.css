@@ -14,12 +14,6 @@
 }
 
 .preloader__loading-spinner {
-  /* border: conic-gradient(
-    from 180deg at 50% 50%,
-    #1a1b22 0deg,
-    rgba(209, 210, 214, 0) 360deg
-  ); */
-
   border: 3px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   border-top: 3px solid #b6bcbf;

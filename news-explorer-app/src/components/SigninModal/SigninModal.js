@@ -2,24 +2,57 @@ import "./SigninModal.css";
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const SigninModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+const SigninModal = ({ onOpenModal, onCloseModal, isLoading }) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [formErrors, setFormErrors] = useState({
+    email: "",
+    password: "",
+  });
+  // Determine if the signin button should be disabled
+  const isSigninButtonDisabled = !formData.email || !formData.password;
 
   const handleAltButtonClick = () => {
     onOpenModal("SignupModal");
   };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-  const enabled = email.length > 0 && password.length > 0;
+  const validateForm = () => {
+    let errors = {};
+    let formIsValid = true;
+    // Email validation
+    if (!formData.email) {
+      formIsValid = false;
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      formIsValid = false;
+      errors.email = "Invalid email address";
+    }
+    // Password validation
+    if (!formData.password) {
+      formIsValid = false;
+      errors.password = "Password is required";
+    } else if (formData.password.length < 8) {
+      formIsValid = false;
+      errors.password =
+        "Password is too short. Minimum 8 characters is required";
+    }
+    setFormErrors(errors);
+    return formIsValid;
+  };
+
+  const handleSubmit = (formData) => {
+    if (validateForm()) {
+      console.log("login details submitted", formData);
+      // Submit form data and close modal
+      onCloseModal();
+    }
+  };
 
   return (
     <ModalWithForm
@@ -37,10 +70,11 @@ const SigninModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
               name="email"
               placeholder="Enter email"
               className="input-field"
-              value={email}
-              onChange={handleEmailChange}
+              value={formData.email}
+              onChange={handleChange}
               required
             />
+            <span className="input-field-error">{formErrors.email}</span>
           </div>
         </label>
       </div>
@@ -53,14 +87,20 @@ const SigninModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
               name="password"
               placeholder="Enter password"
               className="input-field"
-              value={password}
-              onChange={handlePasswordChange}
+              value={formData.password}
+              onChange={handleChange}
               required
-            ></input>
+            />
+            <span className="input-field-error">{formErrors.password}</span>
           </div>
         </label>
       </div>
-      <button className="modal__button" disabled={!enabled}>
+      <button
+        className="modal__button"
+        onClick={handleSubmit}
+        type="button"
+        disabled={isSigninButtonDisabled}
+      >
         {isLoading ? "SigningIn..." : "Sign in"}
       </button>
       <button

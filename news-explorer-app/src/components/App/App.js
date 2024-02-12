@@ -10,13 +10,12 @@ import SigninModal from "../SigninModal/SigninModal";
 import SignupModal from "../SignupModal/SignupModal";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
-import SearchResults from "../SearchResults/SearchResults";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [openModal, setOpenModal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(false); // Track loading state
+  const [loading, setLoading] = useState(true); // Track loading state
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -49,8 +48,7 @@ function App() {
         console.log(err);
       }
       setLoading(false); // Set loading to false when server response is received
-      console.log("Search for:");
-    }, 500000);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -89,12 +87,14 @@ function App() {
           <SigninModal
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
+            isLoading={loading}
           />
         </Route>
         <Route path="/signup">
           <SignupModal
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
+            isLoading={loading}
           />
         </Route>
       </Switch>

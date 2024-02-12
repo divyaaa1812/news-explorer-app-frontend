@@ -3,33 +3,71 @@ import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
 
-const SignupModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+const SignupModal = ({ onOpenModal, onCloseModal, isLoading }) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    username: "",
+  });
+  const [formErrors, setFormErrors] = useState({
+    email: "",
+    password: "",
+    username: "",
+  });
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
+  // Determine if the signup button should be disabled
+  const isSignupButtonDisabled =
+    !formData.email || !formData.password || !formData.username;
 
   const handleAltButtonClick = (e) => {
     onOpenModal("SigninModal");
   };
 
-  const enabled =
-    email.length > 0 && password.length > 0 && username.length > 0;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-  const handleSubmit = () => {
-    onOpenModal("SignupSuccessModal");
+  const handleSubmit = (formData) => {
+    if (validateForm()) {
+      console.log("signup details submitted", formData);
+      // Submit form data and close modal
+      onCloseModal();
+      onOpenModal("SignupSuccessModal");
+    }
+  };
+
+  const validateForm = () => {
+    let errors = {};
+    let formIsValid = true;
+    // Email validation
+    if (!formData.email) {
+      formIsValid = false;
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      formIsValid = false;
+      errors.email = "Invalid email address";
+    }
+    // Password validation
+    if (!formData.password) {
+      formIsValid = false;
+      errors.password = "Password is required";
+    } else if (formData.password.length < 8) {
+      formIsValid = false;
+      errors.password =
+        "Password is too short. Minimum 8 characters is required";
+    }
+    //username validation
+    if (!formData.username) {
+      formIsValid = false;
+      errors.username = "Username is required";
+    } else if (formData.username.length < 8) {
+      formIsValid = false;
+      errors.username =
+        "Username is too short. Minimum 8 characters is required";
+    }
+    setFormErrors(errors);
+    return formIsValid;
   };
 
   return (
@@ -38,7 +76,6 @@ const SignupModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
       title={"Sign up"}
       isOpen={onOpenModal}
       onClose={onCloseModal}
-      onSubmit={() => handleSubmit}
     >
       <div className="form__field">
         <label>
@@ -49,10 +86,11 @@ const SignupModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
               name="email"
               placeholder="Enter email"
               className="input-field"
-              value={email}
-              onChange={handleEmailChange}
+              value={formData.email}
+              onChange={handleChange}
               required
             />
+            <span className="input-field-error">{formErrors.email}</span>
           </div>
         </label>
       </div>
@@ -65,10 +103,11 @@ const SignupModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
               name="password"
               placeholder="Enter password"
               className="input-field"
-              value={password}
-              onChange={handlePasswordChange}
+              value={formData.password}
+              onChange={handleChange}
               required
-            ></input>
+            />{" "}
+            <span className="input-field-error">{formErrors.password}</span>
           </div>
         </label>
       </div>
@@ -78,17 +117,22 @@ const SignupModal = ({ onOpenModal, onCloseModal, onSubmit }) => {
           <div>
             <input
               type="text"
-              name="password"
+              name="username"
               placeholder="Enter your username"
               className="input-field"
-              value={username}
-              onChange={handleUsernameChange}
+              value={formData.username}
+              onChange={handleChange}
               required
-            ></input>
+            />
+            <span className="input-field-error">{formErrors.username}</span>
           </div>
         </label>
       </div>
-      <button className="modal__button" disabled={!enabled}>
+      <button
+        className="modal__button"
+        disabled={isSignupButtonDisabled}
+        onClick={handleSubmit}
+      >
         {isLoading ? "SigningUp..." : "Sign up"}
       </button>
       <button

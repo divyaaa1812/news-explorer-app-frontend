@@ -19,3 +19,8 @@ label {
 .form__field {
   padding-bottom: 20px;
 }
+
+.input-field-error {
+  color: #ff0000;
+  font-size: 12px;
+}

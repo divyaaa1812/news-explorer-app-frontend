@@ -1,6 +1,9 @@
-.searchresults__title {
-  margin: 0;
+.searchresult__container {
   padding: 30px 20px 30px 20px;
+}
+.searchresults__title {
+  padding: 0 20px 0 20px;
+  margin: 0;
   font-family: Robotoslab;
   font-size: 40px;
 }

@@ -1,7 +1,7 @@
 import "./ModalWithForm.css";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const ModalWithForm = ({ name, children, title, onClose, onSubmit }) => {
+const ModalWithForm = ({ name, children, title, onClose }) => {
   const modalRef = useRef(null);
 
   //To close modal when click outside modal window
@@ -25,9 +25,7 @@ const ModalWithForm = ({ name, children, title, onClose, onSubmit }) => {
           onClick={onClose}
         />
         <h3 className="modal__header-title">{title}</h3>
-        <form className="form" onSubmit={onSubmit}>
-          {children}
-        </form>
+        <form className="form">{children}</form>
       </div>
     </div>
   );
