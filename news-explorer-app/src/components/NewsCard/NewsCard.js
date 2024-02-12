@@ -4,9 +4,15 @@ import bookmark from "../../images/bookmark.png";
 import { useState } from "react";
 const NewsCard = ({ loggedIn, searchResults }) => {
   const [showMore, setShowMore] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  const handleShowMore = () => {
+    setVisibleCount((prevCount) => prevCount + 3);
+  };
+
   const cards = showMore
     ? searchResults?.articles
-    : searchResults?.articles?.slice(0, 3);
+    : searchResults?.articles?.slice(0, visibleCount);
 
   return (
     <div className="cards__container">
@@ -57,14 +63,11 @@ const NewsCard = ({ loggedIn, searchResults }) => {
           );
         })}
       </div>
-      <button
-        className="cards__showmore-btn"
-        onClick={() => {
-          setShowMore(!showMore);
-        }}
-      >
-        {showMore ? "Show less" : "Show more"}
-      </button>
+      {searchResults?.articles?.length > visibleCount && (
+        <button className="cards__showmore-btn" onClick={handleShowMore}>
+          Show more
+        </button>
+      )}
     </div>
   );
 };

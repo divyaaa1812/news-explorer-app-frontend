@@ -15,7 +15,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [openModal, setOpenModal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(true); // Track loading state
+  const [loading, setLoading] = useState(false); // Track loading state
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -76,7 +76,7 @@ function App() {
           <Main
             loggedIn={loggedIn}
             searchResults={searchResults}
-            loading={loading}
+            isLoading={loading}
           />
         </Route>
         <Route path="/saved-news">

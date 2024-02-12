@@ -3,10 +3,10 @@ import "./Main.css";
 import About from "../About/About";
 import SearchResults from "../SearchResults/SearchResults";
 
-const Main = ({ loggedIn, searchResults, loading }) => {
+const Main = ({ loggedIn, searchResults, isLoading }) => {
   return (
     <main className="main">
-      {loading && (
+      {isLoading && (
         <div className="preloader">
           <p className="preloader__text">Searching for news...</p>
           <div className="preloader__loading-spinner"></div>
@@ -16,7 +16,7 @@ const Main = ({ loggedIn, searchResults, loading }) => {
         <SearchResults
           loggedIn={loggedIn}
           searchResults={searchResults}
-          loading={loading}
+          isLoading={isLoading}
         />
       ) : (
         <></>
