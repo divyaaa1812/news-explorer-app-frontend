@@ -16,6 +16,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [openModal, setOpenModal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false); // Track loading state
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -32,19 +33,24 @@ function App() {
   };
 
   const handleSearchClick = (value) => {
-    try {
-      fetch(
-        `https://newsapi.org/v2/everything?q=${value}&from=${
-          currentDate - 7
-        }&to=${currentDate}&apiKey=6cb3462c2b104837b32eef6da1aa7b60`
-      )
-        .then((res) => res.json())
-        .then((searchData) => {
-          setSearchResults(searchData);
-        });
-    } catch (err) {
-      console.log(err);
-    }
+    setLoading(true); // Set loading to true when search starts
+    setTimeout(() => {
+      try {
+        fetch(
+          `https://newsapi.org/v2/everything?q=${value}&from=${
+            currentDate - 7
+          }&to=${currentDate}&apiKey=6cb3462c2b104837b32eef6da1aa7b60`
+        )
+          .then((res) => res.json())
+          .then((searchData) => {
+            setSearchResults(searchData);
+          });
+      } catch (err) {
+        console.log(err);
+      }
+      setLoading(false); // Set loading to false when server response is received
+      console.log("Search for:");
+    }, 500000);
   };
 
   useEffect(() => {
@@ -69,7 +75,11 @@ function App() {
             onOpenModal={handleOpenModal}
             onSearchClick={handleSearchClick}
           />
-          <Main loggedIn={loggedIn} searchResults={searchResults} />
+          <Main
+            loggedIn={loggedIn}
+            searchResults={searchResults}
+            loading={loading}
+          />
         </Route>
         <Route path="/saved-news">
           <SavedNewsHeader />

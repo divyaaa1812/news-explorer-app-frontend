@@ -12,6 +12,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
     <div className="cards__container">
       <div className="card__items">
         {cards?.map((item) => {
+          console.log(item);
           const publishedAt = new Date(item.publishedAt).toLocaleString(
             "default",
             {
@@ -21,12 +22,18 @@ const NewsCard = ({ loggedIn, searchResults }) => {
           );
           return (
             <div className="card__item" key={item.id}>
-              <div>
+              <div className="card__image-container">
                 <img
                   src={item.urlToImage}
-                  alt="click to preview image"
+                  alt={`cover picture for news with title ${item?.title}`}
                   className="card__image"
                 />
+              </div>
+              <div className="card__description">
+                <p className="card__date">{publishedAt}</p>
+                <p className="card__title">{item.title}</p>
+                <p className="card__subtitle">{item.description}</p>
+                <p className="card__footer">{item.source.name.toUpperCase()}</p>
               </div>
               {loggedIn ? (
                 <div className="card__category-container">
@@ -34,7 +41,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
                   <div className="card__trash-container">
                     <img
                       src={trash}
-                      alt="click to delete"
+                      alt={`click to delete news about ${item?.title}`}
                       className="card__trash-icon"
                     />
                   </div>
@@ -42,16 +49,10 @@ const NewsCard = ({ loggedIn, searchResults }) => {
               ) : (
                 <img
                   src={bookmark}
-                  alt="click to save news"
+                  alt={`click to save news about ${item?.title}`}
                   className="card__bookmark-icon"
                 />
               )}
-              <div className="card__description">
-                <p className="card__date">{publishedAt}</p>
-                <p className="card__title">{item.title}</p>
-                <p className="card__subtitle">{item.description}</p>
-                <p className="card__footer">{item.source.name.toUpperCase()}</p>
-              </div>
             </div>
           );
         })}
