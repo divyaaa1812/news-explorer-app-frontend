@@ -16,6 +16,7 @@ function App() {
   const [openModal, setOpenModal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false); // Track loading state
+  const [error, setError] = useState(null);
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -43,11 +44,16 @@ function App() {
           .then((res) => res.json())
           .then((searchData) => {
             setSearchResults(searchData);
+            // Update local storage
+            localStorage.setItem("searchResults", JSON.stringify(searchData));
           });
       } catch (err) {
-        console.log(err);
+        setError(
+          "Sorry, something went wrong during the request. There may be a connection issue or the server may be down. Please try again later."
+        );
+      } finally {
+        setLoading(false); // Set loading to false when server response is received
       }
-      setLoading(false); // Set loading to false when server response is received
     }, 2000);
   };
 

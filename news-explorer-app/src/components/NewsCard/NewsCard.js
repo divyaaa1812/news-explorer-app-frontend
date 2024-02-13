@@ -1,7 +1,7 @@
 import "./NewsCard.css";
 import trash from "../../images/trash.png";
 import bookmark from "../../images/bookmark.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const NewsCard = ({ loggedIn, searchResults }) => {
   const [showMore, setShowMore] = useState(false);
   const [visibleCount, setVisibleCount] = useState(3);

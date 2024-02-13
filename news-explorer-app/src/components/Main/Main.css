@@ -17,8 +17,6 @@
   border: 3px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   border-top: 3px solid #b6bcbf;
-  width: 20px;
-  height: 20px;
   animation: spin 1s linear infinite;
   height: 74px;
   width: 74px;
@@ -31,4 +29,9 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.main__noresults {
+  color: black;
+  text-align: center;
 }

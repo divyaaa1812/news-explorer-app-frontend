@@ -2,12 +2,39 @@ import "./SearchForm.css";
 import React, { useState, useEffect } from "react";
 
 const SearchForm = ({ onSearchClick }) => {
-  const [value, setValue] = useState("");
+  const [searchKeyword, setsearchKeyword] = useState({
+    search: "",
+  });
+  const [formErrors, setFormErrors] = useState({
+    search: "",
+  });
+
+  const validateForm = () => {
+    let errors = {};
+    let formIsValid = true;
+    // search field validation
+    if (!searchKeyword.search) {
+      formIsValid = false;
+      errors.search = "Please enter a keyword";
+    }
+    setFormErrors(errors);
+    return formIsValid;
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setsearchKeyword({ ...searchKeyword, [name]: value });
+  };
+
+  const handleSubmit = (searchKeyword) => {
+    if (validateForm()) {
+      onSearchClick(searchKeyword.search);
+    }
+  };
 
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === "Enter") {
-        onSearchClick();
+        onSearchClick(searchKeyword.search);
       }
     };
   });
@@ -22,24 +49,23 @@ const SearchForm = ({ onSearchClick }) => {
       <div className="header__searchbtn">
         <input
           type="text"
-          name="searchbox"
+          name="search"
           placeholder="Enter topic"
           className="searchbox__input-field"
-          value={value}
-          onChange={(ev) => {
-            setValue(ev.target.value);
-          }}
+          value={searchKeyword.search}
+          onChange={handleChange}
           required
-        ></input>
+        />
         <span>
           <button
-            className="search-btn"
-            onClick={() => {
-              onSearchClick(value);
-            }}
+            className="searchbox__search-btn"
+            onClick={() => handleSubmit(searchKeyword)}
           >
             Search
           </button>
+        </span>
+        <span className="searchbox__input-field-error">
+          {formErrors.search}
         </span>
       </div>
     </>
