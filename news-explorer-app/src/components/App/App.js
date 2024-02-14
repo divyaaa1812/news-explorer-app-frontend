@@ -33,7 +33,7 @@ function App() {
   };
 
   const handleSearchClick = (value) => {
-    setLoading(true); // Set loading to true when search starts
+    setLoading(true);
     setTimeout(() => {
       try {
         fetch(
@@ -48,9 +48,7 @@ function App() {
             localStorage.setItem("searchResults", JSON.stringify(searchData));
           });
       } catch (err) {
-        setError(
-          "Sorry, something went wrong during the request. There may be a connection issue or the server may be down. Please try again later."
-        );
+        setError(err);
       } finally {
         setLoading(false); // Set loading to false when server response is received
       }
@@ -70,6 +68,20 @@ function App() {
     };
   }, [openModal]);
 
+  // useEffect(() => {
+  //   console.log(value);
+  //   if (!value) return;
+  //   handleSearchClick(value);
+  // }, [value]);
+
+  // useEffect(() => {
+  //   // Read data from local storage when component mounts
+  //   const storedSearchResults = localStorage.getItem("searchResults");
+  //   if (storedSearchResults) {
+  //     setSearchResults(JSON.parse(storedSearchResults));
+  //   }
+  // }, []);
+
   return (
     <div className="App">
       <Switch>
@@ -83,6 +95,7 @@ function App() {
             loggedIn={loggedIn}
             searchResults={searchResults}
             isLoading={loading}
+            error={error}
           />
         </Route>
         <Route path="/saved-news">

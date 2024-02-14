@@ -80,6 +80,21 @@
   top: 19px;
   left: 342px;
 }
+.card__bookmark-icon_active {
+  color: #000000;
+}
+
+.card__bookmark-icon_inactive {
+}
+
+.card__bookmark-icon_inactive:hover {
+  cursor: url(../../images/pointer.png), auto;
+}
+.card__tooltip {
+  position: absolute;
+  color: red;
+}
+
 .card__image-container {
   height: 272px;
 }
@@ -112,4 +127,8 @@
   font-size: 16px;
   margin: 0px;
   color: #b6bcbf;
+}
+
+.noresults-found {
+  color: red;
 }
