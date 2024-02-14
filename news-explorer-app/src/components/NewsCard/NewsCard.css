@@ -59,6 +59,7 @@
 
 .card__category-text {
   margin: 0;
+  padding: 10px;
 }
 
 .card__trash-container {
@@ -73,26 +74,48 @@
 .card__trash-icon {
   padding: 6px 6px 6px 6px;
 }
-.card__bookmark-icon {
+
+.card__bookmark-container {
   width: 40px;
   height: 40px;
   position: absolute;
   top: 19px;
   left: 342px;
 }
+
 .card__bookmark-icon_active {
-  color: #000000;
+  position: absolute;
+  left: 320px;
+  background-image: url("../../images/bookmarkactive.png");
+  background-repeat: no-repeat;
+  height: 40px;
+  width: 40px;
 }
 
 .card__bookmark-icon_inactive {
+  background-image: url("../../images/bookmark.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 40px;
+  width: 40px;
 }
 
 .card__bookmark-icon_inactive:hover {
   cursor: url(../../images/pointer.png), auto;
 }
-.card__tooltip {
+
+.tooltip-message {
+  display: block;
+  width: 182px;
+  top: 0px;
+  right: 47px;
   position: absolute;
-  color: red;
+  font-size: 12px;
+  background-color: #fff;
+  border-radius: 10px;
+  font-family: Roboto500;
+  text-align: center;
+  padding: 14px;
 }
 
 .card__image-container {

@@ -23,6 +23,7 @@ function App() {
     day: "numeric",
   });
   const pageSize = 1000;
+  console.log(currentDate - 7);
 
   const handleOpenModal = (modalName) => {
     setOpenModal(modalName);
@@ -34,6 +35,8 @@ function App() {
 
   const handleSearchClick = (value) => {
     setLoading(true);
+    setSearchResults([]);
+    setError(null);
     setTimeout(() => {
       try {
         fetch(
@@ -44,11 +47,14 @@ function App() {
           .then((res) => res.json())
           .then((searchData) => {
             setSearchResults(searchData);
+            setError(null);
             // Update local storage
             localStorage.setItem("searchResults", JSON.stringify(searchData));
           });
       } catch (err) {
+        console.log(err);
         setError(err);
+        setSearchResults([]);
       } finally {
         setLoading(false); // Set loading to false when server response is received
       }

@@ -5,13 +5,24 @@ import { useEffect, useState } from "react";
 const NewsCard = ({ loggedIn, searchResults }) => {
   const [visibleCount, setVisibleCount] = useState(3);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const bookmarkIconClassName = `card__bookmark-icon ${
     loggedIn ? `card__bookmark-icon_active` : `card__bookmark-icon_inactive`
   }`;
-
   const handleShowMore = () => {
     setVisibleCount((prevCount) => prevCount + 3);
+  };
+  const handleBookmarkIconClick = () => {
+    if (!loggedIn) {
+      setShowTooltip(true);
+    } else {
+      // Handle saving the article
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
   };
 
   const cards = searchResults?.articles?.slice(0, visibleCount);
@@ -45,11 +56,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
               {loggedIn ? (
                 <div className="card__category-container">
                   <p className="card__category-text">Nature</p>
-                  <img
-                    src={bookmark}
-                    alt={`click to save news about ${item?.title}`}
-                    className={bookmarkIconClassName}
-                  />
+                  <div className={bookmarkIconClassName}></div>
                   {/* <div className="card__trash-container">
                     <img
                       src={trash}
@@ -59,14 +66,21 @@ const NewsCard = ({ loggedIn, searchResults }) => {
                   </div> */}
                 </div>
               ) : (
-                <>
+                <div className="card__bookmark-container">
                   <img
                     src={bookmark}
                     alt={`click to save news about ${item?.title}`}
                     className={bookmarkIconClassName}
-                    data-tip="Sign in to save articles."
+                    onClick={handleBookmarkIconClick}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseOver={() => setShowTooltip(!loggedIn)}
                   />
-                </>
+                  {showTooltip && (
+                    <span id="tooltip-message" className="tooltip-message">
+                      Sign in to save articles
+                    </span>
+                  )}
+                </div>
               )}
             </div>
           );
