@@ -2,35 +2,81 @@ import "./NewsCard.css";
 import trash from "../../images/trash.png";
 import bookmark from "../../images/bookmark.png";
 import { useEffect, useState } from "react";
+import { addCardBookmark, removeCardBookmark } from "../../utils/Api";
+
+const getBookmarkClass = (loggedIn, bookmarked) => {
+  const classes = ["card__bookmark-icon"];
+
+  if (loggedIn) {
+    classes.push("card__bookmark-icon_active");
+  } else {
+    classes.push("card__bookmark-icon_inactive");
+  }
+
+  if (bookmarked) {
+    classes.push("bookmark-blue");
+  }
+
+  return classes.join(" ");
+};
+
 const NewsCard = ({ loggedIn, searchResults }) => {
   const [visibleCount, setVisibleCount] = useState(3);
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipId, settooltipId] = useState("");
+  const [bookmarkIds, setbookmarkIds] = useState({});
+  const [savedNews, setSavedNews] = useState([]);
+  const cards = searchResults?.articles?.slice(0, visibleCount);
 
-  const bookmarkIconClassName = `card__bookmark-icon ${
-    loggedIn ? `card__bookmark-icon_active` : `card__bookmark-icon_inactive`
-  }`;
   const handleShowMore = () => {
     setVisibleCount((prevCount) => prevCount + 3);
   };
-  const handleBookmarkIconClick = () => {
-    if (!loggedIn) {
-      setShowTooltip(true);
+
+  const handleBookmarkClick = (cardItem, key) => {
+    let hasBookmark = bookmarkIds[key] ? true : false;
+    // Check if this card is bookmarked
+    if (hasBookmark) {
+      // send a request to delete
+      setbookmarkIds((prev) => {
+        let newIds = { ...prev };
+        delete newIds[key];
+        return newIds;
+      });
+      removeCardBookmark(cardItem)
+        .then((updatedCard) => {
+          console.log(updatedCard);
+          setSavedNews("");
+        })
+        .catch(console.error);
     } else {
-      // Handle saving the article
+      setbookmarkIds((prev) => {
+        return {
+          ...prev,
+          [key]: true,
+        };
+      });
+      addCardBookmark(cardItem)
+        .then((bookmarkedCard) => {
+          console.log(bookmarkedCard);
+          setSavedNews(bookmarkedCard);
+        })
+        .catch(console.error);
     }
   };
 
   const handleMouseLeave = () => {
-    setShowTooltip(false);
+    settooltipId("");
   };
 
-  const cards = searchResults?.articles?.slice(0, visibleCount);
+  const handleMouseOver = (id) => {
+    settooltipId(id);
+  };
 
   return (
     <div className="cards__container">
       <div className="card__items">
-        {cards?.map((item) => {
+        {cards?.map((item, index) => {
+          let key = `${item.source.id}-${index}`;
+          let hasBookmark = bookmarkIds[key] ? true : false;
           const publishedAt = new Date(item.publishedAt).toLocaleString(
             "default",
             {
@@ -39,7 +85,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
             }
           );
           return (
-            <div className="card__item" key={item.source.id}>
+            <div className="card__item" key={key}>
               <div className="card__image-container">
                 <img
                   src={item.urlToImage}
@@ -56,7 +102,11 @@ const NewsCard = ({ loggedIn, searchResults }) => {
               {loggedIn ? (
                 <div className="card__category-container">
                   <p className="card__category-text">Nature</p>
-                  <div className={bookmarkIconClassName}></div>
+
+                  <div
+                    className={getBookmarkClass(loggedIn, hasBookmark)}
+                    onClick={() => handleBookmarkClick(item, key)}
+                  ></div>
                   {/* <div className="card__trash-container">
                     <img
                       src={trash}
@@ -70,12 +120,11 @@ const NewsCard = ({ loggedIn, searchResults }) => {
                   <img
                     src={bookmark}
                     alt={`click to save news about ${item?.title}`}
-                    className={bookmarkIconClassName}
-                    onClick={handleBookmarkIconClick}
+                    className={getBookmarkClass(loggedIn, hasBookmark)}
                     onMouseLeave={handleMouseLeave}
-                    onMouseOver={() => setShowTooltip(!loggedIn)}
+                    onMouseOver={() => handleMouseOver(key)}
                   />
-                  {showTooltip && (
+                  {tooltipId === key && (
                     <span id="tooltip-message" className="tooltip-message">
                       Sign in to save articles
                     </span>

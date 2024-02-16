@@ -2,8 +2,13 @@ import NewsCard from "../NewsCard/NewsCard";
 import "./SearchResults.css";
 import searchicon from "../../images/notfound.png";
 
-const SearchResults = ({ loggedIn, searchResults, isLoading, error }) => {
-  console.log(searchResults);
+const SearchResults = ({
+  loggedIn,
+  searchResults,
+  isLoading,
+  error,
+  handleBookmarkClick,
+}) => {
   return (
     <>
       {isLoading ? (
@@ -16,7 +21,11 @@ const SearchResults = ({ loggedIn, searchResults, isLoading, error }) => {
       ) : searchResults && searchResults?.articles?.length > 0 ? (
         <div className="searchresults__container">
           <h3 className="searchresults__title"> Search results</h3>
-          <NewsCard loggedIn={loggedIn} searchResults={searchResults} />
+          <NewsCard
+            loggedIn={loggedIn}
+            searchResults={searchResults}
+            handleBookmarkClick={handleBookmarkClick}
+          />
         </div>
       ) : searchResults && searchResults?.articles?.length == 0 ? (
         <div className="searchresults__notfound">

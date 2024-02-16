@@ -104,6 +104,14 @@
   cursor: url(../../images/pointer.png), auto;
 }
 
+.bookmark-blue {
+  background: url("../../images/bookmarkblue.png") no-repeat;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  left: 320px;
+}
+
 .tooltip-message {
   display: block;
   width: 182px;

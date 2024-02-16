@@ -12,7 +12,7 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [openModal, setOpenModal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false); // Track loading state
@@ -22,8 +22,7 @@ function App() {
     month: "long",
     day: "numeric",
   });
-  const pageSize = 1000;
-  console.log(currentDate - 7);
+  const pageSize = 100;
 
   const handleOpenModal = (modalName) => {
     setOpenModal(modalName);
@@ -80,13 +79,13 @@ function App() {
   //   handleSearchClick(value);
   // }, [value]);
 
-  // useEffect(() => {
-  //   // Read data from local storage when component mounts
-  //   const storedSearchResults = localStorage.getItem("searchResults");
-  //   if (storedSearchResults) {
-  //     setSearchResults(JSON.parse(storedSearchResults));
-  //   }
-  // }, []);
+  useEffect(() => {
+    // Read data from local storage when component mounts
+    const storedSearchResults = localStorage.getItem("searchResults");
+    if (storedSearchResults) {
+      setSearchResults(JSON.parse(storedSearchResults));
+    }
+  }, []);
 
   return (
     <div className="App">
