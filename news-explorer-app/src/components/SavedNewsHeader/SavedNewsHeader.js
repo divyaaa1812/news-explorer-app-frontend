@@ -1,6 +1,6 @@
 import "./SavedNewsHeader.css";
 import logout from "../../images/logout.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SavedNewsHeader = () => {
   return (
@@ -10,22 +10,33 @@ const SavedNewsHeader = () => {
           NewsExplorer
         </Link>
         <div className="savednewsheader__btn-container">
-          <button type="button" className="savednewsheader__btn">
+          <NavLink
+            exact
+            to="/"
+            activeClassName="nav__link_active"
+            className="savednewsheader_nav__link"
+          >
             Home
-          </button>
-          <button type="button" className="savednewsheader__btn">
+          </NavLink>
+          <NavLink
+            to="/saved-news"
+            activeClassName="menu__link_active"
+            className="savednewsheader_nav__link"
+          >
             Saved articles
-          </button>
-          <button type="button" className="savednewsheader__logout-btn">
-            Elise
-            <span>
-              <img
-                src={logout}
-                alt="click to logout"
-                className="savednewsheader__logout-icon"
-              />
-            </span>
-          </button>
+          </NavLink>
+          <div className="nav__button-container">
+            <button type="button" className="savednewsheader__logout-btn">
+              Elise
+              <span>
+                <img
+                  src={logout}
+                  alt="click to logout"
+                  className="savednewsheader__logout-icon"
+                />
+              </span>
+            </button>
+          </div>
         </div>
       </div>
       <div className="savednewsheader__title-container">
