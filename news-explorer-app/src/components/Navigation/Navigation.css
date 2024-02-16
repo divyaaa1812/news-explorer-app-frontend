@@ -84,3 +84,38 @@
 .nav__signin-btn:hover {
   cursor: url(../../images/pointer.png), auto;
 }
+
+.hamburger-icon {
+  display: none; /* Hide by default */
+  cursor: url(../../images/pointer.png), auto;
+}
+
+.nav__menu {
+  list-style: none;
+  display: flex;
+}
+
+.nav__menu li {
+  margin-right: 20px;
+}
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 3px 0;
+}
+
+/* Media query for screens with width up to 768px */
+@media only screen and (max-width: 768px) {
+  .hamburger-icon {
+    display: flex; /* Show hamburger icon */
+  }
+  .nav__menu {
+    display: none;
+  }
+
+  .nav__menu.open {
+    display: flex;
+    flex-direction: column;
+  }
+}

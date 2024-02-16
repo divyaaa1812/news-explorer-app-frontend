@@ -56,7 +56,7 @@ const SearchForm = ({ onSearchClick }) => {
           onChange={handleChange}
           required
         />
-        <span>
+        <span className="searchbox__search-box">
           <button
             className="searchbox__search-btn"
             onClick={() => handleSubmit(searchKeyword)}

@@ -1,14 +1,24 @@
 .about__container {
   display: flex;
-  justify-content: center;
   gap: 30px;
-  padding-top: 40px;
   align-items: center;
-  padding-bottom: 40px;
   background: #fff;
+  padding: 40px 20px 40px 20px;
 }
 
 .about__text {
   max-width: 600px;
   width: 100%;
+}
+
+@media screen and (min-width: 480px) and (max-width: 700px) {
+  .header__searchformtitle {
+    max-width: 424px;
+    width: 100%;
+  }
+
+  .about__container {
+    display: flex;
+    flex-direction: column;
+  }
 }

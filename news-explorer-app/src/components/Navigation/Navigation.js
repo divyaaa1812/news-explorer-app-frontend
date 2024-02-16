@@ -18,9 +18,9 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
       {loggedIn ? (
         <nav className="nav__menu">
           <div className="hamburger-icon" onClick={toggleMenu}>
-            <div className={`nav-links ${isMenuOpen ? "open" : ""}`}></div>
-            <div className={`nav-links ${isMenuOpen ? "open" : ""}`}></div>
-            <div className={`nav-links ${isMenuOpen ? "open" : ""}`}></div>
+            <div className={`bar`}></div>
+            <div className={`bar`}></div>
+            <div className={`bar`}></div>
           </div>
           <NavLink
             exact

@@ -2,6 +2,12 @@
   display: flex;
   justify-content: space-between;
 }
+.footer__nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 20px;
+}
 
 .footer__copyright {
   color: #b6bcbf;
@@ -17,6 +23,10 @@
   color: #1a1b22;
   padding-right: 20px;
 }
+.footer__nav-icons {
+  display: flex;
+  gap: 20px;
+}
 
 .footer__nav-link {
   margin: 0;
@@ -30,4 +40,29 @@
 .footer__facebook-icon {
   width: 24px;
   height: 24px;
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 428px) and (max-width: 768px) {
+  .footer {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .footer__nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .footer__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer__nav-icons {
+    display: flex;
+    gap: 20px;
+  }
 }
