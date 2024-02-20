@@ -41,28 +41,20 @@ function App() {
     setSearchResults([]);
     setError(null);
     setTimeout(() => {
-      try {
-        fetch(
-          `https://newsapi.org/v2/everything?q=${value}&from=${formatDate(
-            pastDate
-          )}&to=${formatDate(
-            currentDate
-          )}&sortBy=publishedAt&apiKey=6cb3462c2b104837b32eef6da1aa7b60`
-        )
-          .then((res) => res.json())
-          .then((searchData) => {
-            setSearchResults(searchData);
-            setError(null);
-            // Update local storage
-            localStorage.setItem("searchResults", JSON.stringify(searchData));
-          });
-      } catch (err) {
-        console.log(err);
-        setError(err);
-        setSearchResults([]);
-      } finally {
-        setLoading(false); // Set loading to false when server response is received
-      }
+      getSearchResults(value)
+        .then((searchData) => {
+          setSearchResults(searchData);
+          setError(null);
+          // Update local storage
+          localStorage.setItem("searchResults", JSON.stringify(searchData));
+        })
+        .catch((err) => {
+          setError(err);
+          setSearchResults([]);
+        })
+        .finally(() => {
+          setLoading(false); // Set loading to false when server response is received
+        });
     }, 2000);
   };
 
@@ -78,12 +70,6 @@ function App() {
       document.removeEventListener("keydown", handleEscClose);
     };
   }, [openModal]);
-
-  // useEffect(() => {
-  //   console.log(value);
-  //   if (!value) return;
-  //   handleSearchClick(value);
-  // }, [value]);
 
   useEffect(() => {
     // Read data from local storage when component mounts

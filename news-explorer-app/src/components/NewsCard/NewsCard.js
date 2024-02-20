@@ -2,7 +2,7 @@ import "./NewsCard.css";
 import trash from "../../images/trash.png";
 import bookmark from "../../images/bookmark.png";
 import { useEffect, useState } from "react";
-import { addCardBookmark, removeCardBookmark } from "../../utils/Api";
+import { addCardBookmark, removeCardBookmark } from "../../utils/Auth";
 
 const NewsCard = ({ loggedIn, searchResults }) => {
   const [visibleCount, setVisibleCount] = useState(3);
