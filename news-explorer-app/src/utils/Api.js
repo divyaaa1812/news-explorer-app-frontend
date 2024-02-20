@@ -1,10 +1,11 @@
-const currentDate = new Date().toLocaleString("default", {
-  month: "long",
-  day: "numeric",
-});
+const currentDate = new Date();
+const pastDate = new Date();
+pastDate.setDate(currentDate.getDate() - 7);
+console.log(currentDate);
 
-export async function request(url, options) {
-  const res = await fetch(url, options);
+export function request(url, options) {
+  debugger;
+  const res = fetch(url, options);
   if (res.ok) {
     return res.json();
   } else {
@@ -13,10 +14,8 @@ export async function request(url, options) {
 }
 
 export function getSearchResults(searchKeyword) {
-  return request(
-    `https://newsapi.org/v2/everything?q=${searchKeyword}&from=${
-      currentDate - 7
-    }&to=${currentDate}&apiKey=6cb3462c2b104837b32eef6da1aa7b60`,
+  return fetch(
+    `https://newsapi.org/v2/everything?q=${searchKeyword}&from=${pastDate.toISOString()}&to=${currentDate.toISOString()}&apiKey=6cb3462c2b104837b32eef6da1aa7b60`,
     {
       method: "GET",
       mode: "no-cors",

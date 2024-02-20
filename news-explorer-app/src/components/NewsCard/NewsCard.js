@@ -4,28 +4,28 @@ import bookmark from "../../images/bookmark.png";
 import { useEffect, useState } from "react";
 import { addCardBookmark, removeCardBookmark } from "../../utils/Api";
 
-const getBookmarkClass = (loggedIn, bookmarked) => {
-  const classes = ["card__bookmark-icon"];
-
-  if (loggedIn) {
-    classes.push("card__bookmark-icon_active");
-  } else {
-    classes.push("card__bookmark-icon_inactive");
-  }
-
-  if (bookmarked) {
-    classes.push("bookmark-blue");
-  }
-
-  return classes.join(" ");
-};
-
 const NewsCard = ({ loggedIn, searchResults }) => {
   const [visibleCount, setVisibleCount] = useState(3);
   const [tooltipId, settooltipId] = useState("");
   const [bookmarkIds, setbookmarkIds] = useState({});
   const [savedNews, setSavedNews] = useState([]);
   const cards = searchResults?.articles?.slice(0, visibleCount);
+
+  const getBookmarkClass = (loggedIn, bookmarked) => {
+    const classes = ["card__bookmark-icon"];
+
+    if (loggedIn) {
+      classes.push("card__bookmark-icon_active");
+    } else {
+      classes.push("card__bookmark-icon_inactive");
+    }
+
+    if (bookmarked) {
+      classes.push("bookmark-blue");
+    }
+
+    return classes.join(" ");
+  };
 
   const handleShowMore = () => {
     setVisibleCount((prevCount) => prevCount + 3);

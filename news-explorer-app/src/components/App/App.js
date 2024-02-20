@@ -10,6 +10,7 @@ import SigninModal from "../SigninModal/SigninModal";
 import SignupModal from "../SignupModal/SignupModal";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
+import { getSearchResults } from "../../utils/Api";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -18,11 +19,14 @@ function App() {
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
 
-  const currentDate = new Date().toLocaleString("default", {
-    month: "long",
-    day: "numeric",
-  });
   const pageSize = 100;
+  const currentDate = new Date();
+  const pastDate = new Date();
+  pastDate.setDate(currentDate.getDate() - 7);
+
+  const formatDate = (date) => {
+    return date.toISOString().split("T")[0]; // Format date to 'YYYY-MM-DD'
+  };
 
   const handleOpenModal = (modalName) => {
     setOpenModal(modalName);
@@ -39,9 +43,11 @@ function App() {
     setTimeout(() => {
       try {
         fetch(
-          `https://newsapi.org/v2/everything?q=${value}&from=${
-            currentDate - 7
-          }&to=${currentDate}&apiKey=6cb3462c2b104837b32eef6da1aa7b60`
+          `https://newsapi.org/v2/everything?q=${value}&from=${formatDate(
+            pastDate
+          )}&to=${formatDate(
+            currentDate
+          )}&sortBy=publishedAt&apiKey=6cb3462c2b104837b32eef6da1aa7b60`
         )
           .then((res) => res.json())
           .then((searchData) => {
