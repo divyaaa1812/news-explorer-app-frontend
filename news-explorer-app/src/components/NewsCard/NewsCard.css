@@ -8,17 +8,9 @@
 .card__items {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(minmax(300px, 1fr));
   grid-auto-flow: row;
 }
-
-/* @media (min-width: 768px) {
-  .card__items {
-    display: grid;
-    grid-auto-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-} */
 
 .card__item {
   position: relative;
@@ -85,6 +77,22 @@
   top: 19px;
   left: 314px;
 }
+.card__bookmark-icon_active {
+  position: absolute;
+  left: 300px;
+  background-image: url("../../images/bookmarkactive.png");
+  background-repeat: no-repeat;
+  height: 40px;
+  width: 40px;
+}
+
+.card__bookmark-icon_inactive {
+  background-image: url("../../images/bookmark.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+}
 
 .card__bookmark-icon_inactive:hover {
   cursor: url(../../images/pointer.png), auto;
@@ -92,10 +100,8 @@
 
 .bookmark-blue {
   background: url("../../images/bookmarkblue.png") no-repeat;
-  position: absolute;
   height: 40px;
   width: 40px;
-  left: 314px;
 }
 
 .tooltip-message {
@@ -150,11 +156,11 @@
 }
 /* mobile devices */
 @media screen and (min-width: 480px) {
-  .card__items {
+  /* .card__items {
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
+  } */
 
   .card__bookmark-icon_active {
     position: absolute;
@@ -165,30 +171,6 @@
   .card__items {
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-
-  .card__bookmark-icon_active {
-    position: absolute;
-    left: 178px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .card__bookmark-icon_active {
-    position: absolute;
-    left: 300px;
-    background-image: url("../../images/bookmarkactive.png");
-    background-repeat: no-repeat;
-    height: 40px;
-    width: 40px;
-  }
-
-  .card__bookmark-icon_inactive {
-    background-image: url("../../images/bookmark.png");
-    background-repeat: no-repeat;
-    position: absolute;
-    height: 40px;
-    width: 40px;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }

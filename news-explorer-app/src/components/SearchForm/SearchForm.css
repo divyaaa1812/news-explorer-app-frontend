@@ -19,17 +19,22 @@
   width: 100%;
 }
 
+.header__searchbtn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .searchbox__search-btn {
   border-radius: 30px;
   height: 60px;
-  max-width: 168px;
-  width: 100%;
+  width: 160px;
   color: #ffffff;
   background: #2f71e5;
   font-size: 18px;
   font-family: Roboto, serif;
   position: relative;
-  left: 514px;
+  left: 300px;
   padding: 0;
   border: none;
 }
@@ -67,23 +72,10 @@
   font-size: 12px;
 }
 
-.header__searchbtn {
-  max-width: 608px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-@media screen and (max-width: 768px) {
-  .header__searchformtitle {
-    max-width: 385px;
-    width: 100%;
-  }
-  .header__searchformsubtitle {
-    max-width: 452px;
-    width: 100%;
-  }
+@media screen and (max-width: 480px) {
   .header__searchbtn {
-    max-width: 452px;
+    display: flex;
+    gap: 10px;
     width: 100%;
   }
 }

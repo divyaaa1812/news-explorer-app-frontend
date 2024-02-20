@@ -31,14 +31,6 @@ const SearchForm = ({ onSearchClick }) => {
     }
   };
 
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.key === "Enter") {
-        onSearchClick(searchKeyword.search);
-      }
-    };
-  });
-
   return (
     <>
       <h1 className="header__searchformtitle">What's going on in the world?</h1>
@@ -56,14 +48,12 @@ const SearchForm = ({ onSearchClick }) => {
           onChange={handleChange}
           required
         />
-        <span className="searchbox__search-box">
-          <button
-            className="searchbox__search-btn"
-            onClick={() => handleSubmit(searchKeyword)}
-          >
-            Search
-          </button>
-        </span>
+        <button
+          className="searchbox__search-btn"
+          onClick={() => handleSubmit(searchKeyword)}
+        >
+          Search
+        </button>
         <span className="searchbox__input-field-error">
           {formErrors.search}
         </span>

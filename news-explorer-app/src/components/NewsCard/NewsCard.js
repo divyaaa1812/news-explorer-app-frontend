@@ -101,19 +101,19 @@ const NewsCard = ({ loggedIn, searchResults }) => {
               </div>
               {loggedIn ? (
                 <div className="card__category-container">
-                  <p className="card__category-text">Nature</p>
-
+                  <p className="card__category-text">Naturegthy</p>
                   <div
                     className={getBookmarkClass(loggedIn, hasBookmark)}
                     onClick={() => handleBookmarkClick(item, key)}
-                  ></div>
-                  {/* <div className="card__trash-container">
+                  >
+                    {/* <div className="card__trash-container">
                     <img
                       src={trash}
                       alt={`click to delete news about ${item?.title}`}
                       className="card__trash-icon"
                     />
                   </div> */}
+                  </div>
                 </div>
               ) : (
                 <div className="card__bookmark-container">
