@@ -8,11 +8,16 @@ const About = () => {
       <div className="about__text">
         <h4 className="about__title">About the author</h4>
         <p className="about__description">
-          This block describes the project author. Here you should indicate your
-          name, what you do, and which development technologies you know. <br />{" "}
-          <br />
-          You can also talk about your experience with Practicum, what you
-          learned there, and how you can help potential customers.{" "}
+          Hello! I'm Divya, a software professional with a rich background in
+          Quality Assurance (QA) engineering and a newfound passion for web
+          development. With years of experience ensuring the quality and
+          reliability of software products, I am now embarking on an exciting
+          journey to transition into the realm of web development. <br /> <br />
+          Through Practicum, I learned Comprehensive understanding of front-end
+          technologies like HTML, CSS, and JavaScript, enabling me to create
+          visually stunning and interactive user interfaces.With my newfound
+          knowledge and skills, I am well-equipped to assist potential customers
+          in achieving their web development goals.
         </p>
       </div>
     </div>

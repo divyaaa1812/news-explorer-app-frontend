@@ -13,7 +13,7 @@ import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
 import { getSearchResults } from "../../utils/Api";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [openModal, setOpenModal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false); // Track loading state
