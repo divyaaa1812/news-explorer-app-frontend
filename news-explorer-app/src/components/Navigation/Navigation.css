@@ -36,6 +36,7 @@
 .nav__link {
   text-decoration: none;
   color: #fff;
+  cursor: url(../../images/pointer.png), auto;
 }
 .nav__link_active {
   border-bottom: 3px solid #fff;
