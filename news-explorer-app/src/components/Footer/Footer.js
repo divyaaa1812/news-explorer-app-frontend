@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__copyright">
-        <p>© 2020 Supersite, Powered by News API</p>
+        <p>© 2024 Supersite, Powered by News API</p>
       </div>
       <div className="footer__nav">
         <div className="footer__nav-links">
