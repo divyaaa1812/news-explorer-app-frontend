@@ -90,6 +90,7 @@ nav li:first-child a:hover::before {
   padding: 10px 20px 10px 20px;
   color: #fff;
   background: transparent;
+  width: 152px;
 }
 
 .nav__signin-btn:hover {

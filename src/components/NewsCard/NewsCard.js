@@ -2,6 +2,7 @@ import "./NewsCard.css";
 import trash from "../../images/trash.png";
 import bookmark from "../../images/bookmark.svg";
 import bookmarkactive from "../../images/bookmark-active.svg";
+import bookmarkblue from "../../images/bookmarkblue.svg";
 import { useEffect, useState } from "react";
 import { addCardBookmark, removeCardBookmark } from "../../utils/Auth";
 
@@ -101,17 +102,28 @@ const NewsCard = ({ loggedIn, searchResults }) => {
                 <p className="card__footer">{item.source.name.toUpperCase()}</p>
               </div>
               {loggedIn ? (
-                <div className="card__category-container">
-                  <div>
-                    <p className="card__category-text">Naturegthy</p>
+                <>
+                  <div className="card__category-container">
+                    <div>
+                      <p className="card__category-text">Naturegthy</p>
+                    </div>
                   </div>
-                  <img
-                    src={bookmarkactive}
-                    className={getBookmarkClass(loggedIn, hasBookmark)}
-                    onClick={() => handleBookmarkClick(item, key)}
-                    alt={`click to bookmark news about ${item?.title}`}
-                  />
-                </div>
+                  {hasBookmark ? (
+                    <img
+                      src={bookmarkblue}
+                      className={getBookmarkClass(loggedIn, hasBookmark)}
+                      onClick={() => handleBookmarkClick(item, key)}
+                      alt={`click to bookmark news about ${item?.title}`}
+                    />
+                  ) : (
+                    <img
+                      src={bookmarkactive}
+                      className={getBookmarkClass(loggedIn, hasBookmark)}
+                      onClick={() => handleBookmarkClick(item, key)}
+                      alt={`click to bookmark news about ${item?.title}`}
+                    />
+                  )}
+                </>
               ) : (
                 <div className="card__bookmark-container">
                   <img
