@@ -1,6 +1,7 @@
 import "./NewsCard.css";
 import trash from "../../images/trash.png";
-import bookmark from "../../images/bookmark.png";
+import bookmark from "../../images/bookmark.svg";
+import bookmarkactive from "../../images/bookmark-active.svg";
 import { useEffect, useState } from "react";
 import { addCardBookmark, removeCardBookmark } from "../../utils/Auth";
 
@@ -101,19 +102,15 @@ const NewsCard = ({ loggedIn, searchResults }) => {
               </div>
               {loggedIn ? (
                 <div className="card__category-container">
-                  <p className="card__category-text">Naturegthy</p>
-                  <div
+                  <div>
+                    <p className="card__category-text">Naturegthy</p>
+                  </div>
+                  <img
+                    src={bookmarkactive}
                     className={getBookmarkClass(loggedIn, hasBookmark)}
                     onClick={() => handleBookmarkClick(item, key)}
-                  >
-                    {/* <div className="card__trash-container">
-                    <img
-                      src={trash}
-                      alt={`click to delete news about ${item?.title}`}
-                      className="card__trash-icon"
-                    />
-                  </div> */}
-                  </div>
+                    alt={`click to bookmark news about ${item?.title}`}
+                  />
                 </div>
               ) : (
                 <div className="card__bookmark-container">

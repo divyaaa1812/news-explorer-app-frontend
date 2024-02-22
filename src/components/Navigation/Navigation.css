@@ -38,8 +38,18 @@
   color: #fff;
   cursor: url(../../images/pointer.png), auto;
 }
-.nav__link_active {
-  border-bottom: 3px solid #fff;
+
+nav:first-child a {
+  position: relative; /* Position relative for absolute positioning of pseudo-element */
+}
+
+nav li:first-child a:hover::before {
+  content: "";
+  position: absolute;
+  top: 76px;
+  left: 1058px;
+  height: 3px; /* Adjust the height as needed for the stroke */
+  background-color: blue;
 }
 
 .nav__logout-btn {

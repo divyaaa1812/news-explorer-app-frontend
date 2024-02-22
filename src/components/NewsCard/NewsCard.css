@@ -32,17 +32,17 @@
 
 .cards__showmore-btn {
   color: #000;
-  border-radius: 10px;
+  border-radius: 35px;
   border: none;
-  padding: 10px 0 10px 0;
+  padding: 15px;
   font-family: Roboto500;
   max-width: 288px;
-  width: 100%;
-  margin: 0 auto;
+  width: 20%;
+  margin: 30px auto;
+  cursor: url(../../images/pointer.png), auto;
 }
 
 .card__category-container {
-  background-color: #ffffff;
   position: absolute;
   border-radius: 10px;
   top: 22px;
@@ -55,6 +55,9 @@
 .card__category-text {
   margin: 0;
   padding: 10px;
+  width: 100px;
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 .card__trash-container {
@@ -79,15 +82,15 @@
 }
 .card__bookmark-icon_active {
   position: absolute;
-  left: 300px;
-  background-image: url("../../images/bookmarkactive.png");
-  background-repeat: no-repeat;
-  height: 40px;
-  width: 40px;
+  padding: 7px;
+  border-radius: 10px;
+  left: 314px;
+  top: -2px;
+  background-color: #fff;
 }
 
 .card__bookmark-icon_inactive {
-  background-image: url("../../images/bookmark.png");
+  background-image: url("../../images/bookmark.svg");
   background-repeat: no-repeat;
   position: absolute;
   height: 40px;
@@ -155,15 +158,9 @@
   color: red;
 }
 /* mobile devices */
-@media screen and (min-width: 480px) {
-  /* .card__items {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  } */
-
+@media screen and (max-width: 480px) {
   .card__bookmark-icon_active {
-    position: absolute;
+    left: 250px;
   }
 }
 /* tablets */
