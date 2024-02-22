@@ -39,6 +39,11 @@
   width: 288px;
   margin: 30px auto;
   cursor: url(../../images/pointer.png), auto;
+  background-color: #fff;
+}
+
+.cards__showmore-btn:hover {
+  background: #e8e8e8;
 }
 
 .card__category-container {

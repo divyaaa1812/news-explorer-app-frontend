@@ -35,12 +35,15 @@
 
 .nav__link {
   text-decoration: none;
-  color: #fff;
+  color: #b6bcbf;
   cursor: url(../../images/pointer.png), auto;
 }
 
-nav:first-child a {
-  position: relative; /* Position relative for absolute positioning of pseudo-element */
+.nav__link_active {
+  color: #fff;
+  content: "";
+  height: 3px;
+  background-color: blue;
 }
 
 nav li:first-child a:hover::before {
@@ -53,17 +56,19 @@ nav li:first-child a:hover::before {
 }
 
 .nav__logout-btn {
+  width: 112px;
+  height: 48px;
+  border-radius: 35px;
   display: flex;
   color: #fff;
-  align-items: center;
   border: 1px solid #fff;
-  border-radius: 20px;
   background: transparent;
   cursor: url(../../images/pointer.png), auto;
   font-family: Roboto500, serif;
   font-size: 18px;
-  gap: 10px;
-  padding: 0px 10px 0px 10px;
+  padding: 10px;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .nav__logout-icon {
@@ -105,6 +110,7 @@ nav li:first-child a:hover::before {
 .nav__menu {
   list-style: none;
   display: flex;
+  align-items: center;
 }
 
 .nav__menu li {
@@ -121,9 +127,6 @@ nav li:first-child a:hover::before {
 @media only screen and (max-width: 768px) {
   .hamburger-icon {
     display: flex; /* Show hamburger icon */
-  }
-  .nav__menu {
-    display: none;
   }
 
   .nav__menu.open {

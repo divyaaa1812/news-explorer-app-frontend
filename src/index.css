@@ -30,3 +30,8 @@ body {
   font-family: "Robotoslab700";
   src: local("Robotoslab700"), url(./fonts/roboto-700.woff) format("woff");
 }
+
+@font-face {
+  font-family: "Inter400";
+  src: local("Inter400"), url(./fonts/inter-400-regular.woff) format("woff");
+}

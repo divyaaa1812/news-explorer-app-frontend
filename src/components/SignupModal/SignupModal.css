@@ -4,7 +4,8 @@
   border-left: 0;
   border-right: 0;
   width: 100%;
-  padding: 0;
+  padding: 5px 0px;
+  font-family: Inter400;
 }
 
 .input-field:focus {
@@ -14,6 +15,7 @@
 label {
   color: #2f71e5;
   font-size: 12px;
+  font-family: Inter400;
 }
 
 .form__field {
@@ -23,4 +25,5 @@ label {
 .input-field-error {
   color: #ff0000;
   font-size: 12px;
+  font-family: Inter400;
 }
