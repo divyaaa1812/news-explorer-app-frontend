@@ -1,5 +1,4 @@
 import "./NewsCard.css";
-import trash from "../../images/trash.png";
 import bookmark from "../../images/bookmark.svg";
 import bookmarkactive from "../../images/bookmark-active.svg";
 import bookmarkblue from "../../images/bookmarkblue.svg";

@@ -5,12 +5,12 @@
   padding: 20px;
 }
 
-.card__items {
+/* .card__items {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(minmax(300px, 1fr));
   grid-auto-flow: row;
-}
+} */
 
 .card__item {
   position: relative;
