@@ -3,7 +3,7 @@ import about from "../../images/about.png";
 
 const About = () => {
   return (
-    <div className="about__container">
+    <section className="about__container">
       <img src={about} className="about__image" alt="Loggedin user" />
       <div className="about__text">
         <h4 className="about__title">About the author</h4>
@@ -20,7 +20,7 @@ const About = () => {
           in achieving their web development goals.
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 

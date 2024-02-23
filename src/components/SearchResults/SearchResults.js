@@ -12,29 +12,29 @@ const SearchResults = ({
   return (
     <>
       {isLoading ? (
-        <div className="preloader">
+        <section className="preloader">
           <p className="preloader__text">Searching for news...</p>
           <div className="preloader__loading-spinner"></div>
-        </div>
+        </section>
       ) : error ? (
-        <div>{error}</div>
+        <section>{error}</section>
       ) : searchResults && searchResults?.articles?.length > 0 ? (
-        <div className="searchresults__container">
+        <section className="searchresults__container">
           <h3 className="searchresults__title"> Search results</h3>
           <NewsCard
             loggedIn={loggedIn}
             searchResults={searchResults}
             handleBookmarkClick={handleBookmarkClick}
           />
-        </div>
+        </section>
       ) : searchResults && searchResults?.articles?.length == 0 ? (
-        <div className="searchresults__notfound">
+        <section className="searchresults__notfound">
           <img src={searchicon} className="searchresults__notfound-icon" />
           <p className="searchresults__notfound-text">Nothing Found</p>
           <p className="searchresults__notfound-desc">
             Sorry, but nothing matched your search terms.
           </p>
-        </div>
+        </section>
       ) : (
         <></>
       )}
