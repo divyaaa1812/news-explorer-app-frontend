@@ -1,5 +1,5 @@
 import "./SavedNewsHeader.css";
-import logout from "../../images/logout.png";
+import logout from "../../images/logout.svg";
 import { Link, NavLink } from "react-router-dom";
 
 const SavedNewsHeader = () => {

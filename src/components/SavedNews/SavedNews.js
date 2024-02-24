@@ -40,6 +40,11 @@ const SavedNews = () => {
         <div className="savednews__category-container">
           <p className="savednews__category-text">Naturegthy</p>
         </div>
+        <div className="card__category-container">
+          <div>
+            <p className="card__category-text">Naturegthy</p>
+          </div>
+        </div>
         <img
           src={deleteicon}
           className="delete-icon"

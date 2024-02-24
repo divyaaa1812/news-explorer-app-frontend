@@ -1,6 +1,6 @@
 import NewsCard from "../NewsCard/NewsCard";
 import "./SearchResults.css";
-import searchicon from "../../images/notfound.png";
+import searchicon from "../../images/notfound.svg";
 
 const SearchResults = ({
   loggedIn,

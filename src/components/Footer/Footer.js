@@ -1,6 +1,6 @@
 import "./Footer.css";
-import githubicon from "../../images/github.png";
-import fbicon from "../../images/fb.png";
+import githubicon from "../../images/github.svg";
+import fbicon from "../../images/fb.svg";
 
 const Footer = () => {
   return (

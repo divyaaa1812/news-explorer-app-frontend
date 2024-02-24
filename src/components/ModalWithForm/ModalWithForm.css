@@ -36,7 +36,7 @@
   border: none;
   width: 40px;
   height: 40px;
-  background: url(../../images/close.png) no-repeat;
+  background: url(../../images/close.svg) no-repeat;
   background-size: contain;
   padding: 0;
 }
@@ -57,7 +57,7 @@
   font-size: 16px;
   height: 64px;
   padding: 0px;
-  cursor: url(../../images/pointer.png), auto;
+  cursor: url(../../images/pointer.svg), auto;
 }
 
 .modal__button:disabled {
@@ -76,7 +76,7 @@
   width: 100%;
   color: #2f71e5;
   padding: 20px 0 0 0;
-  cursor: url(../../images/pointer.png), auto;
+  cursor: url(../../images/pointer.svg), auto;
 }
 
 .modal__link {

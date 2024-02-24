@@ -26,6 +26,7 @@
 .footer__nav-icons {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .footer__nav-link {
@@ -38,9 +39,8 @@
 }
 
 .footer__facebook-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  width: 20px;
+  height: 20px;
 }
 
 @media screen and (min-width: 428px) and (max-width: 768px) {

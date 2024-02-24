@@ -9,4 +9,5 @@
   font-family: Inter400;
   font-size: 18px;
   text-align: left;
+  cursor: url(../../images/pointer.svg), auto;
 }

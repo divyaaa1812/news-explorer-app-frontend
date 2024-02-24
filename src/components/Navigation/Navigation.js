@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Navigation.css";
 import { Link, NavLink } from "react-router-dom";
-import logoutwt from "../../images/logoutwt.png";
+import logoutwt from "../../images/logoutwt.svg";
 
 const Navigation = ({ loggedIn, onOpenModal }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

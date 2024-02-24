@@ -16,7 +16,7 @@
 }
 
 .savednewsheader__logo:hover {
-  cursor: url(../../images/pointer.png), auto;
+  cursor: url(../../images/pointer.svg), auto;
 }
 
 .savednewsheader__btn-container {
@@ -37,7 +37,7 @@
 }
 .savednewsheader_nav__link:hover {
   border-bottom: 3px solid #000;
-  cursor: url(../../images/pointer.png), auto;
+  cursor: url(../../images/pointer.svg), auto;
 }
 
 .savednewsheader__logout-btn {
@@ -53,7 +53,7 @@
 }
 
 .savednewsheader__logout-btn:hover {
-  cursor: url(../../images/pointer.png), auto;
+  cursor: url(../../images/pointer.svg), auto;
 }
 
 .savednewsheader__title-container {

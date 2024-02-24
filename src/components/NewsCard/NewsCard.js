@@ -102,11 +102,6 @@ const NewsCard = ({ loggedIn, searchResults }) => {
               </div>
               {loggedIn ? (
                 <>
-                  <div className="card__category-container">
-                    <div>
-                      <p className="card__category-text">Naturegthy</p>
-                    </div>
-                  </div>
                   {hasBookmark ? (
                     <img
                       src={bookmarkblue}
