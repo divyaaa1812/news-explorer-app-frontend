@@ -15,6 +15,7 @@ import { getSearchResults } from "../../utils/Api";
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
   const [openModal, setOpenModal] = useState("");
+  const [openSucessModal, setOpenSucessModal] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
@@ -30,6 +31,7 @@ function App() {
 
   const handleOpenModal = (modalName) => {
     setOpenModal(modalName);
+    setOpenSucessModal(true);
   };
 
   const handleCloseModal = () => {
@@ -60,16 +62,17 @@ function App() {
   };
 
   useEffect(() => {
-    if (!openModal) return;
-    const handleEscClose = (e) => {
-      if (e.key === "Escape") {
-        handleCloseModal();
-      }
-    };
-    document.addEventListener("keydown", handleEscClose);
-    return () => {
-      document.removeEventListener("keydown", handleEscClose);
-    };
+    //if (!openModal) return;
+    // const handleEscClose = (e) => {
+    //   if (e.key === "Escape") {
+    //     handleCloseModal();
+    //   }
+    // };
+    // document.addEventListener("keydown", handleEscClose);
+    // return () => {
+    //   document.removeEventListener("keydown", handleEscClose);
+    // };
+    console.log(openModal);
   }, [openModal]);
 
   useEffect(() => {

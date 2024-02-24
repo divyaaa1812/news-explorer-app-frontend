@@ -12,7 +12,9 @@ const About = () => {
           Quality Assurance (QA) engineering and a newfound passion for web
           development. With years of experience ensuring the quality and
           reliability of software products, I am now embarking on an exciting
-          journey to transition into the realm of web development. <br /> <br />
+          journey to transition into the realm of web development.{" "}
+        </p>
+        <p>
           Through Practicum, I learned Comprehensive understanding of front-end
           technologies like HTML, CSS, and JavaScript, enabling me to create
           visually stunning and interactive user interfaces.With my newfound

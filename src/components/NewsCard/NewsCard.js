@@ -74,7 +74,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
 
   return (
     <div className="cards__container">
-      <div className="card__items">
+      <ul className="card__items">
         {cards?.map((item, index) => {
           let key = `${item.source.id}-${index}`;
           let hasBookmark = bookmarkIds[key] ? true : false;
@@ -86,7 +86,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
             }
           );
           return (
-            <div className="card__item" key={key}>
+            <article className="card__item" key={key}>
               <div className="card__image-container">
                 <img
                   src={item.urlToImage}
@@ -139,10 +139,10 @@ const NewsCard = ({ loggedIn, searchResults }) => {
                   )}
                 </div>
               )}
-            </div>
+            </article>
           );
         })}
-      </div>
+      </ul>
       {searchResults?.articles?.length > visibleCount && (
         <button className="cards__showmore-btn" onClick={handleShowMore}>
           Show more

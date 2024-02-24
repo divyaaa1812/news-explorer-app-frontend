@@ -2,7 +2,7 @@ import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
 
 const NewsCardList = () => {
-  return <div className="card__items"></div>;
+  return <ul className="card__items"></ul>;
 };
 
 export default NewsCardList;

@@ -41,18 +41,6 @@
 
 .nav__link_active {
   color: #fff;
-  content: "";
-  height: 3px;
-  background-color: blue;
-}
-
-nav li:first-child a:hover::before {
-  content: "";
-  position: absolute;
-  top: 76px;
-  left: 1058px;
-  height: 3px; /* Adjust the height as needed for the stroke */
-  background-color: blue;
 }
 
 .nav__logout-btn {

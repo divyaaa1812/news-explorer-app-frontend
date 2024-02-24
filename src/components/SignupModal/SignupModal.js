@@ -32,7 +32,8 @@ const SignupModal = ({ onOpenModal, onCloseModal, isLoading }) => {
     if (validateForm()) {
       console.log("signup details submitted", formData);
       // Submit form data and close modal
-      onCloseModal();
+      //onCloseModal();
+      debugger;
       onOpenModal("SignupSuccessModal");
     }
   };
