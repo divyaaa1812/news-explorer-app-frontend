@@ -15,7 +15,6 @@ import { getSearchResults } from "../../utils/Api";
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
   const [openModal, setOpenModal] = useState("");
-  const [openSucessModal, setOpenSucessModal] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
