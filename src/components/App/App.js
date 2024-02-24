@@ -62,17 +62,16 @@ function App() {
   };
 
   useEffect(() => {
-    //if (!openModal) return;
-    // const handleEscClose = (e) => {
-    //   if (e.key === "Escape") {
-    //     handleCloseModal();
-    //   }
-    // };
-    // document.addEventListener("keydown", handleEscClose);
-    // return () => {
-    //   document.removeEventListener("keydown", handleEscClose);
-    // };
-    console.log(openModal);
+    if (!openModal) return;
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
   }, [openModal]);
 
   useEffect(() => {
