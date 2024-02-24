@@ -1,7 +1,6 @@
 import "./SignupModal.css";
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
 
 const SignupModal = ({ onOpenModal, onCloseModal, isLoading }) => {
   const [formData, setFormData] = useState({
@@ -33,7 +32,6 @@ const SignupModal = ({ onOpenModal, onCloseModal, isLoading }) => {
       console.log("signup details submitted", formData);
       // Submit form data and close modal
       //onCloseModal();
-      debugger;
       onOpenModal("SignupSuccessModal");
     }
   };

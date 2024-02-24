@@ -1,0 +1,12 @@
+.modal__header-title {
+  margin-top: 0px;
+  font-size: 24px;
+}
+
+.modal-success-button {
+  background-color: #fff;
+  color: #2f71e5;
+  font-family: Inter400;
+  font-size: 18px;
+  text-align: left;
+}

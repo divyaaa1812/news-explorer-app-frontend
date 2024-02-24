@@ -76,6 +76,7 @@
   width: 100%;
   color: #2f71e5;
   padding: 20px 0 0 0;
+  cursor: url(../../images/pointer.png), auto;
 }
 
 .modal__link {

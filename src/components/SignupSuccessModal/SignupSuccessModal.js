@@ -9,7 +9,12 @@ const SignupSuccessModal = ({ onOpenModal, onCloseModal }) => {
       isOpen={onOpenModal}
       onClose={onCloseModal}
     >
-      <button className="modal__button">Sign in</button>
+      <button
+        className="modal__button modal-success-button"
+        onClick={() => onOpenModal("SigninModal")}
+      >
+        Sign in
+      </button>
     </ModalWithForm>
   );
 };
