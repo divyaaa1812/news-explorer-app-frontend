@@ -11,59 +11,40 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
   };
 
   return (
-    <div className="nav__logo">
-      <Link to="/" className="nav__logo-text">
-        NewsExplorer
-      </Link>
+    <div className="navbar">
+      <div class="navbar__header">
+        <Link to="/" className="navbar__logo-text">
+          NewsExplorer
+        </Link>
+      </div>
       {loggedIn ? (
-        <nav className="nav__menu">
-          <div className="hamburger-icon" onClick={toggleMenu}>
-            <div className={`bar`}></div>
-            <div className={`bar`}></div>
-            <div className={`bar`}></div>
-          </div>
-          <NavLink
-            exact
-            to="/"
-            activeClassName="nav__link_active"
-            className="nav__link"
-          >
+        <div class="navlinks-container">
+          <NavLink exact to="/" className="nav__link">
             Home
           </NavLink>
-          <NavLink
-            to="/saved-news"
-            activeClassName="menu__link_active"
-            className="nav__link"
-          >
+          <NavLink to="/saved-news" className="nav__link">
             Saved articles
           </NavLink>
-          <div className="nav__button-container">
-            <button type="button" className="nav__logout-btn">
-              Elise
-              <span>
-                <img
-                  src={logoutwt}
-                  alt="click to logout"
-                  className="nav__logout-icon"
-                />
-              </span>
-            </button>
-          </div>
-        </nav>
+          <button className="navbar-button">
+            Elise
+            <span>
+              <img
+                src={logoutwt}
+                alt="click to logout"
+                className="nav__logout-icon"
+              />
+            </span>
+          </button>
+        </div>
       ) : (
-        <div className="nav__logout-nav">
-          <NavLink
-            exact
-            to="/"
-            activeClassName="nav__link_active"
-            className="nav__link"
-          >
+        <div class="navlinks-container">
+          <NavLink exact to="/" className="nav__link">
             Home
           </NavLink>
           <button
             type="button"
             onClick={() => onOpenModal("SigninModal")}
-            className="nav__signin-btn"
+            className="navbar-button navbar__signin-btn"
           >
             Sign in
           </button>

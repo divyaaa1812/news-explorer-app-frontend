@@ -1,42 +1,34 @@
 import "./SavedNewsHeader.css";
 import logout from "../../images/logout.svg";
 import { Link, NavLink } from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 
 const SavedNewsHeader = () => {
   return (
-    <header className="savednewsheader">
-      <div className="savednewsheader__nav">
-        <Link to="/" className="savednewsheader__logo">
-          NewsExplorer
-        </Link>
-        <div className="savednewsheader__btn-container">
-          <NavLink
-            exact
-            to="/"
-            activeClassName="nav__link_active"
-            className="savednewsheader_nav__link"
-          >
+    <header className="savednewsnavbar">
+      <div className="savednewsnavbar__header">
+        <div class="savednewsnavbar__logo">
+          <Link to="/" className="savednewsnavbar__logo-text">
+            NewsExplorer
+          </Link>
+        </div>
+        <div class="savednewsnavbar-links">
+          <NavLink exact to="/" className="nav__link">
             Home
           </NavLink>
-          <NavLink
-            to="/saved-news"
-            activeClassName="menu__link_active"
-            className="savednewsheader_nav__link"
-          >
+          <NavLink to="/saved-news" className="nav__link">
             Saved articles
           </NavLink>
-          <div className="nav__button-container">
-            <button type="button" className="savednewsheader__logout-btn">
-              Elise
-              <span>
-                <img
-                  src={logout}
-                  alt="click to logout"
-                  className="savednewsheader__logout-icon"
-                />
-              </span>
-            </button>
-          </div>
+          <button className="navbar-button">
+            Elise
+            <span>
+              <img
+                src={logout}
+                alt="click to logout"
+                className="nav__logout-icon"
+              />
+            </span>
+          </button>
         </div>
       </div>
       <div className="savednewsheader__title-container">

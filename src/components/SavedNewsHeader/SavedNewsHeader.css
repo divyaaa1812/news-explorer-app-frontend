@@ -1,15 +1,16 @@
-.savednewsheader__nav {
+.savednewsnavbar__header {
   display: flex;
-  justify-content: space-between;
-  height: 80px;
   align-items: center;
-  border-bottom: 1px solid #d1d2d6;
+  padding: 0 20px;
 }
 
-.savednewsheader__logo {
+.savednewsnavbar__logo {
+  flex: 1;
+}
+
+.savednewsnavbar__logo-text {
   text-decoration: none;
   color: #000;
-  padding-left: 20px;
   font-family: Robotoslab700, serif;
   font-size: 20px;
   margin: 0;
@@ -17,6 +18,12 @@
 
 .savednewsheader__logo:hover {
   cursor: url(../../images/pointer.svg), auto;
+}
+
+.savednewsnavbar-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
 }
 
 .savednewsheader__btn-container {

@@ -1,6 +1,7 @@
 import "./Footer.css";
 import githubicon from "../../images/github.svg";
 import fbicon from "../../images/fb.svg";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 const Footer = () => {
   return (
@@ -10,8 +11,12 @@ const Footer = () => {
       </div>
       <div className="footer__nav">
         <div className="footer__nav-links">
-          <p className="footer__nav-link">Home</p>
-          <p className="footer__nav-link">Practicum</p>
+          <NavLink exact to="/" className="footer__nav-link">
+            Home
+          </NavLink>
+          <NavLink exact to="/" className="footer__nav-link">
+            Practicum
+          </NavLink>
         </div>
         <div className="footer__nav-icons">
           <a
