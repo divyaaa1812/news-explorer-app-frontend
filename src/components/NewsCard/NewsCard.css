@@ -11,6 +11,9 @@
   grid-template-columns: repeat(minmax(300px, 1fr));
   grid-auto-flow: row;
 } */
+.card__items {
+  padding: 0;
+}
 
 .card__item {
   position: relative;
