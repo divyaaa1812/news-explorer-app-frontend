@@ -14,9 +14,9 @@ const Footer = () => {
           <NavLink exact to="/" className="footer__nav-link">
             Home
           </NavLink>
-          <NavLink exact to="/" className="footer__nav-link">
+          <a href="https://tripleten.com/" className="footer__nav-link">
             Practicum
-          </NavLink>
+          </a>
         </div>
         <div className="footer__nav-icons">
           <a

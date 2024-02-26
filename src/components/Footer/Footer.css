@@ -31,16 +31,21 @@
 
 .footer__nav-link {
   margin: 0;
+  text-decoration: none;
+  color: #000;
+  cursor: url(../../images/pointer.svg), auto;
 }
 
 .footer__github-icon {
   width: 24px;
   height: 24px;
+  cursor: url(../../images/pointer.svg), auto;
 }
 
 .footer__facebook-icon {
   width: 20px;
   height: 20px;
+  cursor: url(../../images/pointer.svg), auto;
 }
 
 @media screen and (min-width: 428px) and (max-width: 768px) {
@@ -54,6 +59,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 20px;
+    text-decoration: none;
   }
   .footer__nav {
     display: flex;
