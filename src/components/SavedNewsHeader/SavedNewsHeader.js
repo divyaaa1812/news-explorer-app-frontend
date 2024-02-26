@@ -13,13 +13,13 @@ const SavedNewsHeader = () => {
           </Link>
         </div>
         <div class="savednewsnavbar-links">
-          <NavLink exact to="/" className="nav__link">
+          <NavLink exact to="/" className="savednewsnav__link">
             Home
           </NavLink>
-          <NavLink to="/saved-news" className="nav__link">
+          <NavLink to="/saved-news" className="savednewsnav__link">
             Saved articles
           </NavLink>
-          <button className="navbar-button">
+          <button className="savednewsnavbar-button">
             Elise
             <span>
               <img
