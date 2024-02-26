@@ -124,15 +124,60 @@
   background-color: black;
   margin: 3px 0;
 }
+.hamburger {
+  display: none;
+}
+.mobile-menu-container {
+  display: none;
+}
 
 /* Media query for screens with width up to 768px */
 @media only screen and (max-width: 768px) {
-  .hamburger-icon {
-    display: flex; /* Show hamburger icon */
+  .hamburger {
+    display: flex;
+    width: 24px;
+    height: 24px;
   }
 
   .nav__menu.open {
     display: flex;
     flex-direction: column;
+  }
+  .desktop-menu-container {
+    display: none;
+  }
+  .mobile-menu-container {
+    display: flex;
+    flex-direction: column;
+    background: #1a1b22;
+  }
+  .navbar-bg {
+    background: #1a1b22;
+  }
+  .navbar-transparent {
+    background: transparent;
+  }
+  .mobile-menu-navlinks-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  .mobile-menu-navbar-button {
+    background: #1a1b22;
+    padding: 0;
+    color: #fff;
+    border: 1px solid #ffffff;
+    width: 288px;
+    height: 56px;
+    border-radius: 35px;
+    font-family: Roboto500;
+    font-size: 18px;
+  }
+  .mobile-menu-nav__link {
+    color: #fff;
+    text-decoration: none;
+    width: 288px;
+    height: 56px;
+    font-size: 18px;
   }
 }

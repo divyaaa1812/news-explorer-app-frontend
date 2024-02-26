@@ -12,11 +12,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .header__searchformtitle {
-    max-width: 424px;
-    width: 100%;
-  }
-
   .about__container {
     display: flex;
     flex-direction: column;
