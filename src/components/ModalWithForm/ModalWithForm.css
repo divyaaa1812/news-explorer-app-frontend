@@ -89,3 +89,15 @@
 .modal__text-inputs {
   display: flex;
 }
+
+@media only screen and (max-width: 768px) {
+  .modal__close-button {
+    top: -44px;
+    right: 10px;
+  }
+
+  .modal__content {
+    height: 560px;
+    top: 142px;
+  }
+}
