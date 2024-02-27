@@ -48,7 +48,7 @@
   cursor: url(../../images/pointer.svg), auto;
 }
 
-@media screen and (min-width: 428px) and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .footer {
     display: flex;
     flex-direction: column-reverse;
