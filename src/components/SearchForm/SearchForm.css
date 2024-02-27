@@ -1,4 +1,4 @@
-.header__searchformtitle {
+.searchform__title {
   color: #fff;
   font-family: Robotoslab;
   font-size: 60px;
@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-.header__searchformsubtitle {
+.searchform__subtitle {
   margin: 0 auto;
   color: #fff;
   font-family: Roboto, serif;
@@ -16,19 +16,19 @@
   max-width: 608px;
   width: 100%;
 }
-.header__searchform {
+.searchform__searchbox-container {
   display: flex;
   flex-direction: column;
   padding-top: 40px;
 }
 
-.header__searchbtn {
+.searchform__searchbox {
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
 
-.searchbox__search-btn {
+.searchform__searchbox-searchbtn {
   border-radius: 30px;
   width: 160px;
   color: #ffffff;
@@ -39,12 +39,12 @@
   border: none;
   margin-left: -159px;
 }
-.searchbox__search-btn:hover {
+.searchform__searchbox-searchbtn:hover {
   background: #347eff;
   cursor: url(../../images/pointer.svg), auto;
 }
 
-.searchbox__input-field {
+.searchform__searchbox-input {
   border-radius: 30px;
   height: 60px;
   max-width: 608px;
@@ -52,46 +52,43 @@
   font-family: Roboto, serif;
   font-size: 16px;
   border: none;
+  padding-left: 10px;
 }
 
-input::placeholder {
-  text-align: center;
-}
-
-.searchbox__input-field:focus {
+.searchform__searchbox-input:focus {
   outline: none;
 }
-.searchbox__input-field-error {
+.searchform__searchbox-error {
   color: red;
   font-size: 12px;
   text-align: center;
 }
 
 @media screen and (max-width: 768px) {
-  .header__searchbtn {
+  .searchform__searchbox-container {
+    padding-top: 40px;
+  }
+  .searchform__searchbox {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     width: 100%;
   }
-  .header__searchform {
-    padding-top: 40px;
-  }
-  .searchbox__input-field {
+  .searchform__searchbox-input {
     width: 288px;
   }
-  .searchbox__search-btn {
+  .searchform__searchbox-searchbtn {
     height: 60px;
     width: 288px;
     margin: 0 auto;
   }
-  .header__searchformtitle {
+  .searchform__title {
     font-size: 36px;
     padding: 20px;
     width: 288px;
   }
-  .header__searchformsubtitle {
+  .searchform__subtitle {
     width: 288px;
     padding-bottom: 40px;
   }

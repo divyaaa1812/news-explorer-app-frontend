@@ -11,13 +11,13 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const navbarClassname = `navbar ${
+  const navbarHeaderClassname = `navbar ${
     isMenuOpen ? `navbar-bg` : `navbar-transparent`
   }`;
 
   return (
     <div className="navbar-container">
-      <div className={navbarClassname}>
+      <div className={navbarHeaderClassname}>
         <div className="navbar__header">
           <Link to="/" className="navbar__logo-text">
             NewsExplorer
