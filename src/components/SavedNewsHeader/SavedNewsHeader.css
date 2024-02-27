@@ -111,6 +111,9 @@
 .savednewsnavbar-links-mobile {
   display: none;
 }
+.savednews__hamburger {
+  display: none;
+}
 
 @media only screen and (max-width: 768px) {
   .savednewsnavbar__logo-mobile {
@@ -120,6 +123,7 @@
   .savednews__hamburger {
     width: 24px;
     height: 24px;
+    display: flex;
   }
   .savednewsnavbar-links-mobile {
     display: flex;
