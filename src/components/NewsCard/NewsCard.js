@@ -2,7 +2,7 @@ import "./NewsCard.css";
 import bookmark from "../../images/bookmark.svg";
 import bookmarkactive from "../../images/bookmark-active.svg";
 import bookmarkblue from "../../images/bookmarkblue.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { addCardBookmark, removeCardBookmark } from "../../utils/Auth";
 
 const NewsCard = ({ loggedIn, searchResults }) => {
@@ -90,7 +90,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
               <div className="card__image-container">
                 <img
                   src={item.urlToImage}
-                  alt={`cover picture for news with title ${item?.title}`}
+                  alt={`Illustration for news with title ${item?.title}`}
                   className="card__image"
                 />
               </div>

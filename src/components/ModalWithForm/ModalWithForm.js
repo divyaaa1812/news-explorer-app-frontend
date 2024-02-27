@@ -1,5 +1,5 @@
 import "./ModalWithForm.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 const ModalWithForm = ({ name, children, title, onClose }) => {
   const modalRef = useRef(null);

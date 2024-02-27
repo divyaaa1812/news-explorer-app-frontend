@@ -1,7 +1,7 @@
 import "./SavedNews.css";
 import deleteicon from "../../images/deleteicon.svg";
 import image from "../../images/image_06.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const SavedNews = () => {
   const [tooltipId, settooltipId] = useState("");
@@ -20,7 +20,7 @@ const SavedNews = () => {
         <div className="savednews__image-container">
           <img
             src={image}
-            alt={`cover picture for bookmarked news`}
+            alt={`cover for saved news`}
             className="savednews__image"
           />
         </div>

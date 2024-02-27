@@ -27,9 +27,13 @@ const SearchResults = ({
             handleBookmarkClick={handleBookmarkClick}
           />
         </section>
-      ) : searchResults && searchResults?.articles?.length == 0 ? (
+      ) : searchResults && searchResults?.articles?.length === 0 ? (
         <section className="searchresults__notfound">
-          <img src={searchicon} className="searchresults__notfound-icon" />
+          <img
+            src={searchicon}
+            className="searchresults__notfound-icon"
+            alt="No results found icon"
+          />
           <p className="searchresults__notfound-text">Nothing Found</p>
           <p className="searchresults__notfound-desc">
             Sorry, but nothing matched your search terms.

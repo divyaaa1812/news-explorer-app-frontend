@@ -19,14 +19,9 @@ function App() {
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
 
-  const pageSize = 100;
   const currentDate = new Date();
   const pastDate = new Date();
   pastDate.setDate(currentDate.getDate() - 7);
-
-  const formatDate = (date) => {
-    return date.toISOString().split("T")[0]; // Format date to 'YYYY-MM-DD'
-  };
 
   const handleOpenModal = (modalName) => {
     setOpenModal(modalName);

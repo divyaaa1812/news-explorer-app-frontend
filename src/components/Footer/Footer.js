@@ -26,7 +26,7 @@ const Footer = () => {
           >
             <img
               src={fbicon}
-              alt="Facebook"
+              alt="click to open facebook account"
               className="footer__facebook-icon"
             />
           </a>
@@ -37,7 +37,7 @@ const Footer = () => {
           >
             <img
               src={githubicon}
-              alt="Github"
+              alt="click to open github account"
               className="footer__github-icon"
             />
           </a>

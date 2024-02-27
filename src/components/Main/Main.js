@@ -1,4 +1,3 @@
-import SavedNews from "../SavedNews/SavedNews";
 import "./Main.css";
 import About from "../About/About";
 import SearchResults from "../SearchResults/SearchResults";
