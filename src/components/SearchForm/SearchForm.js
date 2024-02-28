@@ -39,7 +39,7 @@ const SearchForm = ({ onSearchClick }) => {
         handleSubmit(searchKeyword);
       }}
     >
-      <p className="searchform__title">What's going on in the world?</p>
+      <h1 className="searchform__title">What's going on in the world?</h1>
       <p className="searchform__subtitle">
         Find the latest news on any topic and save them in your personal
         account.
