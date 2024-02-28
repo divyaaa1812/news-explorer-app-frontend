@@ -96,10 +96,10 @@ const NewsCard = ({ loggedIn, searchResults }) => {
               </div>
               <div className="card__description">
                 <p className="card__date">{publishedAt}</p>
-                <h2 className="card__title">{item.title}</h2>
+                <h1 className="card__title">{item.title}</h1>
                 <p className="card__subtitle">{item.description}</p>
-                <p className="card__footer">{item.source.name.toUpperCase()}</p>
               </div>
+              <p className="card__footer">{item.source.name.toUpperCase()}</p>
               {loggedIn ? (
                 <>
                   {hasBookmark ? (
