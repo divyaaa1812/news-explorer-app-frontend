@@ -86,7 +86,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
             }
           );
           return (
-            <article className="card__item" key={key}>
+            <li className="card__item" key={key}>
               <div className="card__image-container">
                 <img
                   src={item.urlToImage}
@@ -96,7 +96,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
               </div>
               <div className="card__description">
                 <p className="card__date">{publishedAt}</p>
-                <p className="card__title">{item.title}</p>
+                <h2 className="card__title">{item.title}</h2>
                 <p className="card__subtitle">{item.description}</p>
                 <p className="card__footer">{item.source.name.toUpperCase()}</p>
               </div>
@@ -134,7 +134,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
                   )}
                 </div>
               )}
-            </article>
+            </li>
           );
         })}
       </ul>

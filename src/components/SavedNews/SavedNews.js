@@ -26,9 +26,9 @@ const SavedNews = () => {
         </div>
         <div className="savednews__description">
           <p className="savednews__date">November 4, 2020</p>
-          <p className="savednews__title">
+          <h1 className="savednews__title">
             Everyone Needs a Special 'Sit Spot' in Nature
-          </p>
+          </h1>
           <p className="savednews__subtitle">
             Ever since I read Richard Louv's influential book, "Last Child in
             the Woods," the idea of having a special "sit spot" has stuck with

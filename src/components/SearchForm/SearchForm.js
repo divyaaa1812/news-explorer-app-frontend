@@ -32,7 +32,7 @@ const SearchForm = ({ onSearchClick }) => {
   };
 
   return (
-    <form
+    <div
       className="searchform-container"
       onSubmit={(ev) => {
         ev.preventDefault();
@@ -44,7 +44,7 @@ const SearchForm = ({ onSearchClick }) => {
         Find the latest news on any topic and save them in your personal
         account.
       </p>
-      <div className="searchform__searchbox-container">
+      <form className="searchform__searchbox-container">
         <div className="searchform__searchbox">
           <input
             type="text"
@@ -57,8 +57,8 @@ const SearchForm = ({ onSearchClick }) => {
           <button className="searchform__searchbox-searchbtn">Search</button>
         </div>
         <div className="searchform__searchbox-error">{formErrors.search}</div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

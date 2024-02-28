@@ -9,8 +9,8 @@ const Footer = () => {
       <div className="footer__copyright">
         <p>© 2024 Supersite, Powered by News API</p>
       </div>
-      <div className="footer__nav">
-        <div className="footer__nav-links">
+      <nav className="footer__nav">
+        <ul className="footer__nav-links">
           <NavLink exact to="/" className="footer__nav-link" target="_blank">
             Home
           </NavLink>
@@ -21,8 +21,8 @@ const Footer = () => {
           >
             Practicum
           </a>
-        </div>
-        <div className="footer__nav-icons">
+        </ul>
+        <ul className="footer__nav-icons">
           <a
             href="https://www.facebook.com/"
             target="_blank"
@@ -45,8 +45,8 @@ const Footer = () => {
               className="footer__github-icon"
             />
           </a>
-        </div>
-      </div>
+        </ul>
+      </nav>
     </footer>
   );
 };
