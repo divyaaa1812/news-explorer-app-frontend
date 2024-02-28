@@ -38,7 +38,7 @@ const SavedNews = () => {
           <p className="savednews__footer">treehugger</p>
         </div>
         <div className="savednews__category-container">
-          <p className="savednews__category-text">Nature</p>
+          <p className="savednews__category-text">Nature manuijyhhh</p>
         </div>
         <img
           src={deleteicon}
