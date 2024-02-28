@@ -54,7 +54,9 @@ const SearchForm = ({ onSearchClick }) => {
             value={searchKeyword.search}
             onChange={handleChange}
           />
-          <button className="searchform__searchbox-searchbtn">Search</button>
+          <button className="searchform__searchbox-searchbtn" type="button">
+            Search
+          </button>
         </div>
         <div className="searchform__searchbox-error">{formErrors.search}</div>
       </form>

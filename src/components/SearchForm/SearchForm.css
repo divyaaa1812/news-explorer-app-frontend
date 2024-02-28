@@ -43,7 +43,9 @@
   background: #347eff;
   cursor: url(../../images/pointer.svg), auto;
 }
-
+.searchform__searchbox-searchbtn:active {
+  background: #2a65cc;
+}
 .searchform__searchbox-input {
   border-radius: 30px;
   height: 60px;
