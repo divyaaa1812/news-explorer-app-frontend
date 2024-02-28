@@ -11,10 +11,14 @@ const Footer = () => {
       </div>
       <div className="footer__nav">
         <div className="footer__nav-links">
-          <NavLink exact to="/" className="footer__nav-link">
+          <NavLink exact to="/" className="footer__nav-link" target="_blank">
             Home
           </NavLink>
-          <a href="https://tripleten.com/" className="footer__nav-link">
+          <a
+            href="https://tripleten.com/"
+            className="footer__nav-link"
+            target="_blank"
+          >
             Practicum
           </a>
         </div>
