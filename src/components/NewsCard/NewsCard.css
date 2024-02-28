@@ -32,7 +32,7 @@
   border-radius: 35px;
   border: none;
   padding: 15px;
-  font-family: Roboto500;
+  font-family: Roboto500, sans-serif;
   width: 288px;
   margin: 30px auto;
   cursor: url(../../images/pointer.svg), auto;
@@ -113,7 +113,7 @@
   font-size: 12px;
   background-color: #fff;
   border-radius: 10px;
-  font-family: Roboto500;
+  font-family: Roboto500, sans-serif;
   text-align: center;
   padding: 14px;
 }
@@ -135,17 +135,17 @@
 .card__title {
   margin: 0px;
   font-size: 26px;
-  font-family: "Robotoslab";
+  font-family: Robotoslab, sans-serif;
 }
 
 .card__subtitle {
   margin: 0;
   font-size: 16px;
-  font-family: Roboto, serif;
+  font-family: Roboto, sans-serif;
 }
 
 .card__footer {
-  font-family: Robotoslab700, serif;
+  font-family: Robotoslab700, sans-serif;
   font-size: 16px;
   margin: 0px;
   color: #b6bcbf;

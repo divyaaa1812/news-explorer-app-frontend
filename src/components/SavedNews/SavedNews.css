@@ -26,7 +26,7 @@
   padding: 10px;
   background-color: #fff;
   border-radius: 10px;
-  font-family: "Roboto500";
+  font-family: Roboto500, sans-serif;
   font-size: 14px;
 }
 
@@ -60,7 +60,7 @@
 }
 .savednews__title {
   margin: 0;
-  font-family: Robotoslab;
+  font-family: Robotoslab, sans-serif;
   font-size: 26px;
 }
 
@@ -71,7 +71,7 @@
 
 .savednews__footer {
   margin: 0;
-  font-family: Robotoslab700;
+  font-family: Robotoslab700, sans-serif;
   color: #b6bcbf;
 }
 
@@ -84,7 +84,7 @@
   font-size: 12px;
   background-color: #fff;
   border-radius: 10px;
-  font-family: Roboto500;
+  font-family: Roboto500, sans-serif;
   text-align: center;
   padding: 14px;
 }

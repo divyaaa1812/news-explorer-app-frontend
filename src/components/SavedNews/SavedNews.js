@@ -1,6 +1,6 @@
 import "./SavedNews.css";
 import deleteicon from "../../images/deleteicon.svg";
-import image from "../../images/image_06.svg";
+import image from "../../images/image_06.png";
 import { useState } from "react";
 
 const SavedNews = () => {

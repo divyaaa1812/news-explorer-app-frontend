@@ -12,7 +12,7 @@
   width: 100%;
 }
 .about__title {
-  font-family: Robotoslab;
+  font-family: Robotoslab, sans-serif;
   font-size: 40px;
   margin: 0;
 }
