@@ -1,4 +1,4 @@
-.about__container {
+.main__about {
   display: flex;
   gap: 30px;
   background: #fff;
@@ -18,7 +18,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .about__container {
+  .main__about {
     display: flex;
     flex-direction: column;
   }

@@ -9,6 +9,7 @@
 
 .input-field:focus {
   outline: none;
+  caret-color: #2f71e5;
 }
 
 label {

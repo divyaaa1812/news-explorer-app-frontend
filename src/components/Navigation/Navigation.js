@@ -16,7 +16,7 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
   }`;
 
   return (
-    <div className="navbar-container">
+    <div className="header__navbar">
       <div className={navbarHeaderClassname}>
         <div className="navbar__header">
           <Link to="/" className="navbar__logo-text">

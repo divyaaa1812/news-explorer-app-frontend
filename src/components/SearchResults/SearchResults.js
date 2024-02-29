@@ -19,7 +19,7 @@ const SearchResults = ({
       ) : error ? (
         <section>{error}</section>
       ) : searchResults && searchResults?.articles?.length > 0 ? (
-        <section className="searchresults__container">
+        <section className="main__searchresults">
           <h3 className="searchresults__title"> Search results</h3>
           <NewsCard
             loggedIn={loggedIn}

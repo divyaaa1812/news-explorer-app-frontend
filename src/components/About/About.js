@@ -3,7 +3,7 @@ import about from "../../images/avatar.svg";
 
 const About = () => {
   return (
-    <section className="about__container">
+    <section className="main__about">
       <img src={about} className="about__image" alt="Loggedin user" />
       <div className="about__text">
         <h4 className="about__title">About the author</h4>

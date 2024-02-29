@@ -32,19 +32,19 @@ const SearchForm = ({ onSearchClick }) => {
   };
 
   return (
-    <div
-      className="searchform-container"
-      onSubmit={(ev) => {
-        ev.preventDefault();
-        handleSubmit(searchKeyword);
-      }}
-    >
+    <div className="header__searchform">
       <h1 className="searchform__title">What's going on in the world?</h1>
       <p className="searchform__subtitle">
         Find the latest news on any topic and save them in your personal
         account.
       </p>
-      <form className="searchform__searchbox-container">
+      <form
+        className="searchform__searchbox-container"
+        onSubmit={(ev) => {
+          ev.preventDefault();
+          handleSubmit(searchKeyword);
+        }}
+      >
         <div className="searchform__searchbox">
           <input
             type="text"
@@ -54,9 +54,7 @@ const SearchForm = ({ onSearchClick }) => {
             value={searchKeyword.search}
             onChange={handleChange}
           />
-          <button className="searchform__searchbox-searchbtn" type="button">
-            Search
-          </button>
+          <button className="searchform__searchbox-searchbtn">Search</button>
         </div>
         <div className="searchform__searchbox-error">{formErrors.search}</div>
       </form>

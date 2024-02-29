@@ -11,7 +11,7 @@
 
 .input-field:focus {
   outline: none;
-  color: #2f71e5;
+  caret-color: #2f71e5;
 }
 
 label {
