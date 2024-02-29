@@ -1,0 +1,37 @@
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 18px;
+  background-color: #fff;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url(./fonts/roboto-400-regular.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Roboto700";
+  src: local("Roboto700"), url(./fonts/roboto-700.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Roboto500";
+  src: local("Roboto500"), url(./fonts/roboto-500.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Robotoslab";
+  src: local("Robotoslab"),
+    url(./fonts/roboto-slab-400-regular.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Robotoslab700";
+  src: local("Robotoslab700"), url(./fonts/roboto-700.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Inter400";
+  src: local("Inter400"), url(./fonts/inter-400-regular.woff) format("woff");
+}

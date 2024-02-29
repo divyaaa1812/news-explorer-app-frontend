@@ -1,0 +1,28 @@
+.main__about {
+  display: flex;
+  gap: 30px;
+  background: #fff;
+  padding: 40px 20px 40px 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__text {
+  max-width: 600px;
+  width: 100%;
+}
+.about__title {
+  font-family: Robotoslab, sans-serif;
+  font-size: 40px;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .main__about {
+    display: flex;
+    flex-direction: column;
+  }
+  .about__image {
+    width: 100%;
+  }
+}

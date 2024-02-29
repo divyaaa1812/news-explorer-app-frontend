@@ -1,0 +1,27 @@
+.input-field {
+  border-bottom: 1px solid #000000;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  width: 100%;
+  padding: 0;
+}
+
+.input-field:focus {
+  outline: none;
+  caret-color: #2f71e5;
+}
+
+label {
+  color: #2f71e5;
+  font-size: 12px;
+}
+
+.form__field {
+  padding-bottom: 20px;
+}
+
+.input-field-error {
+  color: #ff0000;
+  font-size: 12px;
+}

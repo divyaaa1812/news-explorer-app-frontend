@@ -1,0 +1,171 @@
+.cards__container {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.card__items {
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #fff;
+  /* justify-content: space-between; */
+  gap: 10px;
+}
+
+.card__description {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  flex: 1;
+}
+
+.cards__showmore-btn {
+  color: #000;
+  border-radius: 35px;
+  border: none;
+  padding: 15px;
+  font-family: Roboto500, sans-serif;
+  width: 288px;
+  margin: 30px auto;
+  cursor: url(../../images/pointer.svg), auto;
+  background-color: #fff;
+}
+
+.cards__showmore-btn:hover {
+  background: #e8e8e8;
+}
+
+.card__category-container {
+  position: absolute;
+  border-radius: 10px;
+  top: 22px;
+  left: 22px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.card__trash-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  background-color: #ffffff;
+}
+.card__trash-icon {
+  padding: 6px 6px 6px 6px;
+}
+
+.card__bookmark-container {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 33px;
+  right: 33px;
+}
+.card__bookmark-icon_active {
+  position: absolute;
+  padding: 7px;
+  border-radius: 10px;
+  right: 12px;
+  top: 20px;
+  background-color: #fff;
+}
+
+.card__bookmark-icon_inactive {
+  position: absolute;
+  padding: 7px;
+  border-radius: 10px;
+  right: 0px;
+  top: 0px;
+  background-color: #fff;
+}
+
+.card__bookmark-icon_inactive:hover {
+  cursor: url(../../images/pointer.svg), auto;
+}
+
+.bookmark-blue {
+  background-color: #fff;
+  position: absolute;
+  padding: 7px;
+  border-radius: 10px;
+  right: 12px;
+  top: 20px;
+}
+
+.tooltip-message {
+  display: block;
+  width: 182px;
+  top: 0px;
+  right: 47px;
+  position: absolute;
+  font-size: 12px;
+  background-color: #fff;
+  border-radius: 10px;
+  font-family: Roboto500, sans-serif;
+  text-align: center;
+  padding: 14px;
+}
+
+.card__image-container {
+  height: 272px;
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card__date {
+  color: #b6bcbf;
+  margin: 0px;
+}
+
+.card__title {
+  margin: 0px;
+  font-size: 26px;
+  font-family: Robotoslab, sans-serif;
+}
+
+.card__subtitle {
+  margin: 0;
+  font-size: 16px;
+  font-family: Roboto, sans-serif;
+}
+
+.card__footer {
+  font-family: Robotoslab700, sans-serif;
+  font-size: 16px;
+  margin: 0px;
+  color: #b6bcbf;
+  padding: 10px;
+}
+
+.noresults-found {
+  color: red;
+}
+/* mobile devices */
+/* tablets */
+@media screen and (max-width: 768px) {
+  .card__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
