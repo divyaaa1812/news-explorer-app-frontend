@@ -12,7 +12,9 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
     setIsMenuOpen(!isMenuOpen);
   };
   const navbarHeaderClassname = `navbar ${
-    isMenuOpen ? `navbar-bg` : `navbar-transparent`
+    isMenuOpen
+      ? `header__navbar-navbar-bg`
+      : `header__navbar-navbar-transparent`
   }`;
 
   return (
