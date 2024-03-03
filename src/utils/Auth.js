@@ -1,4 +1,7 @@
-const baseUrl = "http://localhost:3001";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.nx.csproject.org"
+    : "http://localhost:3002";
 
 export const registerUser = ({ email, password, username }) => {
   return fetch(`${baseUrl}/signup`, {
