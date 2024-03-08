@@ -2,7 +2,7 @@ import "./SigninModal.css";
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const SigninModal = ({ onOpenModal, onCloseModal, isLoading }) => {
+const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -47,9 +47,15 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading }) => {
   };
 
   const handleSubmit = (formData) => {
+    formData.preventDefault();
+    debugger;
+    console.log(formData.target.elements[0].value);
     if (validateForm()) {
-      console.log("login details submitted", formData);
       // Submit form data and close modal
+      onUserLogin(
+        formData.target.elements[0].value,
+        formData.target.elements[1].value
+      );
       onCloseModal();
     }
   };
@@ -60,6 +66,7 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading }) => {
       title={"Sign in"}
       isOpen={onOpenModal}
       onClose={onCloseModal}
+      onSubmit={handleSubmit}
     >
       <div className="form__field">
         <label>
@@ -95,19 +102,10 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading }) => {
           </div>
         </label>
       </div>
-      <button
-        className="modal__button"
-        onClick={handleSubmit}
-        type="button"
-        disabled={isSigninButtonDisabled}
-      >
+      <button className="modal__button" disabled={isSigninButtonDisabled}>
         {isLoading ? "SigningIn..." : "Sign in"}
       </button>
-      <button
-        className="modal__alt-button"
-        onClick={handleAltButtonClick}
-        type="button"
-      >
+      <button className="modal__alt-button" onClick={handleAltButtonClick}>
         {isLoading ? "Submtting..." : "or Sign up"}
       </button>
     </ModalWithForm>

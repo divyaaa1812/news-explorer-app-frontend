@@ -1,6 +1,6 @@
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.nx.csproject.org"
+    ? "https://api.nx.csproject.org/"
     : "http://localhost:3002";
 
 export const registerUser = ({ email, password, username }) => {
@@ -42,4 +42,14 @@ export const removeCardBookmark = (item) => {
       "Content-Type": "application/json",
     },
   }).then((res) => res.json());
+};
+
+export const verifyToken = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
 };

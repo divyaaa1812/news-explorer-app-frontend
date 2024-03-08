@@ -31,7 +31,7 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
           alt="click to open menu"
           onClick={toggleMenu}
         />
-        <div class="desktop-menu-container">
+        <div className="desktop-menu-container">
           {loggedIn ? (
             <div className="navlinks-container">
               <NavLink exact to="/" className="nav__link">

@@ -23,7 +23,7 @@ const SavedNewsHeader = () => {
   return (
     <header className="savednewsnavbar">
       <div className={savednewsnavbarclassname}>
-        <div class="savednewsnavbar__logo">
+        <div className="savednewsnavbar__logo">
           <Link to="/" className={savednewsnavbarlogoclassname}>
             NewsExplorer
           </Link>
@@ -34,7 +34,7 @@ const SavedNewsHeader = () => {
           alt="click to open menu"
           onClick={toggleMenu}
         />
-        <div class="savednewsnavbar-links">
+        <div className="savednewsnavbar-links">
           <NavLink exact to="/" className="savednewsnav__link">
             Home
           </NavLink>

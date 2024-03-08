@@ -1,6 +1,7 @@
 // App.js
 import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import "./App.css";
@@ -11,17 +12,22 @@ import SignupModal from "../SignupModal/SignupModal";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
 import { getSearchResults } from "../../utils/Api";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
+import ProtectedRoute from "../ProtectedRoute";
+import * as auth from "../../utils/Auth";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [openModal, setOpenModal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
-
+  const [currentUser, setCurrentUser] = useState({});
   const currentDate = new Date();
   const pastDate = new Date();
   pastDate.setDate(currentDate.getDate() - 7);
+  // to access browser stored content of a webpage for functional components
+  const history = useHistory();
 
   const handleOpenModal = (modalName) => {
     setOpenModal(modalName);
@@ -54,6 +60,28 @@ function App() {
     }, 2000);
   };
 
+  const handleUserLogin = ({ email, password }) => {
+    console.log(email);
+    debugger;
+    setLoading(true);
+    return auth
+      .loginUser({ email, password })
+      .then((res) => {
+        const token = res.token;
+        localStorage.setItem("jwt", token);
+        return auth.verifyToken(token).then((user) => {
+          setLoggedIn(true);
+          setCurrentUser(user);
+          handleCloseModal();
+          history.push("/saved-news");
+        });
+      })
+      .catch(console.error)
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
     if (!openModal) return;
     const handleEscClose = (e) => {
@@ -76,60 +104,63 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Switch>
-        <Route exact path="/">
-          <Header
-            loggedIn={loggedIn}
-            onOpenModal={handleOpenModal}
-            onSearchClick={handleSearchClick}
-          />
-          <Main
-            loggedIn={loggedIn}
-            searchResults={searchResults}
-            isLoading={loading}
-            error={error}
-          />
-        </Route>
-        <Route path="/saved-news">
-          <SavedNewsHeader />
-          <SavedNews />
-        </Route>
-        <Route path="/signin">
+    <CurrentUserContext.Provider value={{ currentUser, loggedIn }}>
+      <div className="App">
+        <Switch>
+          <Route exact path="/">
+            <Header
+              loggedIn={loggedIn}
+              onOpenModal={handleOpenModal}
+              onSearchClick={handleSearchClick}
+            />
+            <Main
+              loggedIn={loggedIn}
+              searchResults={searchResults}
+              isLoading={loading}
+              error={error}
+            />
+          </Route>
+          <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
+            <SavedNewsHeader />
+            <SavedNews />
+          </ProtectedRoute>
+          <Route path="/signin">
+            <SigninModal
+              onOpenModal={handleOpenModal}
+              onCloseModal={handleCloseModal}
+              isLoading={loading}
+              onUserLogin={handleUserLogin}
+            />
+          </Route>
+          <Route path="/signup">
+            <SignupModal
+              onOpenModal={handleOpenModal}
+              onCloseModal={handleCloseModal}
+              isLoading={loading}
+            />
+          </Route>
+        </Switch>
+        <Footer />
+        {openModal === "SigninModal" && (
           <SigninModal
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
-            isLoading={loading}
           />
-        </Route>
-        <Route path="/signup">
+        )}
+        {openModal === "SignupModal" && (
           <SignupModal
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
-            isLoading={loading}
           />
-        </Route>
-      </Switch>
-      <Footer />
-      {openModal === "SigninModal" && (
-        <SigninModal
-          onOpenModal={handleOpenModal}
-          onCloseModal={handleCloseModal}
-        />
-      )}
-      {openModal === "SignupModal" && (
-        <SignupModal
-          onOpenModal={handleOpenModal}
-          onCloseModal={handleCloseModal}
-        />
-      )}
-      {openModal === "SignupSuccessModal" && (
-        <SignupSuccessModal
-          onOpenModal={handleOpenModal}
-          onCloseModal={handleCloseModal}
-        />
-      )}
-    </div>
+        )}
+        {openModal === "SignupSuccessModal" && (
+          <SignupSuccessModal
+            onOpenModal={handleOpenModal}
+            onCloseModal={handleCloseModal}
+          />
+        )}
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 
