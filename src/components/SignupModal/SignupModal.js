@@ -40,6 +40,7 @@ const SignupModal = ({
   };
 
   const validateForm = () => {
+    debugger;
     let errors = {};
     let formIsValid = true;
     // Email validation

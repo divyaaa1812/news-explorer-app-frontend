@@ -23,6 +23,7 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
   };
 
   const validateForm = () => {
+    debugger;
     let errors = {};
     let formIsValid = true;
     // Email validation
@@ -50,7 +51,7 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
     e.preventDefault();
     if (validateForm()) {
       // Submit form data and close modal
-      onUserLogin(e.target.elements[0].value, e.target.elements[1].value);
+      onUserLogin(formData);
       onCloseModal();
     }
   };

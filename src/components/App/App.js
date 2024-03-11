@@ -161,6 +161,7 @@ function App() {
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
             onUserLogin={handleUserLogin}
+            isLoading={loading}
           />
         )}
         {openModal === "SignupModal" && (
@@ -168,6 +169,7 @@ function App() {
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
             onUserSignup={handleSignUp}
+            isLoading={loading}
           />
         )}
         {openModal === "SignupSuccessModal" && (
