@@ -46,16 +46,13 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
     return formIsValid;
   };
 
-  const handleSubmit = (formData) => {
-    formData.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     debugger;
-    console.log(formData.target.elements[0].value);
+    console.log(e.target.elements[0].value);
     if (validateForm()) {
       // Submit form data and close modal
-      onUserLogin(
-        formData.target.elements[0].value,
-        formData.target.elements[1].value
-      );
+      onUserLogin(e.target.elements[0].value, e.target.elements[1].value);
       onCloseModal();
     }
   };

@@ -62,7 +62,6 @@ function App() {
 
   const handleUserLogin = ({ email, password }) => {
     console.log(email);
-    debugger;
     setLoading(true);
     return auth
       .loginUser({ email, password })
@@ -124,7 +123,7 @@ function App() {
             <SavedNewsHeader />
             <SavedNews />
           </ProtectedRoute>
-          <Route path="/signin">
+          {/* <Route path="/signin">
             <SigninModal
               onOpenModal={handleOpenModal}
               onCloseModal={handleCloseModal}
@@ -138,13 +137,14 @@ function App() {
               onCloseModal={handleCloseModal}
               isLoading={loading}
             />
-          </Route>
+          </Route> */}
         </Switch>
         <Footer />
         {openModal === "SigninModal" && (
           <SigninModal
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
+            onUserLogin={handleUserLogin}
           />
         )}
         {openModal === "SignupModal" && (
