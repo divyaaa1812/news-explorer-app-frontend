@@ -60,8 +60,16 @@ function App() {
     }, 2000);
   };
 
+  const handleSignUp = ({ username, email, password }) => {
+    return auth
+      .registerUser({ username, email, password })
+      .then(() => {
+        handleOpenModal("SignupSuccessModal");
+      })
+      .catch(console.error);
+  };
+
   const handleUserLogin = ({ email, password }) => {
-    console.log(email);
     setLoading(true);
     return auth
       .loginUser({ email, password })
@@ -159,6 +167,7 @@ function App() {
           <SignupModal
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
+            onUserSignup={handleSignUp}
           />
         )}
         {openModal === "SignupSuccessModal" && (

@@ -3,13 +3,14 @@ export const baseUrl =
     ? "https://api.nx.csproject.org/"
     : "http://localhost:3002";
 
-export const registerUser = ({ email, password, username }) => {
+export const registerUser = ({ username, email, password }) => {
+  console.log(username);
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password, username }),
+    body: JSON.stringify({ username, email, password }),
   }).then((res) => res.json());
 };
 
