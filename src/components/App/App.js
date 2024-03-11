@@ -81,6 +81,13 @@ function App() {
       });
   };
 
+  const handleLogout = () => {
+    setCurrentUser({});
+    localStorage.removeItem("jwt");
+    setLoggedIn(false);
+    history.push("/");
+  };
+
   useEffect(() => {
     if (!openModal) return;
     const handleEscClose = (e) => {
@@ -111,6 +118,7 @@ function App() {
               loggedIn={loggedIn}
               onOpenModal={handleOpenModal}
               onSearchClick={handleSearchClick}
+              onLogout={handleLogout}
             />
             <Main
               loggedIn={loggedIn}
@@ -120,7 +128,7 @@ function App() {
             />
           </Route>
           <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
-            <SavedNewsHeader />
+            <SavedNewsHeader onLogout={handleLogout} />
             <SavedNews />
           </ProtectedRoute>
           {/* <Route path="/signin">

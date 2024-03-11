@@ -5,7 +5,7 @@ import logoutwt from "../../images/logoutwt.svg";
 import menu from "../../images/menu.svg";
 import close from "../../images/close.svg";
 
-const Navigation = ({ loggedIn, onOpenModal }) => {
+const Navigation = ({ loggedIn, onOpenModal, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -40,7 +40,7 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
               <NavLink to="/saved-news" className="nav__link">
                 Saved articles
               </NavLink>
-              <button className="navbar-button">
+              <button className="navbar-button" onClick={onLogout}>
                 Elise
                 <span>
                   <img

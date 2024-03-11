@@ -6,7 +6,7 @@ import menu from "../../images/menu-bl.svg";
 import close from "../../images/close.svg";
 import logoutwt from "../../images/logoutwt.svg";
 
-const SavedNewsHeader = () => {
+const SavedNewsHeader = ({ onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -41,7 +41,7 @@ const SavedNewsHeader = () => {
           <NavLink to="/saved-news" className="savednewsnav__link">
             Saved articles
           </NavLink>
-          <button className="savednewsnavbar-button">
+          <button className="savednewsnavbar-button" onClick={onLogout}>
             Elise
             <span>
               <img
