@@ -48,6 +48,7 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
   };
 
   const handleSubmit = (e) => {
+    debugger;
     e.preventDefault();
     if (validateForm()) {
       // Submit form data and close modal
@@ -69,13 +70,12 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
           Email
           <div>
             <input
-              type="email"
+              type="text"
               name="email"
               placeholder="Enter email"
               className="input-field"
               value={formData.email}
               onChange={handleChange}
-              required
             />
             <span className="input-field-error">{formErrors.email}</span>
           </div>

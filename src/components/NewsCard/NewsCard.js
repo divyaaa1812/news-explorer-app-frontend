@@ -33,6 +33,7 @@ const NewsCard = ({ loggedIn, searchResults }) => {
   };
 
   const handleBookmarkClick = (cardItem, key) => {
+    console.log(cardItem);
     let hasBookmark = bookmarkIds[key] ? true : false;
     // Check if this card is bookmarked
     if (hasBookmark) {

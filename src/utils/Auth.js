@@ -25,22 +25,26 @@ export const loginUser = ({ email, password }) => {
 };
 
 export const addCardBookmark = (item, key) => {
-  console.log("ready to save news" + item);
+  const token = localStorage.getItem("jwt");
+  console.log(item);
   return fetch(`${baseUrl}/articles`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(item),
   }).then((res) => res.json());
 };
 
 export const removeCardBookmark = (item) => {
+  const token = localStorage.getItem("jwt");
   console.log("ready to delete saved news" + item);
   return fetch(`${baseUrl}/articles/${item}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
   }).then((res) => res.json());
 };
