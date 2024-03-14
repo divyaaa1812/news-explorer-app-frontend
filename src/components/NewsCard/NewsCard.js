@@ -3,13 +3,15 @@ import bookmark from "../../images/bookmark.svg";
 import bookmarkactive from "../../images/bookmark-active.svg";
 import bookmarkblue from "../../images/bookmarkblue.svg";
 import { useState } from "react";
-import { addCardBookmark, removeCardBookmark } from "../../utils/Auth";
 
-const NewsCard = ({ loggedIn, searchResults }) => {
+const NewsCard = ({
+  loggedIn,
+  searchResults,
+  handleBookmarkClick,
+  bookmarkIds,
+}) => {
   const [visibleCount, setVisibleCount] = useState(3);
   const [tooltipId, settooltipId] = useState("");
-  const [bookmarkIds, setbookmarkIds] = useState({});
-  const [savedNews, setSavedNews] = useState([]);
   const cards = searchResults?.articles?.slice(0, visibleCount);
 
   const getBookmarkClass = (loggedIn, bookmarked) => {
@@ -30,39 +32,6 @@ const NewsCard = ({ loggedIn, searchResults }) => {
 
   const handleShowMore = () => {
     setVisibleCount((prevCount) => prevCount + 3);
-  };
-
-  const handleBookmarkClick = (cardItem, key) => {
-    console.log(cardItem);
-    let hasBookmark = bookmarkIds[key] ? true : false;
-    // Check if this card is bookmarked
-    if (hasBookmark) {
-      // send a request to delete
-      setbookmarkIds((prev) => {
-        let newIds = { ...prev };
-        delete newIds[key];
-        return newIds;
-      });
-      removeCardBookmark(cardItem)
-        .then((updatedCard) => {
-          console.log(updatedCard);
-          setSavedNews("");
-        })
-        .catch(console.error);
-    } else {
-      setbookmarkIds((prev) => {
-        return {
-          ...prev,
-          [key]: true,
-        };
-      });
-      addCardBookmark(cardItem)
-        .then((bookmarkedCard) => {
-          console.log(bookmarkedCard);
-          setSavedNews(bookmarkedCard);
-        })
-        .catch(console.error);
-    }
   };
 
   const handleMouseLeave = () => {

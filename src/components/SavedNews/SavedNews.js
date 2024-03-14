@@ -1,58 +1,70 @@
+import React, { useEffect, useContext } from "react";
 import "./SavedNews.css";
 import deleteicon from "../../images/deleteicon.svg";
 import image from "../../images/image_06.png";
 import { useState } from "react";
+import NewsCard from "../NewsCard/NewsCard";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
+import * as auth from "../../utils/Auth";
 
-const SavedNews = () => {
+const SavedNews = ({ savedArticles }) => {
+  console.log(savedArticles);
   const [tooltipId, settooltipId] = useState("");
-
+  // const [savedItem, setSavedItem] = useState([]);
+  const { currentUser } = useContext(CurrentUserContext);
   const handleMouseLeave = () => {
     settooltipId("");
   };
-
   const handleMouseOver = () => {
     settooltipId();
   };
+  const currentUserSavedArticles = [savedArticles.data].filter((item) => {
+    console.log(item);
+    return currentUser._id === item.owner;
+  });
+  console.log(currentUserSavedArticles);
+
+  // useEffect(() => {
+  //   // getSavedNews();
+  // }, []);
 
   return (
     <div className="savednews__items">
-      <div className="savednews__item">
-        <div className="savednews__image-container">
-          <img
-            src={image}
-            alt={`cover for saved news`}
-            className="savednews__image"
-          />
-        </div>
-        <div className="savednews__description">
-          <p className="savednews__date">November 4, 2020</p>
-          <h1 className="savednews__title">
-            Everyone Needs a Special 'Sit Spot' in Nature
-          </h1>
-          <p className="savednews__subtitle">
-            Ever since I read Richard Louv's influential book, "Last Child in
-            the Woods," the idea of having a special "sit spot" has stuck with
-            me. This advice, which Louv attributes to nature educator Jon Young,
-            is for both adults and children to find...
-          </p>
-          <p className="savednews__footer">treehugger</p>
-        </div>
-        <div className="savednews__category-container">
-          <p className="savednews__category-text">Nature manuijyhhh</p>
-        </div>
-        <img
-          src={deleteicon}
-          className="delete-icon"
-          alt={`click to delete saved news`}
-          onMouseLeave={handleMouseLeave}
-          onMouseOver={() => handleMouseOver()}
-        />
-        {tooltipId !== "" && (
-          <span id="tooltip-delete" className="tooltip-delete">
-            Remove from saved
-          </span>
-        )}
-      </div>
+      {currentUserSavedArticles.map((data) => {
+        return (
+          <div className="savednews__item">
+            <div className="savednews__image-container">
+              <img
+                src={data.urlToImage}
+                alt={`cover for saved news`}
+                className="savednews__image"
+              />
+            </div>
+            <div className="savednews__description">
+              <p className="savednews__date">{data.publishedAt}</p>
+              <h1 className="savednews__title">{data.title}</h1>
+              <p className="savednews__subtitle">{data.description}</p>
+              <p className="savednews__footer">{data.source}</p>
+            </div>
+            <div className="savednews__category-container">
+              <p className="savednews__category-text">Nature manuijyhhh</p>
+            </div>
+            <img
+              src={deleteicon}
+              className="delete-icon"
+              alt={`click to delete saved news`}
+              onMouseLeave={handleMouseLeave}
+              onMouseOver={() => handleMouseOver()}
+              // onClick={onDelIconClick(data)}
+            />
+            {tooltipId !== "" && (
+              <span id="tooltip-delete" className="tooltip-delete">
+                Remove from saved
+              </span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };

@@ -8,6 +8,7 @@ const SearchResults = ({
   isLoading,
   error,
   handleBookmarkClick,
+  bookmarkIds,
 }) => {
   return (
     <>
@@ -25,6 +26,7 @@ const SearchResults = ({
             loggedIn={loggedIn}
             searchResults={searchResults}
             handleBookmarkClick={handleBookmarkClick}
+            bookmarkIds={bookmarkIds}
           />
         </section>
       ) : searchResults && searchResults?.articles?.length === 0 ? (

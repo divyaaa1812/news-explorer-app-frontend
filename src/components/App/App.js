@@ -23,6 +23,9 @@ function App() {
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
+  const [bookmarkIds, setbookmarkIds] = useState({});
+  const [savedArticles, setSavedArticles] = useState([]);
+  const [selectedCard, setSelectedCard] = useState({});
   const currentDate = new Date();
   const pastDate = new Date();
   pastDate.setDate(currentDate.getDate() - 7);
@@ -44,7 +47,6 @@ function App() {
     setTimeout(() => {
       getSearchResults(value)
         .then((searchData) => {
-          console.log(searchData);
           setSearchResults(searchData);
           setError(null);
           // Update local storage
@@ -96,6 +98,34 @@ function App() {
     history.push("/");
   };
 
+  const handleBookmarkClick = (cardItem, key) => {
+    let hasBookmark = bookmarkIds[key] ? true : false;
+    !hasBookmark
+      ? auth
+          .addCardBookmark(cardItem, bookmarkIds)
+          .then((bookmarkedCard) => {
+            setSavedArticles(bookmarkedCard);
+            setbookmarkIds((prev) => {
+              return {
+                ...prev,
+                [key]: true,
+              };
+            });
+          })
+          .catch(console.error)
+      : auth
+          .removeCardBookmark(cardItem)
+          .then((updatedCard) => {
+            setSavedArticles("");
+            setbookmarkIds((prev) => {
+              let newIds = { ...prev };
+              delete newIds[key];
+              return newIds;
+            });
+          })
+          .catch(console.error);
+  };
+
   useEffect(() => {
     if (!openModal) return;
     const handleEscClose = (e) => {
@@ -110,11 +140,29 @@ function App() {
   }, [openModal]);
 
   useEffect(() => {
+    async function getCurrentUser() {
+      const jwt = localStorage.getItem("jwt");
+      console.log(jwt);
+      try {
+        if (jwt) {
+          const res = await auth.verifyToken(jwt);
+          const data = await res.json();
+          setLoggedIn(true);
+          setCurrentUser(data);
+          history.push("/saved-news");
+        }
+      } catch (err) {
+        setLoggedIn(false);
+        setCurrentUser({});
+        history.push("/");
+      }
+    }
     // Read data from local storage when component mounts
     const storedSearchResults = localStorage.getItem("searchResults");
     if (storedSearchResults) {
       setSearchResults(JSON.parse(storedSearchResults));
     }
+    getCurrentUser();
   }, []);
 
   return (
@@ -133,11 +181,16 @@ function App() {
               searchResults={searchResults}
               isLoading={loading}
               error={error}
+              handleBookmarkClick={handleBookmarkClick}
+              bookmarkIds={bookmarkIds}
             />
           </Route>
           <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
             <SavedNewsHeader onLogout={handleLogout} />
-            <SavedNews />
+            <SavedNews
+              savedArticles={savedArticles}
+              // onDelIconClick={handleDelClick}
+            />
           </ProtectedRoute>
           {/* <Route path="/signin">
             <SigninModal

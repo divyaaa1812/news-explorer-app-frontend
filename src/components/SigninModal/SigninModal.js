@@ -23,7 +23,6 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
   };
 
   const validateForm = () => {
-    debugger;
     let errors = {};
     let formIsValid = true;
     // Email validation
@@ -48,7 +47,6 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
   };
 
   const handleSubmit = (e) => {
-    debugger;
     e.preventDefault();
     if (validateForm()) {
       // Submit form data and close modal

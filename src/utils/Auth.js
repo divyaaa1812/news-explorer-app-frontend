@@ -4,7 +4,6 @@ export const baseUrl =
     : "http://localhost:3002";
 
 export const registerUser = ({ username, email, password }) => {
-  console.log(username);
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
@@ -24,26 +23,25 @@ export const loginUser = ({ email, password }) => {
   }).then((res) => res.json());
 };
 
-export const addCardBookmark = (item, key) => {
+export const addCardBookmark = (cardData, bookmarkIds) => {
+  console.log(bookmarkIds);
   const token = localStorage.getItem("jwt");
-  console.log(item);
   return fetch(`${baseUrl}/articles`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(item),
+    body: JSON.stringify(cardData, bookmarkIds),
   }).then((res) => res.json());
 };
 
 export const removeCardBookmark = (item) => {
+  console.log(item);
   const token = localStorage.getItem("jwt");
-  console.log("ready to delete saved news" + item);
   return fetch(`${baseUrl}/articles/${item}`, {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
   }).then((res) => res.json());
