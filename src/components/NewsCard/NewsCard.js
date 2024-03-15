@@ -55,7 +55,7 @@ const NewsCard = ({
             }
           );
           return (
-            <li className="card__item">
+            <li className="card__item" key={item.key}>
               <div className="card__image-container">
                 <img
                   src={item.urlToImage}

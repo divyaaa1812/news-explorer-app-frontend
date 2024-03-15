@@ -8,9 +8,8 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
 import * as auth from "../../utils/Auth";
 
 const SavedNews = ({ savedArticles }) => {
-  console.log(savedArticles);
   const [tooltipId, settooltipId] = useState("");
-  // const [savedItem, setSavedItem] = useState([]);
+  const [savedItem, setSavedItem] = useState([]);
   const { currentUser } = useContext(CurrentUserContext);
   const handleMouseLeave = () => {
     settooltipId("");
@@ -20,51 +19,60 @@ const SavedNews = ({ savedArticles }) => {
   };
   const currentUserSavedArticles = [savedArticles.data].filter((item) => {
     console.log(item);
-    return currentUser._id === item;
+    return currentUser._id === item.owner;
   });
   console.log(currentUserSavedArticles);
 
+  const getSavedArticles = async () => {
+    try {
+      const data = await auth.getSavedArticles();
+      console.log(data);
+      setSavedItem(data);
+    } catch (error) {}
+  };
+
   // useEffect(() => {
-  //   getSavedNews();
+  //   getSavedArticles();
   // }, []);
 
   return (
     <div className="savednews__items">
-      {currentUserSavedArticles.map((data) => {
-        return (
-          <div className="savednews__item">
-            <div className="savednews__image-container">
+      {currentUserSavedArticles.length > 0 &&
+        currentUserSavedArticles.map((data) => {
+          return (
+            <div className="savednews__item">
+              <div className="savednews__image-container">
+                <img
+                  src={data.urlToImage}
+                  alt={`cover for saved news`}
+                  className="savednews__image"
+                />
+              </div>
+              <div className="savednews__description">
+                <p className="savednews__date">{data.publishedAt}</p>
+                <h1 className="savednews__title">{data.title}</h1>
+                <p className="savednews__subtitle">{data.description}</p>
+                <p className="savednews__footer">{data.source}</p>
+              </div>
+              <div className="savednews__category-container">
+                <p className="savednews__category-text">Nature</p>
+              </div>
               <img
-                src={data.urlToImage}
-                alt={`cover for saved news`}
-                className="savednews__image"
+                src={deleteicon}
+                className="delete-icon"
+                alt={`click to delete saved news`}
+                onMouseLeave={handleMouseLeave}
+                onMouseOver={() => handleMouseOver()}
+                // onClick={onDelIconClick(data)}
               />
+              {tooltipId !== "" && (
+                <span id="tooltip-delete" className="tooltip-delete">
+                  Remove from saved
+                </span>
+              )}
             </div>
-            <div className="savednews__description">
-              <p className="savednews__date">{data.publishedAt}</p>
-              <h1 className="savednews__title">{data.title}</h1>
-              <p className="savednews__subtitle">{data.description}</p>
-              <p className="savednews__footer">{data.source}</p>
-            </div>
-            <div className="savednews__category-container">
-              <p className="savednews__category-text">Nature</p>
-            </div>
-            <img
-              src={deleteicon}
-              className="delete-icon"
-              alt={`click to delete saved news`}
-              onMouseLeave={handleMouseLeave}
-              onMouseOver={() => handleMouseOver()}
-              // onClick={onDelIconClick(data)}
-            />
-            {tooltipId !== "" && (
-              <span id="tooltip-delete" className="tooltip-delete">
-                Remove from saved
-              </span>
-            )}
-          </div>
-        );
-      })}
+          );
+        })}
     </div>
   );
 };

@@ -26,7 +26,6 @@ function App() {
   const [bookmarkIds, setbookmarkIds] = useState({});
   const [savedArticles, setSavedArticles] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
-  const [isBookmarked, setIsBookmarked] = useState(false);
   const currentDate = new Date();
   const pastDate = new Date();
   pastDate.setDate(currentDate.getDate() - 7);
@@ -108,14 +107,13 @@ function App() {
   };
 
   const handleBookmarkClick = (cardItem) => {
+    const token = localStorage.getItem("jwt");
     let hasBookmark = bookmarkIds[cardItem.key] ? true : false;
     !hasBookmark
       ? auth
-          .addCardBookmark(cardItem)
+          .addCardBookmark(cardItem, token)
           .then((bookmarkedCard) => {
-            console.log(bookmarkedCard);
             setSavedArticles(bookmarkedCard);
-            setIsBookmarked(true);
             setbookmarkIds((prev) => {
               return {
                 ...prev,
@@ -125,10 +123,9 @@ function App() {
           })
           .catch(console.error)
       : auth
-          .removeCardBookmark(cardItem)
+          .removeCardBookmark(cardItem, token)
           .then((updatedCard) => {
             setSavedArticles("");
-            setIsBookmarked(false);
             setbookmarkIds((prev) => {
               let newIds = { ...prev };
               delete newIds[cardItem.key];
@@ -137,7 +134,6 @@ function App() {
           })
           .catch(console.error);
   };
-  console.log(bookmarkIds);
 
   useEffect(() => {
     if (!openModal) return;
@@ -162,7 +158,6 @@ function App() {
           const data = await res.json();
           setLoggedIn(true);
           setCurrentUser(data);
-          history.push("/saved-news");
         }
       } catch (err) {
         setLoggedIn(false);
