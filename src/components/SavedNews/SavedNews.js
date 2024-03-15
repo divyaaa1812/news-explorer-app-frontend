@@ -20,12 +20,12 @@ const SavedNews = ({ savedArticles }) => {
   };
   const currentUserSavedArticles = [savedArticles.data].filter((item) => {
     console.log(item);
-    return currentUser._id === item.owner;
+    return currentUser._id === item;
   });
   console.log(currentUserSavedArticles);
 
   // useEffect(() => {
-  //   // getSavedNews();
+  //   getSavedNews();
   // }, []);
 
   return (
@@ -47,7 +47,7 @@ const SavedNews = ({ savedArticles }) => {
               <p className="savednews__footer">{data.source}</p>
             </div>
             <div className="savednews__category-container">
-              <p className="savednews__category-text">Nature manuijyhhh</p>
+              <p className="savednews__category-text">Nature</p>
             </div>
             <img
               src={deleteicon}

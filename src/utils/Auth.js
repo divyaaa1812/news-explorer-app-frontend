@@ -23,8 +23,8 @@ export const loginUser = ({ email, password }) => {
   }).then((res) => res.json());
 };
 
-export const addCardBookmark = (cardData, bookmarkIds) => {
-  console.log(bookmarkIds);
+export const addCardBookmark = (cardData) => {
+  console.log(cardData);
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/articles`, {
     method: "POST",
@@ -32,7 +32,7 @@ export const addCardBookmark = (cardData, bookmarkIds) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(cardData, bookmarkIds),
+    body: JSON.stringify(cardData),
   }).then((res) => res.json());
 };
 

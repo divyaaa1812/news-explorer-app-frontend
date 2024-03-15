@@ -19,7 +19,7 @@ const SearchResults = ({
         </section>
       ) : error ? (
         <section>{error}</section>
-      ) : searchResults && searchResults?.articles?.length > 0 ? (
+      ) : searchResults && searchResults.length > 0 ? (
         <section className="main__searchresults">
           <h3 className="searchresults__title"> Search results</h3>
           <NewsCard
@@ -29,7 +29,7 @@ const SearchResults = ({
             bookmarkIds={bookmarkIds}
           />
         </section>
-      ) : searchResults && searchResults?.articles?.length === 0 ? (
+      ) : searchResults && searchResults.length === 0 ? (
         <section className="searchresults__notfound">
           <img
             src={searchicon}

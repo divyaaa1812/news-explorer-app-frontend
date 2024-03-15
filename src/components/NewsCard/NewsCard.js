@@ -12,7 +12,7 @@ const NewsCard = ({
 }) => {
   const [visibleCount, setVisibleCount] = useState(3);
   const [tooltipId, settooltipId] = useState("");
-  const cards = searchResults?.articles?.slice(0, visibleCount);
+  const cards = searchResults.slice(0, visibleCount);
 
   const getBookmarkClass = (loggedIn, bookmarked) => {
     const classes = ["card__bookmark-icon"];
@@ -45,9 +45,8 @@ const NewsCard = ({
   return (
     <div className="cards__container">
       <ul className="card__items">
-        {cards?.map((item, index) => {
-          let key = `${item.source.id}-${index}`;
-          let hasBookmark = bookmarkIds[key] ? true : false;
+        {cards?.map((item) => {
+          let hasBookmark = bookmarkIds[item.key] ? true : false;
           const publishedAt = new Date(item.publishedAt).toLocaleString(
             "default",
             {
@@ -56,7 +55,7 @@ const NewsCard = ({
             }
           );
           return (
-            <li className="card__item" key={key}>
+            <li className="card__item">
               <div className="card__image-container">
                 <img
                   src={item.urlToImage}
@@ -76,14 +75,14 @@ const NewsCard = ({
                     <img
                       src={bookmarkblue}
                       className={getBookmarkClass(loggedIn, hasBookmark)}
-                      onClick={() => handleBookmarkClick(item, key)}
+                      onClick={() => handleBookmarkClick(item)}
                       alt={`click to bookmark news about ${item?.title}`}
                     />
                   ) : (
                     <img
                       src={bookmarkactive}
                       className={getBookmarkClass(loggedIn, hasBookmark)}
-                      onClick={() => handleBookmarkClick(item, key)}
+                      onClick={() => handleBookmarkClick(item)}
                       alt={`click to bookmark news about ${item?.title}`}
                     />
                   )}
@@ -95,9 +94,9 @@ const NewsCard = ({
                     alt={`click to save news about ${item?.title}`}
                     className={getBookmarkClass(loggedIn, hasBookmark)}
                     onMouseLeave={handleMouseLeave}
-                    onMouseOver={() => handleMouseOver(key)}
+                    onMouseOver={() => handleMouseOver(item.key)}
                   />
-                  {tooltipId === key && (
+                  {tooltipId === item.key && (
                     <span id="tooltip-message" className="tooltip-message">
                       Sign in to save articles
                     </span>
@@ -108,7 +107,7 @@ const NewsCard = ({
           );
         })}
       </ul>
-      {searchResults?.articles?.length > visibleCount && (
+      {searchResults?.length > visibleCount && (
         <button className="cards__showmore-btn" onClick={handleShowMore}>
           Show more
         </button>

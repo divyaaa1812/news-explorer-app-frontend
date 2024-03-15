@@ -26,6 +26,7 @@ function App() {
   const [bookmarkIds, setbookmarkIds] = useState({});
   const [savedArticles, setSavedArticles] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const currentDate = new Date();
   const pastDate = new Date();
   pastDate.setDate(currentDate.getDate() - 7);
@@ -47,10 +48,18 @@ function App() {
     setTimeout(() => {
       getSearchResults(value)
         .then((searchData) => {
-          setSearchResults(searchData);
+          const transformData = searchData.articles.map((item, index) => {
+            return {
+              key: `${item.source.id}-${index}`,
+              ...item,
+              isBookmarked: false,
+            };
+          });
+          console.log(transformData);
+          setSearchResults(transformData);
           setError(null);
           // Update local storage
-          localStorage.setItem("searchResults", JSON.stringify(searchData));
+          localStorage.setItem("searchResults", JSON.stringify(transformData));
         })
         .catch((err) => {
           setError(err);
@@ -98,17 +107,19 @@ function App() {
     history.push("/");
   };
 
-  const handleBookmarkClick = (cardItem, key) => {
-    let hasBookmark = bookmarkIds[key] ? true : false;
+  const handleBookmarkClick = (cardItem) => {
+    let hasBookmark = bookmarkIds[cardItem.key] ? true : false;
     !hasBookmark
       ? auth
-          .addCardBookmark(cardItem, bookmarkIds)
+          .addCardBookmark(cardItem)
           .then((bookmarkedCard) => {
+            console.log(bookmarkedCard);
             setSavedArticles(bookmarkedCard);
+            setIsBookmarked(true);
             setbookmarkIds((prev) => {
               return {
                 ...prev,
-                [key]: true,
+                [cardItem.key]: true,
               };
             });
           })
@@ -117,14 +128,16 @@ function App() {
           .removeCardBookmark(cardItem)
           .then((updatedCard) => {
             setSavedArticles("");
+            setIsBookmarked(false);
             setbookmarkIds((prev) => {
               let newIds = { ...prev };
-              delete newIds[key];
+              delete newIds[cardItem.key];
               return newIds;
             });
           })
           .catch(console.error);
   };
+  console.log(bookmarkIds);
 
   useEffect(() => {
     if (!openModal) return;
