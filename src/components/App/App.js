@@ -106,15 +106,23 @@ function App() {
     setLoggedIn(false);
     history.push("/");
   };
-
   const handleBookmarkClick = (selectedCard) => {
     searchResults.map((card) => {
-      if (card.key === selectedCard.key) {
-        card.isBookmarked = !card.isBookmarked;
-      }
-      setHasBookmark(!hasBookmark);
+      card.key === selectedCard.key
+        ? setSearchResults(
+            ...searchResults,
+            (card.isBookmarked = !card.isBookmarked)
+          )
+        : setSearchResults(searchResults);
     });
+    const bookmarkedCards = searchResults.filter((bookmarkedCard) => {
+      return bookmarkedCard.isBookmarked === true;
+    });
+    setSavedArticles(bookmarkedCards);
+    setHasBookmark(!hasBookmark);
   };
+
+  console.log(savedArticles);
 
   useEffect(() => {
     if (!openModal) return;

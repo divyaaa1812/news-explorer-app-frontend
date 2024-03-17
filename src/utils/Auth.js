@@ -40,7 +40,7 @@ export const removeCardBookmark = (item) => {
   debugger;
   console.log(item);
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/articles/${item}`, {
+  return fetch(`${baseUrl}/articles/${item._id}`, {
     method: "DELETE",
     headers: {
       authorization: `Bearer ${token}`,

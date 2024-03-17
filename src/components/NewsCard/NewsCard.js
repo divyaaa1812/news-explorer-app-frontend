@@ -14,9 +14,6 @@ const NewsCard = ({
   const [tooltipId, settooltipId] = useState("");
   const cards = searchResults.slice(0, visibleCount);
 
-  console.log(hasBookmark);
-  console.log(loggedIn);
-
   const activeBookmarkClassName = `card__bookmark-icon ${
     loggedIn ? "card__bookmark-icon_active" : "card__bookmark-icon_inactive"
   }`;
@@ -70,14 +67,14 @@ const NewsCard = ({
                     <img
                       src={srcValue}
                       className={bookmarkClassName}
-                      onClick={() => handleBookmarkClick(item.key)}
+                      onClick={() => handleBookmarkClick(item)}
                       alt={`click to bookmark news about ${item?.title}`}
                     />
                   ) : (
                     <img
                       src={srcValue}
                       className={bookmarkClassName}
-                      onClick={() => handleBookmarkClick(item.key)}
+                      onClick={() => handleBookmarkClick(item)}
                       alt={`click to bookmark news about ${item?.title}`}
                     />
                   )}
