@@ -8,6 +8,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
 import * as auth from "../../utils/Auth";
 
 const SavedNews = ({ savedArticles }) => {
+  console.log(savedArticles);
   const [tooltipId, settooltipId] = useState("");
   const [savedItem, setSavedItem] = useState([]);
   const { currentUser } = useContext(CurrentUserContext);
@@ -22,18 +23,6 @@ const SavedNews = ({ savedArticles }) => {
     return currentUser._id === item.owner;
   });
   console.log(currentUserSavedArticles);
-
-  const getSavedArticles = async () => {
-    try {
-      const data = await auth.getSavedArticles();
-      console.log(data);
-      setSavedItem(data);
-    } catch (error) {}
-  };
-
-  // useEffect(() => {
-  //   getSavedArticles();
-  // }, []);
 
   return (
     <div className="savednews__items">

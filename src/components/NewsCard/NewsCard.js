@@ -8,27 +8,23 @@ const NewsCard = ({
   loggedIn,
   searchResults,
   handleBookmarkClick,
-  bookmarkIds,
+  hasBookmark,
 }) => {
   const [visibleCount, setVisibleCount] = useState(3);
   const [tooltipId, settooltipId] = useState("");
   const cards = searchResults.slice(0, visibleCount);
 
-  const getBookmarkClass = (loggedIn, bookmarked) => {
-    const classes = ["card__bookmark-icon"];
+  console.log(hasBookmark);
+  console.log(loggedIn);
 
-    if (loggedIn) {
-      classes.push("card__bookmark-icon_active");
-    } else {
-      classes.push("card__bookmark-icon_inactive");
-    }
+  const activeBookmarkClassName = `card__bookmark-icon ${
+    loggedIn ? "card__bookmark-icon_active" : "card__bookmark-icon_inactive"
+  }`;
+  const bookmarkClassName = `card__bookmark-icon_active ${
+    loggedIn && hasBookmark ? "bookmark-blue" : ""
+  }`;
 
-    if (bookmarked) {
-      classes.push("bookmark-blue");
-    }
-
-    return classes.join(" ");
-  };
+  const srcValue = loggedIn && hasBookmark ? bookmarkblue : bookmarkactive;
 
   const handleShowMore = () => {
     setVisibleCount((prevCount) => prevCount + 3);
@@ -46,7 +42,6 @@ const NewsCard = ({
     <div className="cards__container">
       <ul className="card__items">
         {cards?.map((item) => {
-          let hasBookmark = bookmarkIds[item.key] ? true : false;
           const publishedAt = new Date(item.publishedAt).toLocaleString(
             "default",
             {
@@ -73,16 +68,16 @@ const NewsCard = ({
                 <>
                   {hasBookmark ? (
                     <img
-                      src={bookmarkblue}
-                      className={getBookmarkClass(loggedIn, hasBookmark)}
-                      onClick={() => handleBookmarkClick(item)}
+                      src={srcValue}
+                      className={bookmarkClassName}
+                      onClick={() => handleBookmarkClick(item.key)}
                       alt={`click to bookmark news about ${item?.title}`}
                     />
                   ) : (
                     <img
-                      src={bookmarkactive}
-                      className={getBookmarkClass(loggedIn, hasBookmark)}
-                      onClick={() => handleBookmarkClick(item)}
+                      src={srcValue}
+                      className={bookmarkClassName}
+                      onClick={() => handleBookmarkClick(item.key)}
                       alt={`click to bookmark news about ${item?.title}`}
                     />
                   )}
@@ -92,7 +87,7 @@ const NewsCard = ({
                   <img
                     src={bookmark}
                     alt={`click to save news about ${item?.title}`}
-                    className={getBookmarkClass(loggedIn, hasBookmark)}
+                    className={activeBookmarkClassName}
                     onMouseLeave={handleMouseLeave}
                     onMouseOver={() => handleMouseOver(item.key)}
                   />

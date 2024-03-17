@@ -7,8 +7,9 @@ const Main = ({
   searchResults,
   isLoading,
   error,
+  onCardClick,
   handleBookmarkClick,
-  bookmarkIds,
+  hasBookmark,
 }) => {
   return (
     <main className="main">
@@ -17,8 +18,9 @@ const Main = ({
         searchResults={searchResults}
         isLoading={isLoading}
         error={error}
+        onCardClick={onCardClick}
         handleBookmarkClick={handleBookmarkClick}
-        bookmarkIds={bookmarkIds}
+        hasBookmark={hasBookmark}
       />
       <About />
     </main>

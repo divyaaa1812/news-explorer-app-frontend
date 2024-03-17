@@ -23,8 +23,8 @@ export const loginUser = ({ email, password }) => {
   }).then((res) => res.json());
 };
 
-export const addCardBookmark = (cardData ) => {
-  console.log(cardData );
+export const addCardBookmark = (cardData) => {
+  console.log(cardData);
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/articles`, {
     method: "POST",
@@ -37,6 +37,7 @@ export const addCardBookmark = (cardData ) => {
 };
 
 export const removeCardBookmark = (item) => {
+  debugger;
   console.log(item);
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/articles/${item}`, {

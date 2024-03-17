@@ -15,6 +15,7 @@ import { getSearchResults } from "../../utils/Api";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
 import ProtectedRoute from "../ProtectedRoute";
 import * as auth from "../../utils/Auth";
+import SearchResults from "../SearchResults/SearchResults";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -23,7 +24,7 @@ function App() {
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
-  const [bookmarkIds, setbookmarkIds] = useState({});
+  const [hasBookmark, setHasBookmark] = useState(false);
   const [savedArticles, setSavedArticles] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
   const currentDate = new Date();
@@ -49,7 +50,7 @@ function App() {
         .then((searchData) => {
           const transformData = searchData.articles.map((item, index) => {
             return {
-              key: `${item.source.id}-${index}`,
+              key: `unique-key-${index}`,
               ...item,
               isBookmarked: false,
             };
@@ -90,7 +91,7 @@ function App() {
           setLoggedIn(true);
           setCurrentUser(user);
           handleCloseModal();
-          history.push("/saved-news");
+          history.push("/");
         });
       })
       .catch(console.error)
@@ -106,33 +107,13 @@ function App() {
     history.push("/");
   };
 
-  const handleBookmarkClick = (cardItem) => {
-    const token = localStorage.getItem("jwt");
-    let hasBookmark = bookmarkIds[cardItem.key] ? true : false;
-    !hasBookmark
-      ? auth
-          .addCardBookmark(cardItem, token)
-          .then((bookmarkedCard) => {
-            setSavedArticles(bookmarkedCard);
-            setbookmarkIds((prev) => {
-              return {
-                ...prev,
-                [cardItem.key]: true,
-              };
-            });
-          })
-          .catch(console.error)
-      : auth
-          .removeCardBookmark(cardItem, token)
-          .then((updatedCard) => {
-            setSavedArticles("");
-            setbookmarkIds((prev) => {
-              let newIds = { ...prev };
-              delete newIds[cardItem.key];
-              return newIds;
-            });
-          })
-          .catch(console.error);
+  const handleBookmarkClick = (selectedCard) => {
+    searchResults.map((card) => {
+      if (card.key === selectedCard.key) {
+        card.isBookmarked = !card.isBookmarked;
+      }
+      setHasBookmark(!hasBookmark);
+    });
   };
 
   useEffect(() => {
@@ -190,7 +171,7 @@ function App() {
               isLoading={loading}
               error={error}
               handleBookmarkClick={handleBookmarkClick}
-              bookmarkIds={bookmarkIds}
+              hasBookmark={hasBookmark}
             />
           </Route>
           <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
