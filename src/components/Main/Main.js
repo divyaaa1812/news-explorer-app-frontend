@@ -9,7 +9,6 @@ const Main = ({
   error,
   onCardClick,
   handleBookmarkClick,
-  hasBookmark,
 }) => {
   return (
     <main className="main">
@@ -20,7 +19,6 @@ const Main = ({
         error={error}
         onCardClick={onCardClick}
         handleBookmarkClick={handleBookmarkClick}
-        hasBookmark={hasBookmark}
       />
       <About />
     </main>

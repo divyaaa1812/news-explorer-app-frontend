@@ -4,12 +4,7 @@ import bookmarkactive from "../../images/bookmark-active.svg";
 import bookmarkblue from "../../images/bookmarkblue.svg";
 import { useState } from "react";
 
-const NewsCard = ({
-  loggedIn,
-  searchResults,
-  handleBookmarkClick,
-  hasBookmark,
-}) => {
+const NewsCard = ({ loggedIn, searchResults, handleBookmarkClick }) => {
   const [visibleCount, setVisibleCount] = useState(3);
   const [tooltipId, settooltipId] = useState("");
   const cards = searchResults.slice(0, visibleCount);
@@ -17,11 +12,6 @@ const NewsCard = ({
   const activeBookmarkClassName = `card__bookmark-icon ${
     loggedIn ? "card__bookmark-icon_active" : "card__bookmark-icon_inactive"
   }`;
-  const bookmarkClassName = `card__bookmark-icon_active ${
-    loggedIn && hasBookmark ? "bookmark-blue" : ""
-  }`;
-
-  const srcValue = loggedIn && hasBookmark ? bookmarkblue : bookmarkactive;
 
   const handleShowMore = () => {
     setVisibleCount((prevCount) => prevCount + 3);
@@ -39,6 +29,12 @@ const NewsCard = ({
     <div className="cards__container">
       <ul className="card__items">
         {cards?.map((item) => {
+          const bookmarkClassName = `card__bookmark-icon_active ${
+            loggedIn && item.isBookmarked ? "bookmark-blue" : ""
+          }`;
+
+          const srcValue =
+            loggedIn && item.isBookmarked ? bookmarkblue : bookmarkactive;
           const publishedAt = new Date(item.publishedAt).toLocaleString(
             "default",
             {
@@ -63,7 +59,7 @@ const NewsCard = ({
               <p className="card__footer">{item.source.name.toUpperCase()}</p>
               {loggedIn ? (
                 <>
-                  {hasBookmark ? (
+                  {item.isBookmarked ? (
                     <img
                       src={srcValue}
                       className={bookmarkClassName}

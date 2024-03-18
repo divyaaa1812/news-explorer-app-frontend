@@ -15,7 +15,6 @@ import { getSearchResults } from "../../utils/Api";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
 import ProtectedRoute from "../ProtectedRoute";
 import * as auth from "../../utils/Auth";
-import SearchResults from "../SearchResults/SearchResults";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -24,9 +23,6 @@ function App() {
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
-  const [hasBookmark, setHasBookmark] = useState(false);
-  const [savedArticles, setSavedArticles] = useState([]);
-  const [selectedCard, setSelectedCard] = useState({});
   const currentDate = new Date();
   const pastDate = new Date();
   pastDate.setDate(currentDate.getDate() - 7);
@@ -106,23 +102,23 @@ function App() {
     setLoggedIn(false);
     history.push("/");
   };
+
   const handleBookmarkClick = (selectedCard) => {
-    searchResults.map((card) => {
-      card.key === selectedCard.key
-        ? setSearchResults(
-            ...searchResults,
-            (card.isBookmarked = !card.isBookmarked)
-          )
-        : setSearchResults(searchResults);
+    // Map and create a new search results array
+    const newCards = searchResults.map((card) => {
+      return {
+        ...card,
+        isBookmarked:
+          card.key === selectedCard.key
+            ? !card.isBookmarked
+            : card.isBookmarked,
+      };
     });
-    const bookmarkedCards = searchResults.filter((bookmarkedCard) => {
-      return bookmarkedCard.isBookmarked === true;
-    });
-    setSavedArticles(bookmarkedCards);
-    setHasBookmark(!hasBookmark);
+    // set state with new search results
+    setSearchResults(newCards);
   };
 
-  console.log(savedArticles);
+  console.log(searchResults);
 
   useEffect(() => {
     if (!openModal) return;
@@ -179,31 +175,14 @@ function App() {
               isLoading={loading}
               error={error}
               handleBookmarkClick={handleBookmarkClick}
-              hasBookmark={hasBookmark}
             />
           </Route>
           <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
             <SavedNewsHeader onLogout={handleLogout} />
             <SavedNews
-              savedArticles={savedArticles}
-              // onDelIconClick={handleDelClick}
+            // onDelIconClick={handleDelClick}
             />
           </ProtectedRoute>
-          {/* <Route path="/signin">
-            <SigninModal
-              onOpenModal={handleOpenModal}
-              onCloseModal={handleCloseModal}
-              isLoading={loading}
-              onUserLogin={handleUserLogin}
-            />
-          </Route>
-          <Route path="/signup">
-            <SignupModal
-              onOpenModal={handleOpenModal}
-              onCloseModal={handleCloseModal}
-              isLoading={loading}
-            />
-          </Route> */}
         </Switch>
         <Footer />
         {openModal === "SigninModal" && (
