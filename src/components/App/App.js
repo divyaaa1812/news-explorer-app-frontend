@@ -116,18 +116,20 @@ function App() {
             : card.isBookmarked,
       };
     });
-    localStorage.setItem("searchResults", JSON.stringify(newCards));
-    setSearchResults(newCards);
     // either add or delete selectedCard based on selectedCard.isBookmarked field
     if (selectedCard.isBookmarked) {
+      // delete the card in db
       auth.removeCardBookmark(selectedCard);
-      // delete the card to db
+      selectedCard.isBookmarked = false;
     } else {
       // add the card to db
       auth.addCardBookmark(selectedCard);
     }
+    localStorage.setItem("searchResults", JSON.stringify(newCards));
     // set state with new search results
+    setSearchResults(newCards);
   };
+  console.log(searchResults);
 
   useEffect(() => {
     if (!openModal) return;
@@ -188,9 +190,7 @@ function App() {
           </Route>
           <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
             <SavedNewsHeader onLogout={handleLogout} />
-            <SavedNews
-            // onDelIconClick={handleDelClick}
-            />
+            <SavedNews searchResults={searchResults} />
           </ProtectedRoute>
         </Switch>
         <Footer />

@@ -57,6 +57,7 @@ export const removeCardBookmark = (item) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
   }).then((res) => res.json());
 };

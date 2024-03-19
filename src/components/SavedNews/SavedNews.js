@@ -7,8 +7,8 @@ import NewsCard from "../NewsCard/NewsCard";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
 import * as auth from "../../utils/Auth";
 
-const SavedNews = ({ savedArticles }) => {
-  console.log(savedArticles);
+const SavedNews = ({ searchResults }) => {
+  console.log(searchResults);
   const [tooltipId, settooltipId] = useState("");
   const [savedItem, setSavedItem] = useState([]);
   const { currentUser } = useContext(CurrentUserContext);
@@ -18,16 +18,16 @@ const SavedNews = ({ savedArticles }) => {
   const handleMouseOver = () => {
     settooltipId();
   };
-  const currentUserSavedArticles = [savedArticles.data].filter((item) => {
-    console.log(item);
-    return currentUser._id === item.owner;
-  });
-  console.log(currentUserSavedArticles);
+  // const currentUserSavedArticles = [savedArticles.data].filter((item) => {
+  //   console.log(item);
+  //   return currentUser._id === item.owner;
+  // });
+  // console.log(currentUserSavedArticles);
 
   return (
     <div className="savednews__items">
-      {currentUserSavedArticles.length > 0 &&
-        currentUserSavedArticles.map((data) => {
+      {searchResults.isBookmarked > 0 &&
+        searchResults.map((data) => {
           return (
             <div className="savednews__item">
               <div className="savednews__image-container">
