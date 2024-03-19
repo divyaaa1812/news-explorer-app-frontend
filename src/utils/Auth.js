@@ -52,13 +52,11 @@ export const addCardBookmark = ({
 };
 
 export const removeCardBookmark = (item) => {
-  console.log(item);
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/articles/${item.key}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
     },
   }).then((res) => res.json());
 };
