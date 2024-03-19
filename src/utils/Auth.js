@@ -23,8 +23,15 @@ export const loginUser = ({ email, password }) => {
   }).then((res) => res.json());
 };
 
-export const addCardBookmark = (cardData) => {
-  console.log(cardData);
+export const addCardBookmark = ({
+  description,
+  title,
+  key,
+  publishedAt,
+  source,
+  url,
+  urlToImage,
+}) => {
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/articles`, {
     method: "POST",
@@ -32,17 +39,25 @@ export const addCardBookmark = (cardData) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(cardData),
+    body: JSON.stringify({
+      description,
+      title,
+      key,
+      publishedAt,
+      source,
+      url,
+      urlToImage,
+    }),
   }).then((res) => res.json());
 };
 
 export const removeCardBookmark = (item) => {
-  debugger;
   console.log(item);
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/articles/${item._id}`, {
+  return fetch(`${baseUrl}/articles/${item.key}`, {
     method: "DELETE",
     headers: {
+      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
   }).then((res) => res.json());

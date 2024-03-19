@@ -15,11 +15,13 @@ import { getSearchResults } from "../../utils/Api";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
 import ProtectedRoute from "../ProtectedRoute";
 import * as auth from "../../utils/Auth";
+import { nanoid } from "nanoid";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [openModal, setOpenModal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [savedArticles, setSavedArticles] = useState({});
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
@@ -44,9 +46,9 @@ function App() {
     setTimeout(() => {
       getSearchResults(value)
         .then((searchData) => {
-          const transformData = searchData.articles.map((item, index) => {
+          const transformData = searchData.articles.map((item) => {
             return {
-              key: `unique-key-${index}`,
+              key: nanoid(),
               ...item,
               isBookmarked: false,
             };
@@ -114,11 +116,18 @@ function App() {
             : card.isBookmarked,
       };
     });
-    // set state with new search results
+    localStorage.setItem("searchResults", JSON.stringify(newCards));
     setSearchResults(newCards);
+    // either add or delete selectedCard based on selectedCard.isBookmarked field
+    if (selectedCard.isBookmarked) {
+      auth.removeCardBookmark(selectedCard);
+      // delete the card to db
+    } else {
+      // add the card to db
+      auth.addCardBookmark(selectedCard);
+    }
+    // set state with new search results
   };
-
-  console.log(searchResults);
 
   useEffect(() => {
     if (!openModal) return;
