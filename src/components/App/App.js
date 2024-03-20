@@ -14,14 +14,14 @@ import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
 import { getSearchResults } from "../../utils/Api";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
 import ProtectedRoute from "../ProtectedRoute";
-import * as auth from "../../utils/Auth";
+import * as api from "../../utils/MainApi";
 import { nanoid } from "nanoid";
+import * as auth from "../../utils/Auth";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [openModal, setOpenModal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [savedArticles, setSavedArticles] = useState({});
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
@@ -53,7 +53,6 @@ function App() {
               isBookmarked: false,
             };
           });
-          console.log(transformData);
           setSearchResults(transformData);
           setError(null);
           // Update local storage
@@ -70,7 +69,7 @@ function App() {
   };
 
   const handleSignUp = ({ username, email, password }) => {
-    return auth
+    return api
       .registerUser({ username, email, password })
       .then(() => {
         handleOpenModal("SignupSuccessModal");
@@ -80,7 +79,7 @@ function App() {
 
   const handleUserLogin = ({ email, password }) => {
     setLoading(true);
-    return auth
+    return api
       .loginUser({ email, password })
       .then((res) => {
         const token = res.token;
@@ -119,17 +118,16 @@ function App() {
     // either add or delete selectedCard based on selectedCard.isBookmarked field
     if (selectedCard.isBookmarked) {
       // delete the card in db
-      auth.removeCardBookmark(selectedCard);
+      api.removeCardBookmark(selectedCard);
       selectedCard.isBookmarked = false;
     } else {
       // add the card to db
-      auth.addCardBookmark(selectedCard);
+      api.addCardBookmark(selectedCard);
     }
     localStorage.setItem("searchResults", JSON.stringify(newCards));
     // set state with new search results
     setSearchResults(newCards);
   };
-  console.log(searchResults);
 
   useEffect(() => {
     if (!openModal) return;
@@ -190,7 +188,7 @@ function App() {
           </Route>
           <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
             <SavedNewsHeader onLogout={handleLogout} />
-            <SavedNews searchResults={searchResults} />
+            <SavedNews />
           </ProtectedRoute>
         </Switch>
         <Footer />

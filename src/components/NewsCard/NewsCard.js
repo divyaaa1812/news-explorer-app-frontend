@@ -40,6 +40,7 @@ const NewsCard = ({ loggedIn, searchResults, handleBookmarkClick }) => {
             {
               month: "long",
               day: "numeric",
+              year: "numeric",
             }
           );
           return (

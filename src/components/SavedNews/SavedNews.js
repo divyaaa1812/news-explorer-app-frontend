@@ -1,67 +1,71 @@
 import React, { useEffect, useContext } from "react";
 import "./SavedNews.css";
 import deleteicon from "../../images/deleteicon.svg";
-import image from "../../images/image_06.png";
 import { useState } from "react";
-import NewsCard from "../NewsCard/NewsCard";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
-import * as auth from "../../utils/Auth";
+import * as api from "../../utils/MainApi";
 
-const SavedNews = ({ searchResults }) => {
-  console.log(searchResults);
+const SavedNews = () => {
   const [tooltipId, settooltipId] = useState("");
-  const [savedItem, setSavedItem] = useState([]);
-  const { currentUser } = useContext(CurrentUserContext);
+  const [savedArticles, setSavedArticles] = useState([]);
   const handleMouseLeave = () => {
     settooltipId("");
   };
   const handleMouseOver = () => {
     settooltipId();
   };
-  // const currentUserSavedArticles = [savedArticles.data].filter((item) => {
-  //   console.log(item);
-  //   return currentUser._id === item.owner;
-  // });
-  // console.log(currentUserSavedArticles);
+
+  useEffect(() => {
+    api.getSavedArticles().then((response) => {
+      console.log(response);
+      setSavedArticles(response);
+    });
+  }, []);
 
   return (
     <div className="savednews__items">
-      {searchResults.isBookmarked > 0 &&
-        searchResults.map((data) => {
-          return (
-            <div className="savednews__item">
-              <div className="savednews__image-container">
-                <img
-                  src={data.urlToImage}
-                  alt={`cover for saved news`}
-                  className="savednews__image"
-                />
-              </div>
-              <div className="savednews__description">
-                <p className="savednews__date">{data.publishedAt}</p>
-                <h1 className="savednews__title">{data.title}</h1>
-                <p className="savednews__subtitle">{data.description}</p>
-                <p className="savednews__footer">{data.source}</p>
-              </div>
-              <div className="savednews__category-container">
-                <p className="savednews__category-text">Nature</p>
-              </div>
+      {savedArticles.map((card) => {
+        const publishedAt = new Date(card.publishedAt).toLocaleString(
+          "default",
+          {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          }
+        );
+        return (
+          <div className="savednews__item" key={card._id}>
+            <div className="savednews__image-container">
               <img
-                src={deleteicon}
-                className="delete-icon"
-                alt={`click to delete saved news`}
-                onMouseLeave={handleMouseLeave}
-                onMouseOver={() => handleMouseOver()}
-                // onClick={onDelIconClick(data)}
+                src={card.urlToImage}
+                alt={`cover for saved news`}
+                className="savednews__image"
               />
-              {tooltipId !== "" && (
-                <span id="tooltip-delete" className="tooltip-delete">
-                  Remove from saved
-                </span>
-              )}
             </div>
-          );
-        })}
+            <div className="savednews__description">
+              <p className="savednews__date">{publishedAt}</p>
+              <h1 className="savednews__title">{card.title}</h1>
+              <p className="savednews__subtitle">{card.description}</p>
+            </div>
+            <p className="savednews__footer">{card.source.toUpperCase()}</p>
+            <div className="savednews__category-container">
+              <p className="savednews__category-text">Nature</p>
+            </div>
+            <img
+              src={deleteicon}
+              className="delete-icon"
+              alt={`click to delete saved news`}
+              onMouseLeave={handleMouseLeave}
+              onMouseOver={() => handleMouseOver()}
+              // onClick={onDelIconClick(data)}
+            />
+            {tooltipId !== "" && (
+              <span id="tooltip-delete" className="tooltip-delete">
+                Remove from saved
+              </span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };
