@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SavedNewsHeader.css";
 import logout from "../../images/logout.svg";
 import { Link, NavLink } from "react-router-dom";
 import menu from "../../images/menu-bl.svg";
 import close from "../../images/close.svg";
 import logoutwt from "../../images/logoutwt.svg";
+import * as api from "../../utils/MainApi";
 
-const SavedNewsHeader = ({ onLogout }) => {
+const SavedNewsHeader = ({ onLogout, currentUser }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [savedArticles, setSavedArticles] = useState([]);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -19,6 +21,12 @@ const SavedNewsHeader = ({ onLogout }) => {
   const savednewsnavbarlogoclassname = `${
     isMenuOpen ? `savednewsnavbar__logo-mobile ` : `savednewsnavbar__logo-text`
   }`;
+
+  useEffect(() => {
+    api.getSavedArticles().then((response) => {
+      setSavedArticles(response);
+    });
+  }, []);
 
   return (
     <header className="savednewsnavbar">
@@ -42,7 +50,7 @@ const SavedNewsHeader = ({ onLogout }) => {
             Saved articles
           </NavLink>
           <button className="savednewsnavbar-button" onClick={onLogout}>
-            Elise
+            {currentUser.username}
             <span>
               <img
                 src={logout}
@@ -63,7 +71,7 @@ const SavedNewsHeader = ({ onLogout }) => {
               Saved articles
             </NavLink>
             <button className="savednewsnavbar-button-mobile">
-              Elise
+              {currentUser.username}
               <span>
                 <img
                   src={logoutwt}
@@ -78,7 +86,7 @@ const SavedNewsHeader = ({ onLogout }) => {
       <div className="savednewsheader__title-container">
         <p className="savednewsheader-title">Saved articles</p>
         <p className="savednewsheader-subtitle">
-          Elise, you have 5 saved articles
+          {currentUser.username}, you have {savedArticles.length} saved articles
         </p>
         <p className="savednewsheader-text">
           By keywords:{" "}

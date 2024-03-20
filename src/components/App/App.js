@@ -177,6 +177,7 @@ function App() {
               onOpenModal={handleOpenModal}
               onSearchClick={handleSearchClick}
               onLogout={handleLogout}
+              currentUser={currentUser}
             />
             <Main
               loggedIn={loggedIn}
@@ -187,8 +188,11 @@ function App() {
             />
           </Route>
           <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
-            <SavedNewsHeader onLogout={handleLogout} />
-            <SavedNews />
+            <SavedNewsHeader
+              onLogout={handleLogout}
+              currentUser={currentUser}
+            />
+            <SavedNews currentUser={currentUser} />
           </ProtectedRoute>
         </Switch>
         <Footer />

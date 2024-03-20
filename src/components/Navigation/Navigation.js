@@ -5,7 +5,7 @@ import logoutwt from "../../images/logoutwt.svg";
 import menu from "../../images/menu.svg";
 import close from "../../images/close.svg";
 
-const Navigation = ({ loggedIn, onOpenModal, onLogout }) => {
+const Navigation = ({ loggedIn, onOpenModal, onLogout, currentUser }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -41,7 +41,7 @@ const Navigation = ({ loggedIn, onOpenModal, onLogout }) => {
                 Saved articles
               </NavLink>
               <button className="navbar-button" onClick={onLogout}>
-                Elise
+                {currentUser.username}
                 <span>
                   <img
                     src={logoutwt}
@@ -78,7 +78,7 @@ const Navigation = ({ loggedIn, onOpenModal, onLogout }) => {
                   Saved articles
                 </NavLink>
                 <button className="mobile-menu-navbar-button">
-                  Elise
+                  {currentUser.username}
                   <span>
                     <img
                       src={logoutwt}

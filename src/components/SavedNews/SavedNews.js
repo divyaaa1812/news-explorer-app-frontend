@@ -16,7 +16,6 @@ const SavedNews = () => {
 
   useEffect(() => {
     api.getSavedArticles().then((response) => {
-      console.log(response);
       setSavedArticles(response);
     });
   }, []);
