@@ -22,6 +22,17 @@ const SavedNewsHeader = ({ onLogout, currentUser }) => {
     isMenuOpen ? `savednewsnavbar__logo-mobile ` : `savednewsnavbar__logo-text`
   }`;
 
+  const searchKeywords = Object.keys(
+    savedArticles.reduce((acc, item) => {
+      if (!(item.category in acc)) {
+        acc[item.category] = true;
+      }
+      return acc;
+    }, {})
+  );
+
+  console.log(searchKeywords);
+
   useEffect(() => {
     api.getSavedArticles().then((response) => {
       setSavedArticles(response);
@@ -89,9 +100,9 @@ const SavedNewsHeader = ({ onLogout, currentUser }) => {
           {currentUser.username}, you have {savedArticles.length} saved articles
         </p>
         <p className="savednewsheader-text">
-          By keywords:{" "}
+          By keywords:
           <span className="savednewsheader-keywords">
-            Nature, Yellowstone, and 2 other
+            {searchKeywords.join(",")}
           </span>
         </p>
       </div>

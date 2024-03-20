@@ -47,7 +47,7 @@ const SavedNews = () => {
             </div>
             <p className="savednews__footer">{card.source.toUpperCase()}</p>
             <div className="savednews__category-container">
-              <p className="savednews__category-text">Nature</p>
+              <p className="savednews__category-text">{card.category}</p>
             </div>
             <img
               src={deleteicon}

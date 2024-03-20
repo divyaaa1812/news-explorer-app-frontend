@@ -51,6 +51,7 @@ function App() {
               key: nanoid(),
               ...item,
               isBookmarked: false,
+              category: value,
             };
           });
           setSearchResults(transformData);
@@ -105,6 +106,7 @@ function App() {
   };
 
   const handleBookmarkClick = (selectedCard) => {
+    console.log(selectedCard);
     // Map and create a new search results array
     const newCards = searchResults.map((card) => {
       return {

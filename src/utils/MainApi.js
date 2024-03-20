@@ -46,6 +46,7 @@ export const addCardBookmark = ({
   source,
   url,
   urlToImage,
+  category,
 }) => {
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/articles`, {
@@ -62,6 +63,7 @@ export const addCardBookmark = ({
       source,
       url,
       urlToImage,
+      category,
     }),
   }).then((res) => res.json());
 };

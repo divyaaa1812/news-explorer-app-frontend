@@ -8,6 +8,7 @@ const Header = ({
   onSearchClick,
   onLogout,
   currentUser,
+  category,
 }) => {
   return (
     <header className="header">
@@ -17,7 +18,7 @@ const Header = ({
         onLogout={onLogout}
         currentUser={currentUser}
       />
-      <SearchForm onSearchClick={onSearchClick} />
+      <SearchForm onSearchClick={onSearchClick} category={category} />
     </header>
   );
 };
