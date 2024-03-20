@@ -31,8 +31,6 @@ const SavedNewsHeader = ({ onLogout, currentUser }) => {
     }, {})
   );
 
-  console.log(searchKeywords);
-
   useEffect(() => {
     api.getSavedArticles().then((response) => {
       setSavedArticles(response);

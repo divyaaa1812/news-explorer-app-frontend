@@ -131,6 +131,20 @@ function App() {
     setSearchResults(newCards);
   };
 
+  const handleDelIconClick = (item) => {
+    debugger;
+    api.removeCardBookmark(item);
+    const cards = searchResults.map((card) => {
+      return {
+        ...card,
+        isBookmarked:
+          card.title === item.title ? !card.isBookmarked : card.isBookmarked,
+      };
+    });
+    setSearchResults(cards);
+    localStorage.setItem("searchResults", JSON.stringify(cards));
+  };
+
   useEffect(() => {
     if (!openModal) return;
     const handleEscClose = (e) => {
@@ -194,7 +208,10 @@ function App() {
               onLogout={handleLogout}
               currentUser={currentUser}
             />
-            <SavedNews currentUser={currentUser} />
+            <SavedNews
+              currentUser={currentUser}
+              onDelIconClick={handleDelIconClick}
+            />
           </ProtectedRoute>
         </Switch>
         <Footer />

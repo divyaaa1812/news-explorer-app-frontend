@@ -4,7 +4,7 @@ import deleteicon from "../../images/deleteicon.svg";
 import { useState } from "react";
 import * as api from "../../utils/MainApi";
 
-const SavedNews = () => {
+const SavedNews = ({ onDelIconClick }) => {
   const [tooltipId, settooltipId] = useState("");
   const [savedArticles, setSavedArticles] = useState([]);
   const handleMouseLeave = () => {
@@ -55,7 +55,7 @@ const SavedNews = () => {
               alt={`click to delete saved news`}
               onMouseLeave={handleMouseLeave}
               onMouseOver={() => handleMouseOver()}
-              // onClick={onDelIconClick(data)}
+              onClick={() => onDelIconClick(card)}
             />
             {tooltipId !== "" && (
               <span id="tooltip-delete" className="tooltip-delete">
