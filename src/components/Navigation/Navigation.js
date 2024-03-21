@@ -4,8 +4,10 @@ import { Link, NavLink } from "react-router-dom";
 import logoutwt from "../../images/logoutwt.svg";
 import menu from "../../images/menu.svg";
 import close from "../../images/close.svg";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
+import { useContext } from "react";
 
-const Navigation = ({ loggedIn, onOpenModal, onLogout, currentUser }) => {
+const Navigation = ({ loggedIn, onOpenModal, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -16,6 +18,7 @@ const Navigation = ({ loggedIn, onOpenModal, onLogout, currentUser }) => {
       ? `header__navbar-navbar-bg`
       : `header__navbar-navbar-transparent`
   }`;
+  const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <div className="header__navbar">

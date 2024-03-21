@@ -6,8 +6,10 @@ import menu from "../../images/menu-bl.svg";
 import close from "../../images/close.svg";
 import logoutwt from "../../images/logoutwt.svg";
 import * as api from "../../utils/MainApi";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
+import { useContext } from "react";
 
-const SavedNewsHeader = ({ onLogout, currentUser }) => {
+const SavedNewsHeader = ({ onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [savedArticles, setSavedArticles] = useState([]);
   const toggleMenu = () => {
@@ -21,6 +23,7 @@ const SavedNewsHeader = ({ onLogout, currentUser }) => {
   const savednewsnavbarlogoclassname = `${
     isMenuOpen ? `savednewsnavbar__logo-mobile ` : `savednewsnavbar__logo-text`
   }`;
+  const { currentUser } = useContext(CurrentUserContext);
 
   const searchKeywords = Object.keys(
     savedArticles.reduce((acc, item) => {

@@ -7,7 +7,6 @@ const Header = ({
   onOpenModal,
   onSearchClick,
   onLogout,
-  currentUser,
   category,
 }) => {
   return (
@@ -16,7 +15,6 @@ const Header = ({
         loggedIn={loggedIn}
         onOpenModal={onOpenModal}
         onLogout={onLogout}
-        currentUser={currentUser}
       />
       <SearchForm onSearchClick={onSearchClick} category={category} />
     </header>
