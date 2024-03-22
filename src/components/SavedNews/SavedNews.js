@@ -55,7 +55,16 @@ const SavedNews = ({ onDelIconClick }) => {
               alt={`click to delete saved news`}
               onMouseLeave={handleMouseLeave}
               onMouseOver={() => handleMouseOver()}
-              onClick={() => onDelIconClick(card)}
+              onClick={() => {
+                // delete from savedArticles
+                setSavedArticles((oldSavedArticles) => {
+                  const newSavedArtices = oldSavedArticles.filter(
+                    (item) => item.key !== card.key
+                  );
+                  return [...newSavedArtices];
+                });
+                onDelIconClick(card);
+              }}
             />
             {tooltipId !== "" && (
               <span id="tooltip-delete" className="tooltip-delete">
