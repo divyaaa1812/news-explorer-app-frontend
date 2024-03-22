@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Navigation.css";
 import { Link, NavLink } from "react-router-dom";
 import logoutwt from "../../images/logoutwt.svg";
 import menu from "../../images/menu.svg";
 import close from "../../images/close.svg";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
-import { useContext } from "react";
 
 const Navigation = ({ loggedIn, onOpenModal, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

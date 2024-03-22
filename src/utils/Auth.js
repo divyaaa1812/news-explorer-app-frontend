@@ -10,5 +10,5 @@ export const verifyToken = (token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  });
+  }).then((res) => res.json());
 };
