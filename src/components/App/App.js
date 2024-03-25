@@ -101,6 +101,7 @@ function App() {
   const handleLogout = () => {
     setCurrentUser({});
     localStorage.removeItem("jwt");
+    localStorage.removeItem("searchResults");
     setLoggedIn(false);
     history.push("/");
   };
