@@ -9,6 +9,7 @@ const SearchResults = ({
   error,
   handleBookmarkClick,
 }) => {
+  console.log(searchResults);
   return (
     <>
       {isLoading ? (
@@ -27,7 +28,7 @@ const SearchResults = ({
             handleBookmarkClick={handleBookmarkClick}
           />
         </section>
-      ) : searchResults && searchResults.length === 0 ? (
+      ) : searchResults && searchResults.length == -1 ? (
         <section className="searchresults__notfound">
           <img
             src={searchicon}
