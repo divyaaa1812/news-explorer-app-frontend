@@ -1,6 +1,6 @@
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.nx.csproject.org/"
+    ? "https://api.nx.csproject.org"
     : "http://localhost:3002";
 
 export const registerUser = ({ username, email, password }) => {
