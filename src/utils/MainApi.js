@@ -4,12 +4,10 @@ export const baseUrl =
     : "http://localhost:3002";
 
 export const registerUser = ({ username, email, password }) => {
-  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ username, email, password }),
   }).then((res) => res.json());
