@@ -9,7 +9,6 @@ const SearchResults = ({
   error,
   handleBookmarkClick,
 }) => {
-  console.log(searchResults);
   return (
     <>
       {isLoading ? (
