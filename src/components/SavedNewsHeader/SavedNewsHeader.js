@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SavedNewsHeader.css";
 import logout from "../../images/logout.svg";
 import { Link, NavLink } from "react-router-dom";
 import menu from "../../images/menu-bl.svg";
 import close from "../../images/close.svg";
 import logoutwt from "../../images/logoutwt.svg";
+import * as api from "../../utils/MainApi";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
+import { useContext } from "react";
 
-const SavedNewsHeader = () => {
+const SavedNewsHeader = ({ onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [savedArticles, setSavedArticles] = useState([]);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -19,6 +23,22 @@ const SavedNewsHeader = () => {
   const savednewsnavbarlogoclassname = `${
     isMenuOpen ? `savednewsnavbar__logo-mobile ` : `savednewsnavbar__logo-text`
   }`;
+  const { currentUser } = useContext(CurrentUserContext);
+
+  const searchKeywords = Object.keys(
+    savedArticles.reduce((acc, item) => {
+      if (!(item.category in acc)) {
+        acc[item.category] = true;
+      }
+      return acc;
+    }, {})
+  );
+
+  useEffect(() => {
+    api.getSavedArticles().then((response) => {
+      setSavedArticles(response);
+    });
+  }, []);
 
   return (
     <header className="savednewsnavbar">
@@ -41,8 +61,8 @@ const SavedNewsHeader = () => {
           <NavLink to="/saved-news" className="savednewsnav__link">
             Saved articles
           </NavLink>
-          <button className="savednewsnavbar-button">
-            Elise
+          <button className="savednewsnavbar-button" onClick={onLogout}>
+            {currentUser.username}
             <span>
               <img
                 src={logout}
@@ -63,7 +83,7 @@ const SavedNewsHeader = () => {
               Saved articles
             </NavLink>
             <button className="savednewsnavbar-button-mobile">
-              Elise
+              {currentUser.username}
               <span>
                 <img
                   src={logoutwt}
@@ -78,12 +98,12 @@ const SavedNewsHeader = () => {
       <div className="savednewsheader__title-container">
         <p className="savednewsheader-title">Saved articles</p>
         <p className="savednewsheader-subtitle">
-          Elise, you have 5 saved articles
+          {currentUser.username}, you have {savedArticles.length} saved articles
         </p>
         <p className="savednewsheader-text">
-          By keywords:{" "}
+          By keywords:
           <span className="savednewsheader-keywords">
-            Nature, Yellowstone, and 2 other
+            {searchKeywords.join(",")}
           </span>
         </p>
       </div>

@@ -14,6 +14,8 @@ import SignupSuccessModal from "../SignupSuccessModal/SignupSuccessModal";
 import { getSearchResults } from "../../utils/Api";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
 import ProtectedRoute from "../ProtectedRoute";
+import * as api from "../../utils/MainApi";
+import { nanoid } from "nanoid";
 import * as auth from "../../utils/Auth";
 
 function App() {
@@ -44,11 +46,18 @@ function App() {
     setTimeout(() => {
       getSearchResults(value)
         .then((searchData) => {
-          console.log(searchData);
-          setSearchResults(searchData);
+          const transformData = searchData.articles.map((item) => {
+            return {
+              key: nanoid(),
+              ...item,
+              isBookmarked: false,
+              category: value,
+            };
+          });
+          setSearchResults(transformData);
           setError(null);
           // Update local storage
-          localStorage.setItem("searchResults", JSON.stringify(searchData));
+          localStorage.setItem("searchResults", JSON.stringify(transformData));
         })
         .catch((err) => {
           setError(err);
@@ -60,11 +69,18 @@ function App() {
     }, 2000);
   };
 
+  const handleSignUp = ({ username, email, password }) => {
+    return api
+      .registerUser({ username, email, password })
+      .then(() => {
+        handleOpenModal("SignupSuccessModal");
+      })
+      .catch(console.error);
+  };
+
   const handleUserLogin = ({ email, password }) => {
-    console.log(email);
-    debugger;
     setLoading(true);
-    return auth
+    return api
       .loginUser({ email, password })
       .then((res) => {
         const token = res.token;
@@ -82,6 +98,54 @@ function App() {
       });
   };
 
+  const handleLogout = () => {
+    setCurrentUser({});
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("searchResults");
+    setLoggedIn(false);
+    history.push("/");
+  };
+
+  const handleBookmarkClick = (selectedCard) => {
+    // Map and create a new search results array
+    const newCards = searchResults.map((card) => {
+      return {
+        ...card,
+        isBookmarked:
+          card.key === selectedCard.key
+            ? !card.isBookmarked
+            : card.isBookmarked,
+      };
+    });
+    // either add or delete selectedCard based on selectedCard.isBookmarked field
+    if (selectedCard.isBookmarked) {
+      // delete the card in db
+      api.removeCardBookmark(selectedCard);
+      selectedCard.isBookmarked = false;
+    } else {
+      // add the card to db
+      api.addCardBookmark(selectedCard);
+    }
+    // set state with new search results
+    setSearchResults(newCards);
+    localStorage.setItem("searchResults", JSON.stringify(newCards));
+  };
+
+  const handleDelIconClick = (item) => {
+    console.log(item);
+    api.removeCardBookmark(item);
+    setSearchResults(
+      searchResults.map((card) => {
+        return {
+          ...card,
+          isBookmarked:
+            card.key === item.key ? !card.isBookmarked : card.isBookmarked,
+        };
+      })
+    );
+    localStorage.setItem("searchResults", JSON.stringify(searchResults));
+  };
+
   useEffect(() => {
     if (!openModal) return;
     const handleEscClose = (e) => {
@@ -96,11 +160,27 @@ function App() {
   }, [openModal]);
 
   useEffect(() => {
+    async function getCurrentUser() {
+      const jwt = localStorage.getItem("jwt");
+      try {
+        if (jwt) {
+          const res = await auth.verifyToken(jwt);
+          const data = await res.json();
+          setLoggedIn(true);
+          setCurrentUser(data);
+        }
+      } catch (err) {
+        setLoggedIn(false);
+        setCurrentUser({});
+        history.push("/");
+      }
+    }
     // Read data from local storage when component mounts
     const storedSearchResults = localStorage.getItem("searchResults");
     if (storedSearchResults) {
       setSearchResults(JSON.parse(storedSearchResults));
     }
+    getCurrentUser();
   }, []);
 
   return (
@@ -112,45 +192,39 @@ function App() {
               loggedIn={loggedIn}
               onOpenModal={handleOpenModal}
               onSearchClick={handleSearchClick}
+              onLogout={handleLogout}
             />
             <Main
               loggedIn={loggedIn}
               searchResults={searchResults}
               isLoading={loading}
               error={error}
+              handleBookmarkClick={handleBookmarkClick}
             />
           </Route>
           <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
-            <SavedNewsHeader />
-            <SavedNews />
+            <SavedNewsHeader onLogout={handleLogout} />
+            <SavedNews
+              currentUser={currentUser}
+              onDelIconClick={handleDelIconClick}
+            />
           </ProtectedRoute>
-          <Route path="/signin">
-            <SigninModal
-              onOpenModal={handleOpenModal}
-              onCloseModal={handleCloseModal}
-              isLoading={loading}
-              onUserLogin={handleUserLogin}
-            />
-          </Route>
-          <Route path="/signup">
-            <SignupModal
-              onOpenModal={handleOpenModal}
-              onCloseModal={handleCloseModal}
-              isLoading={loading}
-            />
-          </Route>
         </Switch>
         <Footer />
         {openModal === "SigninModal" && (
           <SigninModal
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
+            onUserLogin={handleUserLogin}
+            isLoading={loading}
           />
         )}
         {openModal === "SignupModal" && (
           <SignupModal
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
+            onUserSignup={handleSignUp}
+            isLoading={loading}
           />
         )}
         {openModal === "SignupSuccessModal" && (
