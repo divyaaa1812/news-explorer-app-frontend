@@ -7,7 +7,6 @@ export const registerUser = ({ username, email, password }) => {
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
-    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
