@@ -9,9 +9,9 @@ const SignupModal = ({
   onUserSignup,
 }) => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    username: "",
+    email: "test2005@gmail.com",
+    password: "1234567890",
+    username: "test2005",
   });
   const [formErrors, setFormErrors] = useState({
     email: "",
