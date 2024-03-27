@@ -4,9 +4,9 @@ export const baseUrl =
     : "http://localhost:3002";
 
 export const registerUser = ({ username, email, password }) => {
+  console.log({ username, email, password });
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
-    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
     },

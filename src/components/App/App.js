@@ -70,6 +70,7 @@ function App() {
   };
 
   const handleSignUp = ({ username, email, password }) => {
+    console.log({ username, email, password });
     return api
       .registerUser({ username, email, password })
       .then(() => {
