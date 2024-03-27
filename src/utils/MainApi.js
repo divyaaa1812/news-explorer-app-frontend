@@ -7,6 +7,7 @@ export const registerUser = ({ username, email, password }) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     mode: "no-cors",
+    credentials: "omit",
     headers: {
       "Content-Type": "application/json",
     },
