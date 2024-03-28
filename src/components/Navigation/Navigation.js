@@ -79,7 +79,10 @@ const Navigation = ({ loggedIn, onOpenModal, onLogout }) => {
                 <NavLink to="/saved-news" className="mobile-menu-nav__link">
                   Saved articles
                 </NavLink>
-                <button className="mobile-menu-navbar-button">
+                <button
+                  className="mobile-menu-navbar-button"
+                  onClick={onLogout}
+                >
                   {currentUser.username}
                   <span>
                     <img

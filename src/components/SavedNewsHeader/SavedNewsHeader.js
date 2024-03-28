@@ -82,7 +82,10 @@ const SavedNewsHeader = ({ onLogout }) => {
             <NavLink to="/saved-news" className="savednewsnav__link-mobile">
               Saved articles
             </NavLink>
-            <button className="savednewsnavbar-button-mobile">
+            <button
+              className="savednewsnavbar-button-mobile"
+              onClick={onLogout}
+            >
               {currentUser.username}
               <span>
                 <img
