@@ -20,6 +20,9 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setFormErrors((prevErrors) => {
+      return { ...prevErrors, formData: {} };
+    });
   };
 
   const validateForm = () => {
@@ -49,6 +52,7 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      setFormErrors({});
       // Submit form data and close modal
       onUserLogin(formData);
       onCloseModal();
