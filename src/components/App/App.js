@@ -86,7 +86,7 @@ function App() {
       .then((res) => {
         const token = res.token;
         localStorage.setItem("jwt", token);
-        return auth.verifyToken(token).then((user) => {
+        auth.verifyToken(token).then((user) => {
           setLoggedIn(true);
           setCurrentUser(user);
           handleCloseModal();
@@ -133,7 +133,6 @@ function App() {
   };
 
   const handleDelIconClick = (item) => {
-    console.log(item);
     api.removeCardBookmark(item);
     setSearchResults(
       searchResults.map((card) => {
@@ -166,9 +165,8 @@ function App() {
       try {
         if (jwt) {
           const res = await auth.verifyToken(jwt);
-          const data = await res.json();
           setLoggedIn(true);
-          setCurrentUser(data);
+          setCurrentUser(res);
         }
       } catch (err) {
         setLoggedIn(false);
