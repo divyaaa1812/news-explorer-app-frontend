@@ -70,8 +70,7 @@ function App() {
   };
 
   const handleSignUp = ({ username, email, password }) => {
-    console.log({ username, email, password });
-    return api
+    api
       .registerUser({ username, email, password })
       .then(() => {
         handleOpenModal("SignupSuccessModal");
@@ -81,7 +80,7 @@ function App() {
 
   const handleUserLogin = ({ email, password }) => {
     setLoading(true);
-    return api
+    api
       .loginUser({ email, password })
       .then((res) => {
         const token = res.token;
@@ -160,20 +159,25 @@ function App() {
   }, [openModal]);
 
   useEffect(() => {
-    async function getCurrentUser() {
+    const getCurrentUser = async () => {
       const jwt = localStorage.getItem("jwt");
       try {
-        if (jwt) {
-          const res = await auth.verifyToken(jwt);
-          setLoggedIn(true);
-          setCurrentUser(res);
+        if (jwt !== undefined) {
+          auth.verifyToken(jwt).then((res) => {
+            if (res) {
+              setLoggedIn(true);
+              setCurrentUser(res);
+              history.push("/saved-news");
+            } else {
+              setLoggedIn(false);
+              history.push("/");
+            }
+          });
         }
       } catch (err) {
-        setLoggedIn(false);
-        setCurrentUser({});
-        history.push("/");
+        console.error();
       }
-    }
+    };
     // Read data from local storage when component mounts
     const storedSearchResults = localStorage.getItem("searchResults");
     if (storedSearchResults) {

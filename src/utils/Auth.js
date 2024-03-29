@@ -1,7 +1,4 @@
-export const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://api.nx.csproject.org"
-    : "http://localhost:3002";
+import { request, baseUrl } from "../utils/MainApi";
 
 export const verifyToken = (token) => {
   return fetch(`${baseUrl}/users/me`, {
@@ -10,5 +7,9 @@ export const verifyToken = (token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then((res) => res.json());
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+  });
 };

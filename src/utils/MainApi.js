@@ -3,38 +3,48 @@ export const baseUrl =
     ? "https://api.nx.csproject.org"
     : "http://localhost:3002";
 
+export const checkResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(`Error: ${res.status}`);
+  }
+};
+
+export function request(url, options) {
+  return fetch(url, options).then(checkResponse);
+}
+
 export const registerUser = ({ username, email, password }) => {
-  console.log({ username, email, password });
-  return fetch(`${baseUrl}/signup`, {
+  return request(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ username, email, password }),
-  }).then((res) => res.json());
+  });
 };
 
 export const loginUser = ({ email, password }) => {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/signin`, {
+  return request(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => res.json());
+  });
 };
 
 export const getSavedArticles = () => {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/articles`, {
+  return request(`${baseUrl}/articles`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then((res) => res.json());
+  });
 };
 
 export const addCardBookmark = ({
@@ -48,7 +58,7 @@ export const addCardBookmark = ({
   category,
 }) => {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/articles`, {
+  return request(`${baseUrl}/articles`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -64,16 +74,16 @@ export const addCardBookmark = ({
       urlToImage,
       category,
     }),
-  }).then((res) => res.json());
+  });
 };
 
 export const removeCardBookmark = (item) => {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/articles/${item.key}`, {
+  return request(`${baseUrl}/articles/${item.key}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then((res) => res.json());
+  });
 };

@@ -63,10 +63,10 @@ const SignupModal = ({
     if (!formData.username) {
       formIsValid = false;
       errors.username = "Username is required";
-    } else if (formData.username.length < 8) {
+    } else if (formData.username.length < 2) {
       formIsValid = false;
       errors.username =
-        "Username is too short. Minimum 8 characters is required";
+        "Username is too short. Minimum 2 characters is required";
     }
     setFormErrors(errors);
     return formIsValid;

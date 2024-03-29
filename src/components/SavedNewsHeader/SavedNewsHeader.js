@@ -26,12 +26,13 @@ const SavedNewsHeader = ({ onLogout }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
   const searchKeywords = Object.keys(
-    savedArticles.reduce((acc, item) => {
-      if (!(item.category in acc)) {
-        acc[item.category] = true;
-      }
-      return acc;
-    }, {})
+    savedArticles.length > 0 &&
+      savedArticles.reduce((acc, item) => {
+        if (!(item.category in acc)) {
+          acc[item.category] = true;
+        }
+        return acc;
+      }, {})
   );
 
   useEffect(() => {
