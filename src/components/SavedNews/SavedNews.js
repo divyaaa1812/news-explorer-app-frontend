@@ -4,21 +4,14 @@ import deleteicon from "../../images/deleteicon.svg";
 import { useState } from "react";
 import * as api from "../../utils/MainApi";
 
-const SavedNews = ({ onDelIconClick }) => {
+const SavedNews = ({ savedArticles, onDelIconClick }) => {
   const [tooltipId, settooltipId] = useState("");
-  const [savedArticles, setSavedArticles] = useState([]);
   const handleMouseLeave = () => {
     settooltipId("");
   };
   const handleMouseOver = () => {
     settooltipId();
   };
-
-  useEffect(() => {
-    api.getSavedArticles().then((response) => {
-      setSavedArticles(response);
-    });
-  }, []);
 
   return (
     <div className="savednews__items">
@@ -57,12 +50,6 @@ const SavedNews = ({ onDelIconClick }) => {
               onMouseOver={() => handleMouseOver()}
               onClick={() => {
                 // delete from savedArticles
-                setSavedArticles((oldSavedArticles) => {
-                  const newSavedArtices = oldSavedArticles.filter(
-                    (item) => item.key !== card.key
-                  );
-                  return [...newSavedArtices];
-                });
                 onDelIconClick(card);
               }}
             />

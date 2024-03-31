@@ -9,9 +9,8 @@ import * as api from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
 import { useContext } from "react";
 
-const SavedNewsHeader = ({ onLogout }) => {
+const SavedNewsHeader = ({ savedArticles, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [savedArticles, setSavedArticles] = useState([]);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -34,12 +33,6 @@ const SavedNewsHeader = ({ onLogout }) => {
         return acc;
       }, {})
   );
-
-  useEffect(() => {
-    api.getSavedArticles().then((response) => {
-      setSavedArticles(response);
-    });
-  }, []);
 
   return (
     <header className="savednewsnavbar">

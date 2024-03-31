@@ -25,6 +25,7 @@ function App() {
   const [loading, setLoading] = useState(false); // Track loading state
   const [error, setError] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
+  const [savedArticles, setSavedArticles] = useState([]);
   const currentDate = new Date();
   const pastDate = new Date();
   pastDate.setDate(currentDate.getDate() - 7);
@@ -122,9 +123,15 @@ function App() {
       // delete the card in db
       api.removeCardBookmark(selectedCard);
       selectedCard.isBookmarked = false;
+      api.getSavedArticles().then((response) => {
+        setSavedArticles(response);
+      });
     } else {
       // add the card to db
       api.addCardBookmark(selectedCard);
+      api.getSavedArticles().then((response) => {
+        setSavedArticles(response);
+      });
     }
     // set state with new search results
     setSearchResults(newCards);
@@ -132,6 +139,12 @@ function App() {
   };
 
   const handleDelIconClick = (item) => {
+    setSavedArticles((oldSavedArticles) => {
+      const newSavedArtices = oldSavedArticles.filter(
+        (card) => item.key !== card.key
+      );
+      return [...newSavedArtices];
+    });
     api.removeCardBookmark(item);
     const newCards = searchResults.map((card) => {
       return {
@@ -177,12 +190,18 @@ function App() {
         console.error();
       }
     };
+    const getSavedNews = async () => {
+      api.getSavedArticles().then((response) => {
+        setSavedArticles(response);
+      });
+    };
     // Read data from local storage when component mounts
     const storedSearchResults = localStorage.getItem("searchResults");
     if (storedSearchResults) {
       setSearchResults(JSON.parse(storedSearchResults));
     }
     getCurrentUser();
+    getSavedNews();
   }, []);
 
   return (
@@ -195,6 +214,7 @@ function App() {
               onOpenModal={handleOpenModal}
               onSearchClick={handleSearchClick}
               onLogout={handleLogout}
+              savedArticles={savedArticles}
             />
             <Main
               loggedIn={loggedIn}
@@ -205,9 +225,13 @@ function App() {
             />
           </Route>
           <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>
-            <SavedNewsHeader onLogout={handleLogout} />
+            <SavedNewsHeader
+              onLogout={handleLogout}
+              savedArticles={savedArticles}
+            />
             <SavedNews
               currentUser={currentUser}
+              savedArticles={savedArticles}
               onDelIconClick={handleDelIconClick}
             />
           </ProtectedRoute>
