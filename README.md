@@ -19,3 +19,5 @@ The project integrates a news explorer API to provide real-time information.
 
 Backend hosted at - https://api.nx.csproject.org
 Website - https://nx.csproject.org/
+
+Sample login: db+prod@gmail.com / pass123$
