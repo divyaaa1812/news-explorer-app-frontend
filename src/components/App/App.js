@@ -132,16 +132,15 @@ function App() {
   };
 
   const handleDelIconClick = (item) => {
+    const newCards = searchResults.map((card) => {
+      return {
+        ...card,
+        isBookmarked:
+          card.key === item.key ? !card.isBookmarked : card.isBookmarked,
+      };
+    });
     api.removeCardBookmark(item);
-    setSearchResults(
-      searchResults.map((card) => {
-        return {
-          ...card,
-          isBookmarked:
-            card.key === item.key ? !card.isBookmarked : card.isBookmarked,
-        };
-      })
-    );
+    setSearchResults(newCards);
     localStorage.setItem("searchResults", JSON.stringify(searchResults));
   };
 
