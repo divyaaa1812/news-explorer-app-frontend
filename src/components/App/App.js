@@ -132,7 +132,6 @@ function App() {
   };
 
   const handleDelIconClick = (item) => {
-    debugger;
     api.removeCardBookmark(item);
     const newCards = searchResults.map((card) => {
       return {

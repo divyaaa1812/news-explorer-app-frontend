@@ -63,7 +63,6 @@ const SavedNews = ({ onDelIconClick }) => {
                   );
                   return [...newSavedArtices];
                 });
-                console.log(savedArticles);
                 onDelIconClick(card);
               }}
             />
