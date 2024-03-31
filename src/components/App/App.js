@@ -132,6 +132,8 @@ function App() {
   };
 
   const handleDelIconClick = (item) => {
+    debugger;
+    api.removeCardBookmark(item);
     const newCards = searchResults.map((card) => {
       return {
         ...card,
@@ -139,9 +141,8 @@ function App() {
           card.key === item.key ? !card.isBookmarked : card.isBookmarked,
       };
     });
-    api.removeCardBookmark(item);
     setSearchResults(newCards);
-    localStorage.setItem("searchResults", JSON.stringify(searchResults));
+    localStorage.setItem("searchResults", JSON.stringify(newCards));
   };
 
   useEffect(() => {
