@@ -16,3 +16,8 @@ The frontend, crafted with React JS, provides a delightful user interface.
 The project integrates a news explorer API to provide real-time information.
 
 ## [Figma Design](https://www.figma.com/file/z1bxDn7eBEDlsDhnZ9dtin/Your-Final-Project?node-id=0%3A1)
+
+Backend hosted at - https://api.nx.csproject.org
+Website - https://nx.csproject.org/
+
+Sample login: db+prod@gmail.com / pass123$

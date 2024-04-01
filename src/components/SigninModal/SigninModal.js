@@ -20,6 +20,9 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setFormErrors((prevErrors) => {
+      return { ...prevErrors, formData: {} };
+    });
   };
 
   const validateForm = () => {
@@ -46,17 +49,11 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
     return formIsValid;
   };
 
-  const handleSubmit = (formData) => {
-    formData.preventDefault();
-    debugger;
-    console.log(formData.target.elements[0].value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (validateForm()) {
-      // Submit form data and close modal
-      onUserLogin(
-        formData.target.elements[0].value,
-        formData.target.elements[1].value
-      );
-      onCloseModal();
+      setFormErrors({});
+      onUserLogin(formData);
     }
   };
 
@@ -73,13 +70,12 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
           Email
           <div>
             <input
-              type="email"
+              type="text"
               name="email"
               placeholder="Enter email"
               className="input-field"
               value={formData.email}
               onChange={handleChange}
-              required
             />
             <span className="input-field-error">{formErrors.email}</span>
           </div>

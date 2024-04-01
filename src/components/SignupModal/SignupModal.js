@@ -2,7 +2,12 @@ import "./SignupModal.css";
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const SignupModal = ({ onOpenModal, onCloseModal, isLoading }) => {
+const SignupModal = ({
+  onOpenModal,
+  onCloseModal,
+  isLoading,
+  onUserSignup,
+}) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,12 +32,10 @@ const SignupModal = ({ onOpenModal, onCloseModal, isLoading }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (formData) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (validateForm()) {
-      console.log("signup details submitted", formData);
-      // Submit form data and close modal
-      //onCloseModal();
-      onOpenModal("SignupSuccessModal");
+      onUserSignup(formData);
     }
   };
 
@@ -60,10 +63,10 @@ const SignupModal = ({ onOpenModal, onCloseModal, isLoading }) => {
     if (!formData.username) {
       formIsValid = false;
       errors.username = "Username is required";
-    } else if (formData.username.length < 8) {
+    } else if (formData.username.length < 2) {
       formIsValid = false;
       errors.username =
-        "Username is too short. Minimum 8 characters is required";
+        "Username is too short. Minimum 2 characters is required";
     }
     setFormErrors(errors);
     return formIsValid;
@@ -75,6 +78,7 @@ const SignupModal = ({ onOpenModal, onCloseModal, isLoading }) => {
       title={"Sign up"}
       isOpen={onOpenModal}
       onClose={onCloseModal}
+      onSubmit={handleSubmit}
     >
       <div className="form__field">
         <label>
@@ -127,11 +131,7 @@ const SignupModal = ({ onOpenModal, onCloseModal, isLoading }) => {
           </div>
         </label>
       </div>
-      <button
-        className="modal__button"
-        disabled={isSignupButtonDisabled}
-        onClick={handleSubmit}
-      >
+      <button className="modal__button" disabled={isSignupButtonDisabled}>
         {isLoading ? "SigningUp..." : "Sign up"}
       </button>
       <button

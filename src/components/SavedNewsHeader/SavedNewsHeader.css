@@ -99,13 +99,13 @@
 .savednewsheader-text {
   margin: 0;
   padding-bottom: 20px;
-  font-family: Roboto700, sans-serif;
+  font-family: Roboto400, sans-serif;
   padding-bottom: 30px;
 }
 
 .savednewsheader-keywords {
   color: #1a1b22;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto700, sans-serif;
 }
 
 .savednewsnavbar-links-mobile {
@@ -161,6 +161,7 @@
   .savednewsheader-text {
     width: 288px;
     font-size: 18px;
+    font-family: Roboto400, sans-serif;
   }
   .savednewsheader-subtitle {
     width: 288px;

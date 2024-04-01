@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Navigation.css";
 import { Link, NavLink } from "react-router-dom";
 import logoutwt from "../../images/logoutwt.svg";
 import menu from "../../images/menu.svg";
 import close from "../../images/close.svg";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext ";
 
-const Navigation = ({ loggedIn, onOpenModal }) => {
+const Navigation = ({ loggedIn, onOpenModal, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -16,6 +17,7 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
       ? `header__navbar-navbar-bg`
       : `header__navbar-navbar-transparent`
   }`;
+  const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <div className="header__navbar">
@@ -40,8 +42,8 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
               <NavLink to="/saved-news" className="nav__link">
                 Saved articles
               </NavLink>
-              <button className="navbar-button">
-                Elise
+              <button className="navbar-button" onClick={onLogout}>
+                {currentUser.username}
                 <span>
                   <img
                     src={logoutwt}
@@ -77,8 +79,11 @@ const Navigation = ({ loggedIn, onOpenModal }) => {
                 <NavLink to="/saved-news" className="mobile-menu-nav__link">
                   Saved articles
                 </NavLink>
-                <button className="mobile-menu-navbar-button">
-                  Elise
+                <button
+                  className="mobile-menu-navbar-button"
+                  onClick={onLogout}
+                >
+                  {currentUser.username}
                   <span>
                     <img
                       src={logoutwt}
