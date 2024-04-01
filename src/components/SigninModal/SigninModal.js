@@ -53,9 +53,7 @@ const SigninModal = ({ onOpenModal, onCloseModal, isLoading, onUserLogin }) => {
     e.preventDefault();
     if (validateForm()) {
       setFormErrors({});
-      // Submit form data and close modal
       onUserLogin(formData);
-      onCloseModal();
     }
   };
 

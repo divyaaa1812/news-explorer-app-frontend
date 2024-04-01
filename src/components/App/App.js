@@ -121,17 +121,26 @@ function App() {
     // either add or delete selectedCard based on selectedCard.isBookmarked field
     if (selectedCard.isBookmarked) {
       // delete the card in db
-      api.removeCardBookmark(selectedCard);
+      api
+        .removeCardBookmark(selectedCard)
+        .then(() => {})
+        .catch(console.error);
       selectedCard.isBookmarked = false;
-      api.getSavedArticles().then((response) => {
-        setSavedArticles(response);
-      });
+      api
+        .getSavedArticles()
+        .then((response) => {
+          setSavedArticles(response);
+        })
+        .catch(console.error);
     } else {
       // add the card to db
       api.addCardBookmark(selectedCard);
-      api.getSavedArticles().then((response) => {
-        setSavedArticles(response);
-      });
+      api
+        .getSavedArticles()
+        .then((response) => {
+          setSavedArticles(response);
+        })
+        .catch(console.error);
     }
     // set state with new search results
     setSearchResults(newCards);
@@ -191,9 +200,12 @@ function App() {
       }
     };
     const getSavedNews = async () => {
-      api.getSavedArticles().then((response) => {
-        setSavedArticles(response);
-      });
+      api
+        .getSavedArticles()
+        .then((response) => {
+          setSavedArticles(response);
+        })
+        .catch(console.error);
     };
     // Read data from local storage when component mounts
     const storedSearchResults = localStorage.getItem("searchResults");
