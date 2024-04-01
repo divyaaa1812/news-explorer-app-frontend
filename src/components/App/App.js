@@ -40,6 +40,15 @@ function App() {
     setOpenModal("");
   };
 
+  const getSavedNews = async () => {
+    api
+      .getSavedArticles()
+      .then((response) => {
+        setSavedArticles(response);
+      })
+      .catch(console.error);
+  };
+
   const handleSearchClick = (value) => {
     setLoading(true);
     setSearchResults([]);
@@ -126,21 +135,11 @@ function App() {
         .then(() => {})
         .catch(console.error);
       selectedCard.isBookmarked = false;
-      api
-        .getSavedArticles()
-        .then((response) => {
-          setSavedArticles(response);
-        })
-        .catch(console.error);
+      getSavedNews();
     } else {
       // add the card to db
       api.addCardBookmark(selectedCard);
-      api
-        .getSavedArticles()
-        .then((response) => {
-          setSavedArticles(response);
-        })
-        .catch(console.error);
+      getSavedNews();
     }
     // set state with new search results
     setSearchResults(newCards);
@@ -183,7 +182,7 @@ function App() {
     const getCurrentUser = async () => {
       const jwt = localStorage.getItem("jwt");
       try {
-        if (jwt !== undefined) {
+        if (jwt) {
           auth.verifyToken(jwt).then((res) => {
             if (res) {
               setLoggedIn(true);
@@ -199,21 +198,12 @@ function App() {
         console.error();
       }
     };
-    const getSavedNews = async () => {
-      api
-        .getSavedArticles()
-        .then((response) => {
-          setSavedArticles(response);
-        })
-        .catch(console.error);
-    };
     // Read data from local storage when component mounts
     const storedSearchResults = localStorage.getItem("searchResults");
     if (storedSearchResults) {
       setSearchResults(JSON.parse(storedSearchResults));
     }
     getCurrentUser();
-    getSavedNews();
   }, []);
 
   return (
@@ -245,6 +235,7 @@ function App() {
               currentUser={currentUser}
               savedArticles={savedArticles}
               onDelIconClick={handleDelIconClick}
+              getSavedNews={getSavedNews}
             />
           </ProtectedRoute>
         </Switch>

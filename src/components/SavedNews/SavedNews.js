@@ -4,7 +4,7 @@ import deleteicon from "../../images/deleteicon.svg";
 import { useState } from "react";
 import * as api from "../../utils/MainApi";
 
-const SavedNews = ({ savedArticles, onDelIconClick }) => {
+const SavedNews = ({ savedArticles, onDelIconClick, getSavedNews }) => {
   const [tooltipId, settooltipId] = useState("");
   const handleMouseLeave = () => {
     settooltipId("");
@@ -12,6 +12,10 @@ const SavedNews = ({ savedArticles, onDelIconClick }) => {
   const handleMouseOver = () => {
     settooltipId();
   };
+
+  useEffect(() => {
+    getSavedNews();
+  }, []);
 
   return (
     <div className="savednews__items">
