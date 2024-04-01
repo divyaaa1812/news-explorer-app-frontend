@@ -9,6 +9,7 @@ const Main = ({
   error,
   onCardClick,
   handleBookmarkClick,
+  onOpenModal,
 }) => {
   return (
     <main className="main">
@@ -19,6 +20,7 @@ const Main = ({
         error={error}
         onCardClick={onCardClick}
         handleBookmarkClick={handleBookmarkClick}
+        onOpenModal={onOpenModal}
       />
       <About />
     </main>

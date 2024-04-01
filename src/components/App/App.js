@@ -224,6 +224,7 @@ function App() {
               isLoading={loading}
               error={error}
               handleBookmarkClick={handleBookmarkClick}
+              onOpenModal={handleOpenModal}
             />
           </Route>
           <ProtectedRoute path="/saved-news" loggedIn={loggedIn}>

@@ -8,6 +8,7 @@ const SearchResults = ({
   isLoading,
   error,
   handleBookmarkClick,
+  onOpenModal,
 }) => {
   return (
     <>
@@ -25,6 +26,7 @@ const SearchResults = ({
             loggedIn={loggedIn}
             searchResults={searchResults}
             handleBookmarkClick={handleBookmarkClick}
+            onOpenModal={onOpenModal}
           />
         </section>
       ) : searchResults && searchResults.length == -1 ? (

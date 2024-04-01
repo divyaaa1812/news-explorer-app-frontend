@@ -4,7 +4,12 @@ import bookmarkactive from "../../images/bookmark-active.svg";
 import bookmarkblue from "../../images/bookmarkblue.svg";
 import { useState } from "react";
 
-const NewsCard = ({ loggedIn, searchResults, handleBookmarkClick }) => {
+const NewsCard = ({
+  loggedIn,
+  searchResults,
+  handleBookmarkClick,
+  onOpenModal,
+}) => {
   const [visibleCount, setVisibleCount] = useState(3);
   const [tooltipId, settooltipId] = useState("");
   const cards = searchResults.slice(0, visibleCount);
@@ -84,6 +89,7 @@ const NewsCard = ({ loggedIn, searchResults, handleBookmarkClick }) => {
                     className={activeBookmarkClassName}
                     onMouseLeave={handleMouseLeave}
                     onMouseOver={() => handleMouseOver(item.key)}
+                    onClick={() => onOpenModal("SignupModal")}
                   />
                   {tooltipId === item.key && (
                     <span id="tooltip-message" className="tooltip-message">
