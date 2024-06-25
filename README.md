@@ -17,6 +17,16 @@ The project integrates a news explorer API to provide real-time information.
 
 ## [Figma Design](https://www.figma.com/file/z1bxDn7eBEDlsDhnZ9dtin/Your-Final-Project?node-id=0%3A1)
 
+## Getting Started
+
+To run this project locally, follow these steps:
+
+- Clone the repository: git clone <https://github.com/divyaaa1812/news-explorer-app-frontend>
+- Navigate into the project directory: cd portfolio-web-app
+- Install dependencies: npm install
+- Start the development server: npm start
+- Open http://localhost:3000 in your browser.
+
 Backend hosted at - https://api.nx.csproject.org
 Website - https://nx.csproject.org/
 
